@@ -36,7 +36,12 @@ public class GameEntryPoint
             coroutines.StartCoroutine(LoadAndStartGamePlay());
             return;
         }
-        if(sceneName != Scenes.BOOT)
+        if (sceneName == Scenes.MENU)
+        {
+            coroutines.StartCoroutine(LoadAndStartMainMenu());
+            return;
+        }
+        if (sceneName != Scenes.BOOT)
         {
             return;
         }
@@ -53,7 +58,32 @@ public class GameEntryPoint
         yield return new WaitForSeconds(2);
 
         var sceneEntryPoint = Object.FindAnyObjectByType<GamePlayEntryPoint>();
-        sceneEntryPoint.Run();
+        sceneEntryPoint.Run(uiRoot);
+
+        sceneEntryPoint.GoToMainMenuSceneRequested += () =>
+        {
+            coroutines.StartCoroutine(LoadAndStartMainMenu());
+        };
+
+        uiRoot.HideLoadingScreen();
+    }
+
+    private IEnumerator LoadAndStartMainMenu()
+    {
+        uiRoot.ShowLoadingScreen();
+
+        yield return LoadScene(Scenes.BOOT);
+        yield return LoadScene(Scenes.MENU);
+
+        yield return new WaitForSeconds(2);
+
+        var sceneEntryPoint = Object.FindAnyObjectByType<MainMenuEntryPoint>();
+        sceneEntryPoint.Run(uiRoot);
+
+        sceneEntryPoint.GoToGamePlaySceneRequested += () =>
+        {
+            coroutines.StartCoroutine(LoadAndStartGamePlay());
+        };
 
         uiRoot.HideLoadingScreen();
     }
