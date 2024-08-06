@@ -7,27 +7,27 @@ public class CameraController : MonoBehaviour
     public float minOffset;
     public float maxOffset;
 
-    private CinemachineCameraOffset offset;
+    private CinemachineCameraOffset offsetCamera;
 
     private void Awake()
     {
-        offset = GetComponent<CinemachineCameraOffset>();
+        offsetCamera = GetComponent<CinemachineCameraOffset>();
     }
 
     private void Update()
     {
         if(Input.GetAxisRaw("Mouse ScrollWheel") > 0)
         {
-            if(offset.m_Offset.z < minOffset)
+            if(offsetCamera.m_Offset.z < minOffset)
             {
-                offset.m_Offset.z += 1f;
+                offsetCamera.m_Offset.z += 1f;
             }
         }
         if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
         {
-            if (offset.m_Offset.z > maxOffset)
+            if (offsetCamera.m_Offset.z > maxOffset)
             {
-                offset.m_Offset.z -= 1f;
+                offsetCamera.m_Offset.z -= 1f;
             }
         }
     }
