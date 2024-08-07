@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class CashTrigger : MonoBehaviour
 {
-    private BoxCollider boxCollider;
     private GameObject lastPerson;
-
-    private void Awake()
-    {
-        boxCollider = GetComponent<BoxCollider>();
-    }
 
     public void Service()
     {

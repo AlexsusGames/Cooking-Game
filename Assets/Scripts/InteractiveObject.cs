@@ -28,7 +28,6 @@ public class InteractiveObject : MonoBehaviour
             if(Input.GetButtonDown(button))
             {
                 action?.Invoke();
-                Debug.Log("Button " + button + " works");
             }
         }
     }

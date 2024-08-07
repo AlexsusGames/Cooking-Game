@@ -11,6 +11,7 @@ public class CharacterMove : MonoBehaviour
     private Rigidbody rb;
     private Animator animator;
     private CapsuleCollider trigger;
+    private AnimationController animController;
 
     private int currentIndex;
     private bool isQueue;
@@ -20,6 +21,8 @@ public class CharacterMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         trigger = GetComponent<CapsuleCollider>();
+
+        animController = new(animator);
     }
 
     public void Bind(Transform[] wayPoints)
@@ -27,12 +30,13 @@ public class CharacterMove : MonoBehaviour
         this.wayPoints = wayPoints;
         currentIndex = 0;
         gameObject.SetActive(true);
+        animController.SetWalkingState(1);
     }
 
     public void OnServiced(bool isTriggerable)
     {
         ContinueWalking();
-        Invoke(nameof(ColliderEnable), 1f);
+        Invoke(nameof(ColliderEnable), 2f);
     }
     public void ColliderEnable(bool isTriggerable)
     {
@@ -51,7 +55,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
-        if(!isQueue)
+        if (!isQueue)
         {
             Vector3 targetPosition = wayPoints[currentIndex].position;
             Vector3 moveDirection = (targetPosition - rb.position).normalized;
@@ -79,7 +83,7 @@ public class CharacterMove : MonoBehaviour
         if(other.CompareTag("People"))
         {
             isQueue = true;
-            animator.SetBool("queue", isQueue);
+            animController.SetWalkingState(0);
         }
     }
 
@@ -94,6 +98,6 @@ public class CharacterMove : MonoBehaviour
     private void ContinueWalking()
     {
         isQueue = false;
-        animator.SetBool("queue", isQueue);
+        animController.SetWalkingState(1);
     }
 }

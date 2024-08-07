@@ -10,10 +10,12 @@ public class CharacterSpawner : MonoBehaviour
     [SerializeField] private WayPoints[] wayPoints;
     [SerializeField] private bool addCollider;
     private WaitForSeconds spawnTime => new WaitForSeconds(Random.Range(minSpawnRate,maxSpawnRate));
+    public int MaxCountOfPeopleInQueue { get; set; }
 
     private void Start()
     {
         StartCoroutine(Spawner());
+        MaxCountOfPeopleInQueue = 2;
     }
 
     private IEnumerator Spawner()
@@ -21,17 +23,39 @@ public class CharacterSpawner : MonoBehaviour
         while (true)
         {
             var way = wayPoints[Random.Range(0, wayPoints.Length)].Points;
-            var character = characterPool.TryGetCharacter(way[0]);
 
-            if(character != null)
+            if (!IskBigQueue(way[0]))
             {
-                character.TryGetComponent(out CharacterMove movement);
+                var character = characterPool.TryGetCharacter(way[0]);
 
-                movement.Bind(way);
-                movement.ColliderEnable(addCollider);
+                if (character != null)
+                {
+                    character.TryGetComponent(out CharacterMove movement);
+
+                    if (movement != null)
+                    {
+                        movement.Bind(way);
+                        movement.ColliderEnable(addCollider);
+                    }
+                    else
+                        throw new System.Exception("Character must contain 'CharacterMove'");
+                }
             }
 
             yield return spawnTime;
         }
+    }
+    private bool IskBigQueue(Transform transform)
+    {
+        int countOfActive = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                countOfActive++;
+            }
+        }
+
+        return countOfActive >= MaxCountOfPeopleInQueue;
     }
 }

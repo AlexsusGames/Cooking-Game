@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Man1 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
+      propertyPath: m_TagString
+      value: People
+      objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -150,7 +154,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -197,5 +201,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da68fd7d6e80c1b4dbc91187c1352ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   turnSpeed: 5
