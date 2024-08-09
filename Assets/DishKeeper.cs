@@ -17,6 +17,7 @@ public class DishKeeper : MonoBehaviour
         {
             var number = Random.Range(0, dishPoints.Length);
             var dish = Instantiate(dishPrefab, parents[number]);
+
             dishes.Add(dish);
         }   
     }
