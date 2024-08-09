@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 81db9c5ec53a6e44c85d6a53913eb472, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81db9c5ec53a6e44c85d6a53913eb472, type: 3}
       propertyPath: m_LocalScale.x
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da68fd7d6e80c1b4dbc91187c1352ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 12
   turnSpeed: 5
 --- !u!54 &6798381035487028480
 Rigidbody:
