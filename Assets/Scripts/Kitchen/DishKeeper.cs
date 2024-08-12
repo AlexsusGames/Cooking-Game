@@ -7,19 +7,26 @@ public class DishKeeper : MonoBehaviour
     [SerializeField] private GameObject dishPrefab;
     [SerializeField] private float radius = 5f;
     [SerializeField] private Transform[] parents;
-    [SerializeField] private int[] dishPoints;
-    private List<GameObject> dishes;
+    private List<GameObject> dishes = new();
     private int maxDishCount = 22;
 
+    private void Awake() => CreatePool();
     private void CreatePool()
     {
         for (int i = 0; i < maxDishCount; i++)
         {
-            var number = Random.Range(0, dishPoints.Length);
-            var dish = Instantiate(dishPrefab, parents[number]);
-
-            dishes.Add(dish);
+            CreateDish();
         }   
+    }
+
+    private void CreateDish()
+    {
+        var number = Random.Range(0, parents.Length);
+        var dish = Instantiate(dishPrefab, parents[number]);
+
+        float offset = (float)parents[number].childCount / 10;
+        dish.transform.localPosition = new Vector3(0, offset, 0);
+        dishes.Add(dish);
     }
 
     public void Interact()
@@ -47,8 +54,10 @@ public class DishKeeper : MonoBehaviour
                             handler.ChangeObject(dish);
                         }
                     }
-                    else
+
+                    else if (obj.TryGetComponent(out Dish _))
                     {
+                        CreateDish();
                         handler.ChangeObject();
                     }
                 }
