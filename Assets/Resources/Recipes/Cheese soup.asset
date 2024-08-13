@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
+  m_Name: Cheese soup
+  m_EditorClassIdentifier: 
+  Products:
+  - {fileID: 11400000, guid: 9ddaf6657333c6b408af11017f6855b3, type: 2}
+  - {fileID: 11400000, guid: 9c3451f965c272549aee6cea52a1aab2, type: 2}
+  - {fileID: 11400000, guid: 19fc0d8a2bd91d24ea993a7f9af3b067, type: 2}
+  - {fileID: 11400000, guid: ea9fa3be178925a4b9cac5cdcaac05f3, type: 2}
+  Model: {fileID: 1248244361954224756, guid: bbcdee38b0eb59247af03abe87cbdcb0, type: 3}
+  Name: "\u0421\u044B\u0440\u043D\u044B\u0439 \u0441\u0443\u043F"
+  RarityIndex: 1.5

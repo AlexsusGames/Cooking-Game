@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
+  m_Name: Fruit salad
+  m_EditorClassIdentifier: 
+  Products:
+  - {fileID: 11400000, guid: a8958d6b982aa2042ae9e5886fc35c14, type: 2}
+  - {fileID: 11400000, guid: 0d9a937cd425bdf438960da8ede306d5, type: 2}
+  - {fileID: 11400000, guid: f325c6a0b263ce343a187085fc5e1ae1, type: 2}
+  - {fileID: 11400000, guid: 39a6e3ae68a21654892420acf9231d0c, type: 2}
+  - {fileID: 11400000, guid: 2a452929eb586ee42b0d9ae12cfc03be, type: 2}
+  - {fileID: 11400000, guid: 443c3d55bf94e084983897daa3cc687d, type: 2}
+  Model: {fileID: 4184782139076179582, guid: da8053e2cb7485f4c8ca3e4e42b22821, type: 3}
+  Name: "\u0424\u0440\u0443\u043A\u0442\u043E\u0432\u044B\u0439 \u0441\u0430\u043B\u0430\u0442"
+  RarityIndex: 2

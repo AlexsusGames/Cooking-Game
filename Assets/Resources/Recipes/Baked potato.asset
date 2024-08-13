@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
+  m_Name: Baked potato
+  m_EditorClassIdentifier: 
+  Products:
+  - {fileID: 11400000, guid: 189f1fdb84787724a8e06df808ae8243, type: 2}
+  - {fileID: 11400000, guid: e4741b4a0debe6b4a8fcc26279071988, type: 2}
+  - {fileID: 11400000, guid: 443c3d55bf94e084983897daa3cc687d, type: 2}
+  Model: {fileID: 4462697011585957846, guid: 11a17a8261158974a8df10385f0abc11, type: 3}
+  Name: "\u041F\u0435\u0447\u0435\u043D\u043D\u044B\u0439 \u043A\u0430\u0440\u0442\u043E\u0444\u0435\u043B\u044C"
+  RarityIndex: 1.5
