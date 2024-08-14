@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8422054627960219858}
+  m_Father: {fileID: 263898782328084810}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3321937426597986153
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d050bc184983d4c802f363ee6b3d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactiveMesh: {fileID: 4856989659564369840}
   interactiveZone: {fileID: 3321937426597986153}
   button: E
   action:
@@ -93,7 +94,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 099f797bd2449094cb174055c50ba451, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 099f797bd2449094cb174055c50ba451, type: 3}
       propertyPath: m_LocalPosition.x
@@ -159,10 +160,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 099f797bd2449094cb174055c50ba451, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5616962956808353612}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8391222552659086748, guid: 099f797bd2449094cb174055c50ba451, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4856989659564369840}
   m_SourcePrefab: {fileID: 100100000, guid: 099f797bd2449094cb174055c50ba451, type: 3}
---- !u!4 &8422054627960219858 stripped
+--- !u!4 &263898782328084810 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 099f797bd2449094cb174055c50ba451, type: 3}
   m_PrefabInstance: {fileID: 298143530708090529}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1130214915033631941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8391222552659086748, guid: 099f797bd2449094cb174055c50ba451, type: 3}
+  m_PrefabInstance: {fileID: 298143530708090529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4856989659564369840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130214915033631941}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 1, b: 0, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

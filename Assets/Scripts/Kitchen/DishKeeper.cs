@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class DishKeeper : MonoBehaviour
+public class DishKeeper : InteractiveManager
 {
     [SerializeField] private GameObject dishPrefab;
-    [SerializeField] private float radius = 5f;
     [SerializeField] private Transform[] parents;
     private List<GameObject> dishes = new();
     private int maxDishCount = 22;
@@ -29,38 +29,28 @@ public class DishKeeper : MonoBehaviour
         dishes.Add(dish);
     }
 
-    public void Interact()
+    public override void Interact()
     {
-        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, radius);
+        var player = GetPlayer().gameObject;
 
-        foreach (Collider collider in colliders)
+        if (player.TryGetComponent(out ObjectHandler handler))
         {
-            if(collider.transform.childCount == 0) continue;
+            var obj = handler.GetObject();
 
-            var child = collider.transform.GetChild(0);
-
-            if(child != null)
+            if (obj == null)
             {
-                if (child.TryGetComponent(out ObjectHandler handler))
+                if (dishes.Count > 0)
                 {
-                    var obj = handler.GetObject();
-
-                    if (obj == null)
-                    {
-                        if (dishes.Count > 0)
-                        {
-                            var dish = dishes[dishes.Count - 1];
-                            dishes.Remove(dish);
-                            handler.ChangeObject(dish);
-                        }
-                    }
-
-                    else if (obj.TryGetComponent(out Dish _))
-                    {
-                        CreateDish();
-                        handler.ChangeObject();
-                    }
+                    var dish = dishes[dishes.Count - 1];
+                    dishes.Remove(dish);
+                    handler.ChangeObject(dish);
                 }
+            }
+
+            else if (obj.TryGetComponent(out Dish _))
+            {
+                CreateDish();
+                handler.ChangeObject();
             }
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class InteractiveObject : MonoBehaviour
 {
+    [SerializeField] private Outline interactiveMesh;
     [SerializeField] private BoxCollider interactiveZone;
     [SerializeField] private string button;
 
@@ -14,11 +15,19 @@ public class InteractiveObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         isInTrigger = true;
+        if(interactiveMesh != null)
+        {
+            interactiveMesh.enabled = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         isInTrigger = false;
+        if (interactiveMesh != null)
+        {
+            interactiveMesh.enabled = false;
+        }
     }
 
     private void Update()

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
-  m_Name: Strawberry-avokado donut
+  m_Name: Strawberry donut
   m_EditorClassIdentifier: 
   Products:
   - {fileID: 11400000, guid: e2c89beda16bdd74fb172f651f45789e, type: 2}

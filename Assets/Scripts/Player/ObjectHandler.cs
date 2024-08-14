@@ -5,10 +5,7 @@ using UnityEngine;
 public class ObjectHandler : MonoBehaviour
 {
     [SerializeField] private Transform gameObjectHandler;
-
-    private Animator animator;
-
-    private void Awake() => animator = GetComponent<Animator>();
+    [SerializeField] private Animator animator;
 
     public void ChangeObject(GameObject gameObject = null)
     {

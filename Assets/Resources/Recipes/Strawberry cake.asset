@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Strawberry cake
   m_EditorClassIdentifier: 
+  CookingPlace: 1
   Products:
   - {fileID: 11400000, guid: fb13e8aefcb74994f9fcc59581216017, type: 2}
   - {fileID: 11400000, guid: 6fdccc33ae3172d4cb105d94c2ce73d3, type: 2}

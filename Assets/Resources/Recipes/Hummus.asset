@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Hummus
   m_EditorClassIdentifier: 
+  CookingPlace: 1
   Products:
   - {fileID: 11400000, guid: 59b8d43e3bc17da44a5c4ecc8805fa75, type: 2}
   - {fileID: 11400000, guid: 7a7b5602120b06944a1285dd0e7d112f, type: 2}
