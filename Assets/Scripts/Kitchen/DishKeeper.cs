@@ -47,10 +47,13 @@ public class DishKeeper : InteractiveManager
                 }
             }
 
-            else if (obj.TryGetComponent(out Dish _))
+            else if (obj.TryGetComponent(out Dish dish))
             {
-                CreateDish();
-                handler.ChangeObject();
+                if(dish.GetFood() == null)
+                {
+                    CreateDish();
+                    handler.ChangeObject();
+                }
             }
         }
     }
