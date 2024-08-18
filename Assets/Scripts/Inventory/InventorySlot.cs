@@ -27,6 +27,12 @@ public class InventorySlot : IReadOnlyInventorySlot
             {
                 data.Amount = value;
                 ItemAmountChanged?.Invoke(value);
+
+                if (Amount == 0)
+                {
+                    ItemId = null;
+                    ItemIdChanged?.Invoke(ItemId);
+                }
             }
         }
     }

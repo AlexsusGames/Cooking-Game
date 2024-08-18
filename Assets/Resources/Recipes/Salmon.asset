@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Salmon
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 62e4381900f074f46bb970628516116e, type: 3}
   CookingPlace: 1
   Products:
   - {fileID: 11400000, guid: ee9beed93b544fb4f8d76fd87414bf84, type: 2}

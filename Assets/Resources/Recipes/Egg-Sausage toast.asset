@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Egg-Sausage toast
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 3cdbd156c6667904aaf12f5a845dbe8e, type: 3}
+  CookingPlace: 0
   Products:
   - {fileID: 11400000, guid: a723cc8ff8eb85c4889e7bc59e7177b7, type: 2}
   - {fileID: 11400000, guid: 1d19a49a0719bf34cbea47b0e5c33944, type: 2}

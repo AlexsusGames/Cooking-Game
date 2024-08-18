@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Fruit salad
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 6fbf7c04e74ba674783050c28170b272, type: 3}
+  CookingPlace: 0
   Products:
   - {fileID: 11400000, guid: a8958d6b982aa2042ae9e5886fc35c14, type: 2}
   - {fileID: 11400000, guid: 0d9a937cd425bdf438960da8ede306d5, type: 2}

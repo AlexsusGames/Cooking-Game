@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Chocolate donut
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 287ce8120ef8d4c4895e336d0c361542, type: 3}
+  CookingPlace: 0
   Products:
   - {fileID: 11400000, guid: e2c89beda16bdd74fb172f651f45789e, type: 2}
   - {fileID: 11400000, guid: 8e4aff4d4071c7646b0425d21a99ef55, type: 2}

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Strawberry donut
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 7e6b0ad97a52c4d4098ca4e87faaace4, type: 3}
+  CookingPlace: 0
   Products:
   - {fileID: 11400000, guid: e2c89beda16bdd74fb172f651f45789e, type: 2}
   - {fileID: 11400000, guid: f325c6a0b263ce343a187085fc5e1ae1, type: 2}

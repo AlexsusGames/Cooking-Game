@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Vegetable salad
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 58dd8be6f0a56ad44aae19944b42265b, type: 3}
+  CookingPlace: 0
   Products:
   - {fileID: 11400000, guid: 714d0c401c6ce66459fbf9baa39d9faf, type: 2}
   - {fileID: 11400000, guid: 05225dd790f90e64ab79dfa00b7b11b7, type: 2}

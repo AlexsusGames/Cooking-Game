@@ -8,6 +8,8 @@ public class CookingPlace : InteractiveManager
     [SerializeField] private InteractivePlaces place;
     [SerializeField] private ParticleGroup effect;
 
+    private FoodConfigFinder foodConfigFinder = new();
+
     private void Awake()
     {
         effect.Stop();
@@ -15,12 +17,29 @@ public class CookingPlace : InteractiveManager
 
     public override async void Interact()
     {
-        effect.Play();
         var player = GetPlayer();
+        var inventory = player.gameObject.GetComponent<Inventory>();
+        var inventoryProducts = foodConfigFinder.GetProductsByName(inventory.GetProducts());
 
-        player.Interact();
+        if (player.GetComponent<ObjectHandler>().GetObject().TryGetComponent(out Dish dish))
+        {
+            if(dish.GetFood() == null && inventoryProducts.Count > 1)
+            {
+                effect.Play();
+                player.Interact();
 
-        await Task.Delay(5000);
+                var model = foodConfigFinder.CookingFood(inventoryProducts, place);
+
+                inventory.RemoveProducts();
+
+                if(model != null)
+                {
+                    dish.SetFood(model);
+                }
+
+                await Task.Delay(5000);
+            }
+        }
 
         FinishInterating(player);
     }

@@ -13,6 +13,10 @@ public class InventoryGrid : IReadOnlyInventoryGrid
 
     private readonly InventoryGridData data;
     private readonly Dictionary<Vector2Int, InventorySlot> slotsMap = new();
+
+    public event Action<string, int> OnAddingItem;
+    public event Action<string, int> OnRemovingItem;
+
     public InventoryGrid(InventoryGridData data)
     {
         this.data = data;
@@ -31,6 +35,58 @@ public class InventoryGrid : IReadOnlyInventoryGrid
             }
         }
     }
+    public List<string> GetInventoryItems()
+    {
+        List<string> items = new List<string>();
+
+        for (int i = 0; i < Size.x; i++)
+        {
+            for (int j = 0; j < Size.y; j++)
+            {
+                var pos = new Vector2Int(i, j);
+                var slot = slotsMap[pos];
+
+                if (!slot.isEmpty || slot.Amount != 0)
+                {
+                    items.Add(slot.ItemId);
+                }
+            }
+        }
+        return items;
+    }
+
+    public bool CanTake(string itemId, int amount)
+    {
+        var itemsToAdd = amount;
+
+        for (int i = 0; i < Size.x; i++)
+        {
+            for (int j = 0; j < Size.y; j++)
+            {
+                var pos = new Vector2Int(i, j);
+                var slot = slotsMap[pos];
+
+                if (slot.Amount == slotCapacity)
+                {
+                    continue;
+                }
+
+                if(slot.ItemId != itemId &&  slot.Amount != 0)
+                {
+                    continue;
+                }
+
+                var canTake = slotCapacity - slot.Amount;
+                itemsToAdd -= canTake;
+
+                if(itemsToAdd <= 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public AddItemsToInventoryGridResult AddItems(string itemId, int amount = 1)
     {
@@ -45,6 +101,7 @@ public class InventoryGrid : IReadOnlyInventoryGrid
         var itemsAddedToAvailableSlot = AddToFirstAvailableSlot(itemId, remainingAmount, out remainingAmount);
         var totalAddedItems = itemsAddedToAvailableSlot + itemsAddedToSlotsWithSameItems;
 
+        OnAddingItem?.Invoke(itemId, totalAddedItems);
         return new AddItemsToInventoryGridResult(OwnerId, amount, totalAddedItems);
     }
     public AddItemsToInventoryGridResult AddItems(Vector2Int slotCoords, string itemId, int amount = 1)
@@ -75,25 +132,46 @@ public class InventoryGrid : IReadOnlyInventoryGrid
         }
 
         return new AddItemsToInventoryGridResult(OwnerId, amount, itemsAddedAmount);
-
     }
-    public RemoveItemsFromInventoryResult RemoveItem(Vector2Int slotCoords, string itemId, int amount = 1)
+    public RemoveItemsFromInventoryResult RemoveItem(Vector2Int slotCoords, int amount = 1)
     {
         var slot = slotsMap[slotCoords];
 
-        if(slot.isEmpty ||  slot.Amount < amount || slot.ItemId != itemId)
+        if(slot.isEmpty)
         {
-            return new RemoveItemsFromInventoryResult(OwnerId, amount, 0);
+            return new RemoveItemsFromInventoryResult(OwnerId, 0, 0);
+        }
+
+        if(slot.Amount < amount)
+        {
+            amount = slot.Amount;
         }
 
         slot.Amount -= amount;
 
-        if(slot.Amount == 0)
-        {
-            slot.ItemId = null;
-        }
-
+        OnRemovingItem?.Invoke(slot.ItemId, amount);
         return new RemoveItemsFromInventoryResult(OwnerId, amount, amount);
+    }
+    public (RemoveItemsFromInventoryResult result, string item) RemoveFirstItem()
+    {
+        for (int i = 0; i < Size.x; i++)
+        {
+            for (int j = 0; j < Size.y; j++)
+            {
+                var slot = slotsMap[new Vector2Int(i, j)];
+
+                if (slot.isEmpty)
+                {
+                    continue;
+                }
+
+                var itemToRemove = slot.Amount;
+                slot.Amount = 0;
+
+                return (new RemoveItemsFromInventoryResult(OwnerId, itemToRemove, itemToRemove), slot.ItemId);
+            }
+        }
+        return (new RemoveItemsFromInventoryResult(OwnerId, 0, 0), null);
     }
 
     public IReadOnlyInventorySlot[,] GetSlots()

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Fruit dessert
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 3f97dcb3758d52043b23709d1734b651, type: 3}
+  CookingPlace: 0
   Products:
   - {fileID: 11400000, guid: 09caba6fccd3efd4ba8ce676c606494f, type: 2}
   - {fileID: 11400000, guid: 0d9a937cd425bdf438960da8ede306d5, type: 2}

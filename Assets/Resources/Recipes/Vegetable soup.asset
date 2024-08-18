@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Vegetable soup
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 30564d258180127488fca1c4f89d1e41, type: 3}
   CookingPlace: 1
   Products:
   - {fileID: 11400000, guid: 9ddaf6657333c6b408af11017f6855b3, type: 2}

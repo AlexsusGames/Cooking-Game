@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CreateConfig/Recipe", fileName = "Recipe")]
 public class RecipeConfig : ScriptableObject
 {
+    public Sprite picture;
     public InteractivePlaces CookingPlace;
     public List<ProductConfig> Products = new();
     public GameObject Model;

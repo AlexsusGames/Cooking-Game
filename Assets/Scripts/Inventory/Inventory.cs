@@ -1,27 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : InventoryManager
 {
     [SerializeField] private InventoryGridView view;
     [SerializeField] private InventoryTypes inventoryType;
     private InventoryDataLoader loader = new();
-    private InventoryGrid inventory;
 
     private void Awake()
     {
         var inventoryData = loader.GetInventory(inventoryType);
-        inventory = new(inventoryData);
-        view.Setup(inventory);
-        Invoke(nameof(test), 2);
+        myInventory = new(inventoryData);
+        view.Setup(myInventory);
+
+        BindButtons(view);
+
+        myInventory.AddItems("Хлеб");
+        myInventory.AddItems("Бекон");
+        myInventory.AddItems("Сыр");
+        myInventory.AddItems("Салат");
     }
 
-    private void test()
+    public InventoryGrid Setup(InventoryGrid inventory)
     {
-        inventory.AddItems("Клубника", 4);
-        inventory.AddItems("Молоко", 7);
-        inventory.AddItems("Курица", 13);
+        anotherInventory = inventory;
+        return myInventory;
     }
 
+    public List<string> GetProducts()
+    {
+        return myInventory.GetInventoryItems();
+    }
+
+    public void RemoveProducts()
+    {
+        for (int i = 0; i < myInventory.Size.x; i++)
+        {
+            for(int j = 0; j < myInventory.Size.y; j++)
+            {
+                myInventory.RemoveItem(new Vector2Int(i, j));
+            }
+        }
+    }
 }

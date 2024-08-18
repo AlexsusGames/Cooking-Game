@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
   m_Name: Bacon sandwich
   m_EditorClassIdentifier: 
+  picture: {fileID: 21300000, guid: 4c85ba0dce73a454da91a39fac725f9a, type: 3}
+  CookingPlace: 0
   Products:
-  - {fileID: 11400000, guid: a723cc8ff8eb85c4889e7bc59e7177b7, type: 2}
   - {fileID: 11400000, guid: a723cc8ff8eb85c4889e7bc59e7177b7, type: 2}
   - {fileID: 11400000, guid: 7449c2d1618fd3a4884069e92cf8a61d, type: 2}
   - {fileID: 11400000, guid: 9c3451f965c272549aee6cea52a1aab2, type: 2}

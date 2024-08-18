@@ -8,6 +8,7 @@ public class Dish : MonoBehaviour
 
     public void SetFood(RecipeConfig config)
     {
+        this.config = config;
         Instantiate(config.Model, transform);
     }
 

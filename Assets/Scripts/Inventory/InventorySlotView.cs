@@ -9,6 +9,7 @@ public class InventorySlotView : MonoBehaviour
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private TMP_Text amountText;
+    public Vector2Int Position;
 
     private FoodConfigFinder foodConfigFinder = new();
 
@@ -32,7 +33,7 @@ public class InventorySlotView : MonoBehaviour
     }
     public void UpdateAmount(int amount)
     {
-        if (amount > 0) amountText.text = amount.ToString();
+        if (amount > 0) amountText.text = $"x{amount}";
         else amountText.text = string.Empty;
     }
 }

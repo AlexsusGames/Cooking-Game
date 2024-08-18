@@ -31,6 +31,14 @@ public class ObjectHandler : MonoBehaviour
             Destroy(gameObjectHandler.GetChild(0).gameObject);
         }
     }
+    public void GetRidOfObject()
+    {
+        if (gameObjectHandler.childCount != 0)
+        {
+            Destroy(gameObjectHandler.GetChild(0).gameObject);
+            animator.SetLayerWeight(1, 0);
+        }
+    }
 
     public GameObject GetObject()
     {
