@@ -10,16 +10,9 @@ public class DishKeeper : InteractiveManager
     private List<GameObject> dishes = new();
     private int maxDishCount = 22;
 
-    private void Awake() => CreatePool();
-    private void CreatePool()
-    {
-        for (int i = 0; i < maxDishCount; i++)
-        {
-            CreateDish();
-        }   
-    }
+    public bool IsMaxCountOfDish => dishes.Count >= maxDishCount;
 
-    private void CreateDish()
+    public void CreateDish()
     {
         var number = Random.Range(0, parents.Length);
         var dish = Instantiate(dishPrefab, parents[number]);

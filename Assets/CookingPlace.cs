@@ -7,52 +7,49 @@ public class CookingPlace : InteractiveManager
 {
     [SerializeField] private InteractivePlaces place;
     [SerializeField] private ParticleGroup effect;
+    [SerializeField] private RecipeConfig spoiltFood;
 
     private FoodConfigFinder foodConfigFinder = new();
-
-    private void Awake()
-    {
-        effect.Stop();
-    }
 
     public override async void Interact()
     {
         var player = GetPlayer();
         var inventory = player.gameObject.GetComponent<Inventory>();
         var inventoryProducts = foodConfigFinder.GetProductsByName(inventory.GetProducts());
+        var handleObject = player.GetComponent<ObjectHandler>().GetObject();
 
-        if (player.GetComponent<ObjectHandler>().GetObject().TryGetComponent(out Dish dish))
+        if (handleObject != null)
         {
-            if(dish.GetFood() == null && inventoryProducts.Count > 1)
+            if(handleObject.TryGetComponent(out Dish dish))
             {
-                effect.Play();
-                player.Interact();
-
-                var model = foodConfigFinder.CookingFood(inventoryProducts, place);
-
-                inventory.RemoveProducts();
-
-                if(model != null)
+                if (dish.GetFood() == null && inventoryProducts.Count > 1)
                 {
-                    dish.SetFood(model);
-                }
+                    effect.Play();
+                    player.Interact();
 
-                await Task.Delay(5000);
+                    var model = foodConfigFinder.CookingFood(inventoryProducts, place);
+
+                    inventory.RemoveProducts();
+
+                    if (model != null)
+                    {
+                        dish.SetFood(model);
+                    }
+                    else dish.SetFood(spoiltFood);
+
+                    await Task.Delay(5000);
+
+                    player.FinishInteracting();
+                    effect.Stop();
+                }
             }
         }
-
-        FinishInterating(player);
-    }
-
-    private void FinishInterating(MoveController player)
-    {
-        player.FinishInteracting();
-        effect.Stop();
     }
 }
 public enum InteractivePlaces
 {
-    SlicingTable,
-    Stove,
-    WashStand
+    SlicingTable = 0,
+    Stove = 1,
+    WashStand,
+    CoffeeMachine
 }

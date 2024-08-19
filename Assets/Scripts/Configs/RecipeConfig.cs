@@ -11,6 +11,7 @@ public class RecipeConfig : ScriptableObject
     public GameObject Model;
 
     public string Name;
+    public string Description;
     public float RarityIndex;
 
     public int GetCost()

@@ -8,6 +8,7 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
     [SerializeField] private Animator animator;
+    [SerializeField] private Stamina stamina;
     private Rigidbody rb;
     private Vector3 moveDirection;
     private bool isInCollision;
@@ -37,9 +38,10 @@ public class MoveController : MonoBehaviour
             }
             else
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift) && !stamina.IsExhausted)
                 {
                     anims.SetWalkingState(2);
+                    stamina.Sprint();
                     moveSpeed = 25;
                 }
                 else

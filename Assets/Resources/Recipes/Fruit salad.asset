@@ -23,4 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 443c3d55bf94e084983897daa3cc687d, type: 2}
   Model: {fileID: 4184782139076179582, guid: da8053e2cb7485f4c8ca3e4e42b22821, type: 3}
   Name: "\u0424\u0440\u0443\u043A\u0442\u043E\u0432\u044B\u0439 \u0441\u0430\u043B\u0430\u0442"
+  Description: "\u0421\u043C\u0435\u0448\u0430\u0442\u044C \u0432\u0441\u0435 \u0444\u0440\u0443\u043A\u0442\u044B
+    \u043D\u0430 \u043A\u0443\u0445\u043D\u0435.."
   RarityIndex: 2

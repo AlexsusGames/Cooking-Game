@@ -6,6 +6,8 @@ public class ParticleGroup : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _particleSystem;
 
+    private void Awake() => Stop();
+
     public void Stop()
     {
         for (int i = 0; i < _particleSystem.Length; i++)
