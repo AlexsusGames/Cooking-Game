@@ -14,7 +14,9 @@ public class RecipeConfig : ScriptableObject
     public string Description;
     public float RarityIndex;
 
-    public int GetCost()
+    public int Price => GetCost();
+
+    private int GetCost()
     {
         int cost = 0;
         for (int i = 0; i < Products.Count; i++)

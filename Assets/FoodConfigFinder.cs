@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,15 @@ public class FoodConfigFinder
             return productsMap[name];
         }
         return null;
+    }
+
+    public RecipeConfig[] GetAllRecipes()
+    {
+        RecipeConfig[] allRecipes;
+        if (recipes == null) recipes = Resources.LoadAll<RecipeConfig>("Recipes");
+
+        allRecipes = Array.FindAll(recipes, val => !string.IsNullOrEmpty(val.Description));
+        return allRecipes;
     }
 
     public RecipeConfig CookingFood(List<ProductConfig> products, InteractivePlaces place)
