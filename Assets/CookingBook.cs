@@ -15,21 +15,44 @@ public class CookingBook : MonoBehaviour
 
     private FoodConfigFinder foodConfigFinder = new();
     private List<int> pageNumbers = new List<int>();
+    private KnownRecipes knownRecipes = new();
     private RecipeConfig[] recipes;
     private int index = 0;
 
-    private void Awake() => recipes = foodConfigFinder.GetAllRecipes();
     private void OnEnable()
     {
+        UpdateData();
         CreateMenu();
-        
+
+        openedBook.SetActive(false);
+
+        firstPage.sellingChanged += UpdateMenu;
+        secondPage.sellingChanged += UpdateMenu;
+    }
+
+    private void OnDisable()
+    {
+        firstPage.sellingChanged -= UpdateMenu;
+        secondPage.sellingChanged -= UpdateMenu;
+    }
+
+    private void UpdateMenu(string name, bool isSelling)
+    {
+        knownRecipes.ChangeSelling(name, isSelling);
+        CreateMenu();
+    }
+
+    private void UpdateData()
+    {
+        var availableRecipes = knownRecipes.GetAvailableRecipes();
+        var recipesConfig = foodConfigFinder.GetRecipesByName(availableRecipes);
+        recipes = recipesConfig.ToArray();
+
         pageNumbers.Clear();
         for (int i = 0; i < recipes.Length; i++)
         {
-            if(i % 2 == 0) pageNumbers.Add(i);
+            if (i % 2 == 0) pageNumbers.Add(i);
         }
-
-        openedBook.SetActive(false);
     }
 
     public void OpenBook()
@@ -55,22 +78,41 @@ public class CookingBook : MonoBehaviour
     private void SetRecipes(int index)
     {
         firstPage.gameObject.SetActive(true);
-        firstPage.SetData(recipes[index], true);
+        var recipeA = recipes[index];
+        int nextPage = index + 1;
 
-        if(index + 1 < recipes.Length)
+        firstPage.SetData(recipeA, knownRecipes.IsSelling(recipeA.Name));
+
+        if(nextPage < recipes.Length)
         {
             secondPage.gameObject.SetActive(true);
-            secondPage.SetData(recipes[index + 1], true);
+            var recipeB = recipes[nextPage];
+
+            secondPage.SetData(recipeB, knownRecipes.IsSelling(recipeB.Name));
         }
         else secondPage.gameObject.SetActive(false);
     }
 
     private void CreateMenu()
     {
+        var sellingRecipes = new List<RecipeConfig>();
+
+        for (int i = 0; i < recipes.Length; i++)
+        {
+            if (knownRecipes.IsSelling(recipes[i].Name))
+            {
+                sellingRecipes.Add(recipes[i]);
+            }
+        }
+
         for (int i = 0; i < menuPositions.Length; i++)
         {
-            menuPositions[i].enabled = true;
-            menuPositions[i].sprite = recipes[i].picture;
+            if(sellingRecipes.Count > i)
+            {
+                menuPositions[i].enabled = true;
+                menuPositions[i].sprite = sellingRecipes[i].picture;
+            }
+            else menuPositions[i].enabled = false;
         }
     }
 }

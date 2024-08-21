@@ -8,6 +8,9 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private Outline interactiveMesh;
     [SerializeField] private BoxCollider interactiveZone;
     [SerializeField] private string button;
+    [Header("InputView")]
+    [SerializeField] private InputView inputView;
+    [SerializeField] private string actionDescribtion;
 
     [SerializeField] private UnityEvent action;
     private bool isInTrigger;
@@ -19,6 +22,11 @@ public class InteractiveObject : MonoBehaviour
         {
             interactiveMesh.enabled = true;
         }
+
+        if(inputView != null)
+        {
+            inputView.Show(button, actionDescribtion);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -27,6 +35,11 @@ public class InteractiveObject : MonoBehaviour
         if (interactiveMesh != null)
         {
             interactiveMesh.enabled = false;
+        }
+
+        if (inputView != null)
+        {
+            inputView.Hide();
         }
     }
 

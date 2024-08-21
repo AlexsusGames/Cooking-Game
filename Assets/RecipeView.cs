@@ -17,7 +17,7 @@ public class RecipeView : MonoBehaviour
     [SerializeField] private Image checkMark;
 
 
-    private event Action<RecipeConfig> sellingChanged;
+    public event Action<string, bool> sellingChanged;
     private RecipeConfig config;
 
     private bool isSelling;
@@ -27,7 +27,7 @@ public class RecipeView : MonoBehaviour
         set
         {
             isSelling = value;
-            sellingChanged?.Invoke(config);
+            sellingChanged?.Invoke(config.Name, isSelling);
         }
     }
 

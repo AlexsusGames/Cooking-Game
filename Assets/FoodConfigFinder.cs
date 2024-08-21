@@ -8,7 +8,9 @@ using UnityEngine;
 public class FoodConfigFinder 
 {
     private Dictionary<string, ProductConfig> productsMap;
-    private RecipeConfig[] recipes;
+    private Dictionary<string, RecipeConfig> recipeMap;
+
+    private KnownRecipes knownRecipes = new();
 
     private void CreateProductMap()
     {
@@ -20,6 +22,19 @@ public class FoodConfigFinder
             for (int i = 0; i < allProducts.Length; i++)
             {
                 productsMap[allProducts[i].ProductName] = allProducts[i];
+            }
+        }
+    }
+    private void CreateRecipeMap()
+    {
+        if (recipeMap == null)
+        {
+            recipeMap = new();
+            var allRecipes = Resources.LoadAll<RecipeConfig>("Recipes");
+
+            for (int i = 0; i < allRecipes.Length; i++)
+            {
+                recipeMap[allRecipes[i].Name] = allRecipes[i];
             }
         }
     }
@@ -35,37 +50,39 @@ public class FoodConfigFinder
         return null;
     }
 
-    public RecipeConfig[] GetAllRecipes()
-    {
-        RecipeConfig[] allRecipes;
-        if (recipes == null) recipes = Resources.LoadAll<RecipeConfig>("Recipes");
-
-        allRecipes = Array.FindAll(recipes, val => !string.IsNullOrEmpty(val.Description));
-        return allRecipes;
-    }
-
     public RecipeConfig CookingFood(List<ProductConfig> products, InteractivePlaces place)
     {
-        if (recipes == null) recipes = Resources.LoadAll<RecipeConfig>("Recipes");
+        CreateRecipeMap();
 
-        var remainingRecipes = recipes.ToList();
+        var remainingRecipes = recipeMap.Values.ToList();
 
-        for (int i = 0; i < recipes.Length; i++)
+        foreach(var recipe in recipeMap.Values)
         {
-            if (recipes[i].Products.Count != products.Count || recipes[i].CookingPlace != place)
+            if (recipe.Products.Count != products.Count || recipe.CookingPlace != place)
             {
-                remainingRecipes.Remove(recipes[i]);
+                remainingRecipes.Remove(recipe);
             }
 
-            for (int j = 0; j < products.Count; j++)
+            for (int i = 0; i < products.Count; i++)
             {
-                if (!recipes[i].Products.Contains(products[j]))
+                if (!recipe.Products.Contains(products[i]))
                 {
-                    remainingRecipes.Remove(recipes[i]);
+                    remainingRecipes.Remove(recipe);
                 }
             }
         }
-        if (remainingRecipes.Count == 1) return remainingRecipes[0];
+
+        if (remainingRecipes.Count == 1)
+        {
+            var recipe = remainingRecipes[0];
+
+            if (!knownRecipes.IsAvailable(recipe.Name))
+            {
+                knownRecipes.AddRecipe(recipe.Name);
+            }
+
+            return recipe;
+        }
 
         else return null;
     }
@@ -78,6 +95,19 @@ public class FoodConfigFinder
         for (int i = 0; i < names.Count; i++)
         {
             list.Add(productsMap[names[i]]);
+        }
+
+        return list;
+    }
+
+    public List<RecipeConfig> GetRecipesByName(List<string> names)
+    {
+        var list = new List<RecipeConfig>();
+        CreateRecipeMap();
+
+        for (int i = 0; i < names.Count; i++)
+        {
+            list.Add(recipeMap[names[i]]);
         }
 
         return list;
