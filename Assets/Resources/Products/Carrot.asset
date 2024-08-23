@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   ProductName: "\u041C\u043E\u0440\u043A\u043E\u0432\u044C"
-  ProductCost: 0
+  ProductCost: 12
   ProductIcon: {fileID: 21300000, guid: 2b91e23b9c5d92f49b5c082db853fd42, type: 3}

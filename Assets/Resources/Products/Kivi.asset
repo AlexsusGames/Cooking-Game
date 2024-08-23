@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Kivi
   m_EditorClassIdentifier: 
   ProductName: "\u041A\u0438\u0432\u0438"
-  ProductCost: 0
+  ProductCost: 29
   ProductIcon: {fileID: 21300000, guid: 2e804b98411454e44896317bde754794, type: 3}

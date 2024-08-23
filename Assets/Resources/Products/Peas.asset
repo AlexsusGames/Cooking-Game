@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Peas
   m_EditorClassIdentifier: 
   ProductName: "\u0413\u043E\u0440\u043E\u0445"
-  ProductCost: 0
+  ProductCost: 20
   ProductIcon: {fileID: 21300000, guid: 0bb3b977cb95bf944b1a82ee553b05db, type: 3}

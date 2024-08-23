@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Champignon
   m_EditorClassIdentifier: 
   ProductName: "\u0428\u0430\u043C\u043F\u0438\u043D\u044C\u043E\u043D"
-  ProductCost: 0
+  ProductCost: 14
   ProductIcon: {fileID: 21300000, guid: cc547e087979e57429656d19253ccc61, type: 3}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   ProductName: "\u042F\u0431\u043B\u043E\u043A\u043E"
-  ProductCost: 0
+  ProductCost: 2
   ProductIcon: {fileID: 21300000, guid: 5883208f1eaf7c340846578fa8368422, type: 3}

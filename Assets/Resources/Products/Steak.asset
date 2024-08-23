@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Steak
   m_EditorClassIdentifier: 
   ProductName: "\u0421\u0442\u0435\u0439\u043A"
-  ProductCost: 0
+  ProductCost: 82
   ProductIcon: {fileID: 21300000, guid: 0a9c03cb58e17964b9b35f26a0cec3bd, type: 3}

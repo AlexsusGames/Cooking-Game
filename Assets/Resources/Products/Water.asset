@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   ProductName: "\u0412\u043E\u0434\u0430"
-  ProductCost: 0
+  ProductCost: 4
   ProductIcon: {fileID: 21300000, guid: b323526f6c3b0c54190403f4cd647fe8, type: 3}

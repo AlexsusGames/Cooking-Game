@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cabbage
   m_EditorClassIdentifier: 
   ProductName: "\u041A\u0430\u043F\u0443\u0441\u0442\u0430"
-  ProductCost: 0
+  ProductCost: 6
   ProductIcon: {fileID: 21300000, guid: fc9a1826a47dc704db8b8c0b49b29f9b, type: 3}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   ProductName: "\u0425\u043B\u0435\u0431"
-  ProductCost: 0
+  ProductCost: 5
   ProductIcon: {fileID: 21300000, guid: 94964e3ac8e29f148a67ffd5dd0f6676, type: 3}

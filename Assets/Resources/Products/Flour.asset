@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Flour
   m_EditorClassIdentifier: 
   ProductName: "\u041C\u0443\u043A\u0430"
-  ProductCost: 0
+  ProductCost: 21
   ProductIcon: {fileID: 21300000, guid: 622572b531fcbc14c820fcbab20b9ade, type: 3}

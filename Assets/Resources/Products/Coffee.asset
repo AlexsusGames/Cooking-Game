@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Coffee
   m_EditorClassIdentifier: 
   ProductName: "\u041A\u043E\u0444\u0435"
-  ProductCost: 0
+  ProductCost: 10
   ProductIcon: {fileID: 21300000, guid: b5211f0262d6bce428d6e9567b55a6bb, type: 3}

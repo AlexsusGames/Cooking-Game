@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Eggs
   m_EditorClassIdentifier: 
   ProductName: "\u042F\u0439\u0446\u043E"
-  ProductCost: 0
+  ProductCost: 16
   ProductIcon: {fileID: 21300000, guid: bad03b30f1bec814885f7bbd9cc0f936, type: 3}

@@ -7,7 +7,6 @@ public class FridgeInventory : InventoryManager
     [SerializeField] private InventoryTypes type;
     [SerializeField] private InventoryGridView view;
 
-    private FoodConfigFinder foodConfigFinder = new();
     private Outline outline;
     private InventoryDataLoader data = new();
 
@@ -29,6 +28,7 @@ public class FridgeInventory : InventoryManager
             BindButtons(view);
 
             anotherInventory = player.Setup(myInventory);
+            Cursor.visible = true;
         }
     }
 
@@ -41,6 +41,7 @@ public class FridgeInventory : InventoryManager
 
             player.Setup(null);
             anotherInventory = null;
+            Cursor.visible = false;
         }
     }
 }

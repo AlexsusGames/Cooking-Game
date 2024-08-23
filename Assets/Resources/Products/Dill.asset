@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Dill
   m_EditorClassIdentifier: 
   ProductName: "\u0423\u043A\u0440\u043E\u043F"
-  ProductCost: 0
+  ProductCost: 12
   ProductIcon: {fileID: 21300000, guid: 6a7da991e1d38614aad0918f6ff65ef0, type: 3}

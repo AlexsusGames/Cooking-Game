@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public float minOffset;
     public float maxOffset;
+    public float speed;
 
     private CinemachineCameraOffset offsetCamera;
 
@@ -20,14 +21,14 @@ public class CameraController : MonoBehaviour
         {
             if(offsetCamera.m_Offset.z < minOffset)
             {
-                offsetCamera.m_Offset.z += 1f;
+                offsetCamera.m_Offset.z += speed;
             }
         }
         if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
         {
             if (offsetCamera.m_Offset.z > maxOffset)
             {
-                offsetCamera.m_Offset.z -= 1f;
+                offsetCamera.m_Offset.z -= speed;
             }
         }
     }

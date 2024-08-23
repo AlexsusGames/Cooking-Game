@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   ProductName: "\u0421\u044B\u0440"
-  ProductCost: 0
+  ProductCost: 14
   ProductIcon: {fileID: 21300000, guid: fd8a2acd3790e9f43838843e1367f323, type: 3}

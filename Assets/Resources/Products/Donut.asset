@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Donut
   m_EditorClassIdentifier: 
   ProductName: "\u041F\u043E\u043D\u0447\u0438\u043A"
-  ProductCost: 0
+  ProductCost: 20
   ProductIcon: {fileID: 21300000, guid: c872117dd55d0c44792d55ceb5734aa1, type: 3}

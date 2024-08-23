@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cucumber
   m_EditorClassIdentifier: 
   ProductName: "\u041E\u0433\u0443\u0440\u0435\u0446"
-  ProductCost: 0
+  ProductCost: 8
   ProductIcon: {fileID: 21300000, guid: 3fc0435d28dddfc45a8c01e5e68eb877, type: 3}

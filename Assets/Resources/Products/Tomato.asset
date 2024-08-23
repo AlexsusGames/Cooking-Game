@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tomato
   m_EditorClassIdentifier: 
   ProductName: "\u041F\u043E\u043C\u0438\u0434\u043E\u0440"
-  ProductCost: 0
+  ProductCost: 13
   ProductIcon: {fileID: 21300000, guid: 0626b24fe355703489d4b7b0b3dd726c, type: 3}

@@ -25,6 +25,28 @@ public class FoodConfigFinder
             }
         }
     }
+
+    public ProductConfig[] GetAllProducts()
+    {
+        CreateProductMap();
+
+        return productsMap.Values.ToArray();
+    }
+
+    public int[] GetRandomPrices()
+    {
+        var allProducts = GetAllProducts();
+        int[] prices = new int[allProducts.Length];
+
+        for (int i = 0; i < allProducts.Length; i++)
+        {
+            float random = UnityEngine.Random.Range(0.5f, 1.5f);
+            prices[i] = (int)(allProducts[i].ProductCost * random);
+        }
+
+        return prices;
+    }
+
     private void CreateRecipeMap()
     {
         if (recipeMap == null)
