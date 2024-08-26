@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : InventoryManager
@@ -16,11 +16,6 @@ public class Inventory : InventoryManager
         view.Setup(myInventory);
 
         BindButtons(view);
-
-        myInventory.AddItems("Хлеб");
-        myInventory.AddItems("Бекон");
-        myInventory.AddItems("Сыр");
-        myInventory.AddItems("Салат");
     }
 
     public InventoryGrid Setup(InventoryGrid inventory)
