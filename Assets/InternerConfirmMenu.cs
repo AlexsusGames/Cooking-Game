@@ -14,7 +14,7 @@ public class InternerConfirmMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
         blockObject.SetActive(true);
-        dealText.text = $"Оплатить суму заказа в размере: <color=green>{money}$?";
+        dealText.text = $"Оплатить суму заказа в размере: <color=green>{money}$</color> + 20$ за доставку?";
         errorText.text = "";
     }
 

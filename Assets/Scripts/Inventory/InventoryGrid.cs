@@ -160,15 +160,16 @@ public class InventoryGrid : IReadOnlyInventoryGrid
             {
                 var slot = slotsMap[new Vector2Int(i, j)];
 
-                if (slot.isEmpty)
+                if (slot.isEmpty || slot.Amount == 0)
                 {
                     continue;
                 }
 
+                string id = slot.ItemId;
                 var itemToRemove = slot.Amount;
                 slot.Amount = 0;
 
-                return (new RemoveItemsFromInventoryResult(OwnerId, itemToRemove, itemToRemove), slot.ItemId);
+                return (new RemoveItemsFromInventoryResult(OwnerId, itemToRemove, itemToRemove), id);
             }
         }
         return (new RemoveItemsFromInventoryResult(OwnerId, 0, 0), null);

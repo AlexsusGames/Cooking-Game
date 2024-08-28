@@ -3,22 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : InventoryManager
+public class Inventory : InventoryManager, IInventoryData
 {
+    private const InventoryTypes TYPE = InventoryTypes.Player;
     [SerializeField] private InventoryGridView view;
-    [SerializeField] private InventoryTypes inventoryType;
     private InventoryDataLoader loader = new();
+    private InventoryGridData data;
 
-    private void Awake()
-    {
-        var inventoryData = loader.GetInventory(inventoryType);
-        myInventory = new(inventoryData);
-        view.Setup(myInventory);
-
-        BindButtons(view);
-    }
-
-    public InventoryGrid Setup(InventoryGrid inventory)
+    public InventoryGrid Setup(InventoryGrid inventory = null)
     {
         anotherInventory = inventory;
         return myInventory;
@@ -38,5 +30,19 @@ public class Inventory : InventoryManager
                 myInventory.RemoveItem(new Vector2Int(i, j));
             }
         }
+    }
+
+    public void Load()
+    {
+        data = loader.GetInventory(TYPE);
+        myInventory = new(data);
+        view.Setup(myInventory);
+
+        BindButtons(view);
+    }
+
+    public void Save()
+    {
+        loader.SaveInventory(data, TYPE);
     }
 }

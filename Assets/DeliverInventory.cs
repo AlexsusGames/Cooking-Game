@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliverInventory 
+public class DeliverInventory : MonoBehaviour, IInventoryData
 {
+    private const InventoryTypes TYPE = InventoryTypes.CarTrunk;
     private InventoryGrid inventoryGrid;
     private InventoryDataLoader inventoryDataLoader = new();
-
-    public DeliverInventory()
-    {
-        var inventoryData = inventoryDataLoader.GetInventory(InventoryTypes.CarTrunk);
-        inventoryGrid = new InventoryGrid(inventoryData);
-    }
+    private InventoryGridData data;
 
     public void AddItemToDeliver(string name, int amount)
     {
@@ -28,5 +24,28 @@ public class DeliverInventory
         }
 
         return (null, 0);
+    }
+
+
+    public bool HasAnyProduct()
+    {
+        var products = inventoryGrid.GetInventoryItems();
+        return products.Count > 0;
+    }
+
+    public void RemoveAllProducts()
+    {
+        inventoryDataLoader.RemoveData(TYPE);
+    }
+
+    public void Load()
+    {
+        data = inventoryDataLoader.GetInventory(TYPE);
+        inventoryGrid = new InventoryGrid(data);
+    }
+
+    public void Save()
+    {
+        inventoryDataLoader.SaveInventory(data, TYPE);
     }
 }

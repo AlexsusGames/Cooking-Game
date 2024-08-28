@@ -26,6 +26,13 @@ public class FoodConfigFinder
         }
     }
 
+    public RecipeConfig GetRecipeByName(string name)
+    {
+        CreateRecipeMap();
+
+        return recipeMap[name];
+    }
+
     public ProductConfig[] GetAllProducts()
     {
         CreateProductMap();

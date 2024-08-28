@@ -96,4 +96,30 @@ public class KnownRecipes
 
         return false;
     }
+
+    public string GetRandomSellingRecipe()
+    {
+        var list = GetAvailableRecipes();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            int random = Random.Range(0, list.Count);
+            if (IsSelling(list[random])) return list[random];
+        }
+
+        return null;
+    }
+
+    public int GetCountOfSellingRecipes()
+    {
+        var list = GetAvailableRecipes();
+        int index = 0;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (IsSelling(list[i])) index++;
+        }
+
+        return index;
+    }
 }

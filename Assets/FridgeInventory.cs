@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FridgeInventory : InventoryManager
+public class FridgeInventory : InventoryManager, IInventoryData
 {
     [SerializeField] private InventoryTypes type;
     [SerializeField] private InventoryGridView view;
 
     private Outline outline;
-    private InventoryDataLoader data = new();
+    private InventoryDataLoader dataLoader = new();
+    private InventoryGridData data;
 
-    private void Awake()
-    {
-        outline = GetComponent<Outline>();
-        var invData = data.GetInventory(type);
-        myInventory = new InventoryGrid(invData);
-    }
+    private void Awake() => outline = GetComponent<Outline>();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,5 +39,15 @@ public class FridgeInventory : InventoryManager
             anotherInventory = null;
             Cursor.visible = false;
         }
+    }
+    public void Load()
+    {
+        data = dataLoader.GetInventory(type);
+        myInventory = new InventoryGrid(data);
+    }
+
+    public void Save()
+    {
+        dataLoader.SaveInventory(data, type);
     }
 }

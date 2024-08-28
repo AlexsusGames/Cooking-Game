@@ -31,7 +31,18 @@ public class InventoryDataLoader
         return data;
     }
 
-    private void CreateData(InventoryTypes type)
+    public void SaveInventory(InventoryGridData data, InventoryTypes type)
+    {
+        this.data = data;
+        SaveData(type);
+    }
+
+    public void RemoveData(InventoryTypes type)
+    {
+        PlayerPrefs.DeleteKey(type.ToString());
+    }
+
+    public void CreateData(InventoryTypes type)
     {
         data = new InventoryGridData()
         {
@@ -46,4 +57,5 @@ public class InventoryDataLoader
         }
         SaveData(type);
     }
+
 }

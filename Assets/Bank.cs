@@ -13,7 +13,11 @@ public class Bank : MonoBehaviour
     private void Awake()
     {
         money = wallet.GetMoney();
-        money += 10000;
+    }
+
+    private void OnDisable()
+    {
+        wallet.SaveMoney(money);
     }
 
     public bool Has(int money)

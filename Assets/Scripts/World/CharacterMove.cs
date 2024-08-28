@@ -36,7 +36,7 @@ public class CharacterMove : MonoBehaviour
     public void OnServiced(bool isTriggerable)
     {
         ContinueWalking();
-        Invoke(nameof(ColliderEnable), 2f);
+        Invoke(nameof(ColliderEnable), 5f);
     }
     public void ColliderEnable(bool isTriggerable)
     {

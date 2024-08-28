@@ -8,6 +8,12 @@ public class Wallet
 
     public int GetMoney()
     {
+        if (!PlayerPrefs.HasKey(Key))
+        {
+            PlayerPrefs.SetInt(Key, 10000);
+        }
+
+
         int amount = PlayerPrefs.GetInt(Key);
         return amount;
     }

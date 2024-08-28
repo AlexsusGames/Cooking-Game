@@ -14,9 +14,8 @@ public class ShoppingСart : MonoBehaviour
     private List<ProductView> items = new();
     private DeliveryData deliveryData;
 
-    private void Awake() => delivery.OnDelivered += CloseInputBlock;
     private void OnDisable() => Clear();
-
+    private void OnEnable() => SetInputBlock(delivery.IsDelivering);
     public void AddProductToCart(ProductToBuy productToBuy)
     {
         for (int i = 0; i < items.Count; i++)
@@ -78,16 +77,16 @@ public class ShoppingСart : MonoBehaviour
         }
     }
 
-    public void CloseInputBlock()
+    public void SetInputBlock(bool value)
     {
         var blockObj = confirmWindow.transform.parent;
-        blockObj.gameObject.SetActive(false);
+        blockObj.gameObject.SetActive(value);
     }
 
     public void Order()
     {
         deliveryData = new DeliveryData();
-        var price = GetSumOfOrder();
+        var price = GetSumOfOrder() + 20;
 
         for (int i = 0; i < items.Count; i++)
         {
