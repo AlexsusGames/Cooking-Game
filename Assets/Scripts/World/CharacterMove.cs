@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class CharacterMove : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float turnSpeed;
-
     private Transform[] wayPoints;
-    private Rigidbody rb;
     private Animator animator;
-    private CapsuleCollider trigger;
     private AnimationController animController;
+    private NavMeshAgent agent;
 
     private int currentIndex;
     private bool isQueue;
 
+    private Vector3 queuePosition;
+    private Vector3 starePoint;
+
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        trigger = GetComponent<CapsuleCollider>();
+        agent = GetComponent<NavMeshAgent>();
 
         animController = new(animator);
     }
@@ -30,21 +30,7 @@ public class CharacterMove : MonoBehaviour
         this.wayPoints = wayPoints;
         currentIndex = 0;
         gameObject.SetActive(true);
-        animController.SetWalkingState(1);
-    }
-
-    public void OnServiced(bool isTriggerable)
-    {
-        ContinueWalking();
-        Invoke(nameof(ColliderEnable), 5f);
-    }
-    public void ColliderEnable(bool isTriggerable)
-    {
-        trigger.enabled = isTriggerable;
-    }
-    public void ColliderEnable()
-    {
-        trigger.enabled = false;
+        animController.SetWalkingState(WalkingStates.Walking);
     }
 
     private void ResetCharacter()
@@ -53,51 +39,55 @@ public class CharacterMove : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void GoToQueuePoint(Vector3 position, Vector3 starePoint)
+    {
+        isQueue = true;
+        queuePosition = position;
+        this.starePoint = starePoint;
+
+        Debug.Log("Is going to queue");
+    }
+
     private void Update()
     {
+        if (agent.velocity != Vector3.zero)
+        {
+            animController.SetWalkingState(WalkingStates.Walking);
+        }
+        else animController.SetWalkingState(WalkingStates.Idle);
+
         if (!isQueue)
         {
             Vector3 targetPosition = wayPoints[currentIndex].position;
-            Vector3 moveDirection = (targetPosition - rb.position).normalized;
-
-            if (moveDirection != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.deltaTime));
-            }
 
             if (currentIndex < wayPoints.Length - 1)
             {
-                rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.deltaTime);
+                agent.SetDestination(targetPosition);
 
-                if (Vector3.Distance(wayPoints[currentIndex].position, rb.position) < 0.1f)
+
+                if (Vector3.Distance(targetPosition, transform.position) < 0.1f)
                 {
                     currentIndex++;
                 }
             }
             else ResetCharacter();
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("People"))
+        else
         {
-            isQueue = true;
-            animController.SetWalkingState(0);
+            if(queuePosition != Vector3.zero)
+            {
+                agent.SetDestination(queuePosition);
+
+                if (Vector3.Distance(queuePosition, transform.position) < 0.1f)
+                { 
+                    transform.LookAt(starePoint);
+                }
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("People"))
-        {
-            Invoke(nameof(ContinueWalking), 1f);
-        }
-    }
-
-    private void ContinueWalking()
+    public void ContinueWalking()
     {
         isQueue = false;
-        animController.SetWalkingState(1);
     }
 }

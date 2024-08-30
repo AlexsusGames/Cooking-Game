@@ -8,12 +8,8 @@ public class CharacterSpawner : MonoBehaviour
     [SerializeField] private float maxSpawnRate;
     [SerializeField] private CharacterPool characterPool;
     [SerializeField] private WayPoints[] wayPoints;
-    [SerializeField] private bool isClientSpawner;
     private WaitForSeconds spawnTime => new WaitForSeconds(Random.Range(minSpawnRate,maxSpawnRate));
     public int MaxCountOfPeopleInQueue { get; set; }
-
-    private FoodConfigFinder configFinder = new();
-    private KnownRecipes knownRecipes = new();
 
     private void Start()
     {
@@ -25,7 +21,6 @@ public class CharacterSpawner : MonoBehaviour
     {
         while (true)
         {
-            MaxCountOfPeopleInQueue = isClientSpawner ? knownRecipes.GetCountOfSellingRecipes() / 2 : 2;
             var way = wayPoints[Random.Range(0, wayPoints.Length)].Points;
 
             if (!IskBigQueue(way[0]))
@@ -35,28 +30,10 @@ public class CharacterSpawner : MonoBehaviour
                 if (character != null)
                 {
                     character.TryGetComponent(out CharacterMove movement);
-                    character.TryGetComponent(out ClientsOrder order);
 
                     if (movement != null)
                     {
-                        if(isClientSpawner)
-                        {
-                            string orderName = knownRecipes.GetRandomSellingRecipe();
-
-                            if (string.IsNullOrEmpty(orderName))
-                            {
-                                yield return null;
-                                continue;
-                            }
-                            else
-                            {
-                                var recipe = configFinder.GetRecipeByName(orderName);
-                                order.Bind(recipe);
-                            }
-                        }
-
                         movement.Bind(way);
-                        movement.ColliderEnable(isClientSpawner);
                     }
                     else
                         throw new System.Exception("Character must contain 'CharacterMove'");

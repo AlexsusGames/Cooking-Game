@@ -32,7 +32,7 @@ public class MoveController : MonoBehaviour
 
             if (moveHorizontal == 0 && moveVertical == 0 || isInCollision)
             {
-                anims.SetWalkingState(0);
+                anims.SetWalkingState(WalkingStates.Idle);
                 ResetVelosity();
                 moveSpeed = 1;
             }
@@ -40,13 +40,13 @@ public class MoveController : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.LeftShift) && !stamina.IsExhausted)
                 {
-                    anims.SetWalkingState(2);
+                    anims.SetWalkingState(WalkingStates.Running);
                     stamina.Sprint();
                     moveSpeed = 25;
                 }
                 else
                 {
-                    anims.SetWalkingState(1);
+                    anims.SetWalkingState(WalkingStates.Walking);
                     moveSpeed = 15;
                 }
             }

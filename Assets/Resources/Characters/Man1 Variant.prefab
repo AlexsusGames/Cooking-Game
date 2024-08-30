@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
       propertyPath: m_LocalScale.x
@@ -117,6 +117,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: aa2e78c7b576dc247b93b77cbbc57393, type: 2}
     - target: {fileID: 5866666021909216657, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:LeftArm'\n\tTransform 'mixamorig:LeftForeArm'\n\tFrom
+        animation clip 'MakingFood'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -126,45 +133,22 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2278637747920918173}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2058021794409205580}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2550822955044171110}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8199606882259419519}
+      addedObject: {fileID: 910523016004797606}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7091015938730720736}
   m_SourcePrefab: {fileID: 100100000, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
 --- !u!1 &1304970374761588618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 74c6c820f7d622e4291c228e8acac26c, type: 3}
   m_PrefabInstance: {fileID: 2224011262170208987}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2278637747920918173
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304970374761588618}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.74
-  m_Height: 3.78
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.12, z: 0}
 --- !u!54 &2058021794409205580
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -188,7 +172,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
@@ -204,17 +188,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da68fd7d6e80c1b4dbc91187c1352ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
-  turnSpeed: 5
---- !u!114 &8199606882259419519
-MonoBehaviour:
+--- !u!195 &910523016004797606
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304970374761588618}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9051d43fd4b6a454ca5ae7c6739e1d1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_Radius: 0.83
+  m_Speed: 10
+  m_Acceleration: 5
+  avoidancePriority: 50
+  m_AngularSpeed: 100
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4.12
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &7091015938730720736
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304970374761588618}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3.66
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.21, z: 0}

@@ -39,4 +39,9 @@ public class CharacterPool : MonoBehaviour
         }
         return null;
     }
+
+    public List<GameObject> GetPool()
+    {
+        return charactersPool;
+    }
 }

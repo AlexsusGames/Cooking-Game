@@ -27,8 +27,10 @@ public class KnownRecipes
     private void CreateData()
     {
         data = new KnownRecipesData();
-        data.Recipes.Add(new RecipeData { Name = "Лапша Удон" });
-        data.Recipes.Add(new RecipeData { Name = "Запеченный лосось" });
+        data.Recipes.Add(new RecipeData { Name = "Шоколадный пончик" });
+        data.Recipes.Add(new RecipeData { Name = "Клубнийчный пончик" });
+        data.Recipes.Add(new RecipeData { Name = "Тост с яйцом и колбасой" });
+        data.Recipes.Add(new RecipeData { Name = "Тост с апельсином" });
         SaveData();
     }
 

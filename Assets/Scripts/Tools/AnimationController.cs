@@ -10,8 +10,14 @@ public class AnimationController
         this.animator = animator;
     }
 
-    public void SetWalkingState(int value)
+    public void SetWalkingState(WalkingStates state)
     {
-        animator.SetInteger("walkingState", value);
+        animator.SetInteger("walkingState", (int)state);
     }
+}
+public enum WalkingStates
+{
+    Idle = 0,
+    Walking = 1,
+    Running = 2
 }
