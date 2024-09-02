@@ -50,32 +50,47 @@ public class CashTrigger : InteractiveManager
         if(movement != null) movement.ContinueWalking();
         lastPerson = null;
         queue.Service();
+        time = 0.02f;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         ChangeRecipe();
-        time = timeToService;
         lastPerson = other.gameObject;
 
-        view.ShowClientOrder(randomFood.picture);
+        if (randomFood != null)
+        {
+            view.ShowClientOrder(randomFood.picture);
+            time = timeToService;
+        }
+        else Service();
     }
+    private void OnTriggerExit(Collider other) => randomFood = null;
 
     public override void Interact()
     {
         var player = GetPlayer();
         var handler = player.GetComponent<ObjectHandler>();
-        handler.GetObject().TryGetComponent(out Dish dish);
+        var obj = handler.GetObject();
 
-        if(dish != null && randomFood != null)
+        if (obj == null)
+        {
+            Service();
+            return;
+        }
+
+        obj.TryGetComponent(out Dish dish);
+
+        if (dish != null && randomFood != null)
         {
             if (dish.GetFood() == randomFood)
             {
+                ShowAdvice("ѕриходите еще!");
                 handler.GetRidOfObject();
                 bank.Change(randomFood.Price);
-                time = 0.02f;
                 Service();
             }
+            else ShowAdvice("Ёто блюдо не заказывали..");
         }
     }
 }

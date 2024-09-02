@@ -10,6 +10,17 @@ public class DishKeeper : InteractiveManager
     private List<GameObject> dishes = new();
     private int maxDishCount = 22;
 
+    public int CountOfDish
+    {
+        get => dishes.Count;
+        set
+        {
+            for (int i = 0; i < value; ++i)
+            {
+                CreateDish();
+            }
+        }
+    }
     public bool IsMaxCountOfDish => dishes.Count >= maxDishCount;
 
     public void CreateDish()
@@ -38,6 +49,7 @@ public class DishKeeper : InteractiveManager
                     dishes.Remove(dish);
                     handler.ChangeObject(dish);
                 }
+                else ShowAdvice("Чистых тарелок нет..\nпридется мыть.");
             }
 
             else if (obj.TryGetComponent(out Dish dish))

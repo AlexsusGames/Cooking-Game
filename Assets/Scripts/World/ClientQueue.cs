@@ -11,7 +11,7 @@ public class ClientQueue : MonoBehaviour
     [SerializeField] private int maxPeopleInQueue;
     private List<CharacterMove> characters = new();
     private List<CharacterMove> charactersInQueue = new();
-    private WaitForSeconds waitingTime => new WaitForSeconds(time);
+    private KnownRecipes knownRecipes = new KnownRecipes();
 
     private void Start()
     {
@@ -82,7 +82,8 @@ public class ClientQueue : MonoBehaviour
     {
         while (true)
         {
-            if(charactersInQueue.Count < maxPeopleInQueue)
+            int countRecipes = knownRecipes.GetCountOfSellingRecipes();
+            if (charactersInQueue.Count < maxPeopleInQueue && countRecipes > 0)
             {
                 int random = Random.Range(0, characters.Count);
                 var character = characters[random];
@@ -93,7 +94,7 @@ public class ClientQueue : MonoBehaviour
                 }
             }
 
-            yield return waitingTime;
+            yield return new WaitForSeconds(time - countRecipes);
         }
     }
 }

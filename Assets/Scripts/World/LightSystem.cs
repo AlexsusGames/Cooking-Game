@@ -9,6 +9,26 @@ public class LightSystem : MonoBehaviour
     [SerializeField] private Light[] kitchenLight;
     [SerializeField] private Light bedroomLight;
 
+    public bool Kitchen
+    {
+        get => kitchenValue;
+        set
+        {
+            kitchenValue = !value;
+            ChangeKitchenLight();
+        }
+
+    }
+    public bool Bedroom
+    {
+        get => bedroomValue;
+        set
+        {
+            bedroomValue = !value;
+            ChangeBedroomLight();
+        }
+    }
+
     private bool kitchenValue;
     private bool bedroomValue;
 
