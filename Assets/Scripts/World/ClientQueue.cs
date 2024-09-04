@@ -9,6 +9,7 @@ public class ClientQueue : MonoBehaviour
     [SerializeField] private CharacterPool pool;
     [SerializeField] private float time;
     [SerializeField] private int maxPeopleInQueue;
+    [SerializeField] private LightSystem lightSystem;
     private List<CharacterMove> characters = new();
     private List<CharacterMove> charactersInQueue = new();
     private KnownRecipes knownRecipes = new KnownRecipes();
@@ -82,19 +83,24 @@ public class ClientQueue : MonoBehaviour
     {
         while (true)
         {
-            int countRecipes = knownRecipes.GetCountOfSellingRecipes();
-            if (charactersInQueue.Count < maxPeopleInQueue && countRecipes > 0)
+            if(lightSystem.IsOpen)
             {
-                int random = Random.Range(0, characters.Count);
-                var character = characters[random];
-
-                if (character.gameObject.activeInHierarchy)
+                int countRecipes = knownRecipes.GetCountOfSellingRecipes();
+                if (charactersInQueue.Count < maxPeopleInQueue && countRecipes > 0)
                 {
-                    AddNewToQueue(character);
+                    int random = Random.Range(0, characters.Count);
+                    var character = characters[random];
+
+                    if (character.gameObject.activeInHierarchy)
+                    {
+                        AddNewToQueue(character);
+                    }
                 }
+
+                yield return new WaitForSeconds(time - countRecipes);
             }
 
-            yield return new WaitForSeconds(time - countRecipes);
+            yield return null;
         }
     }
 }

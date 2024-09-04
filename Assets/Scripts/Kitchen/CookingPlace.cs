@@ -24,6 +24,8 @@ public class CookingPlace : InteractiveManager
             {
                 if (dish.GetFood() == null && inventoryProducts.Count > 1)
                 {
+                    Bank.Instance.Taxes += 0.5f;
+
                     effect.Play();
                     player.Interact();
 

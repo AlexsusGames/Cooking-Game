@@ -85,6 +85,9 @@ public class CashTrigger : InteractiveManager
         {
             if (dish.GetFood() == randomFood)
             {
+                float tax = (float)randomFood.Price / 100;
+                Bank.Instance.IncomeTaxes += tax;
+
                 ShowAdvice("Приходите еще!");
                 handler.GetRidOfObject();
                 bank.Change(randomFood.Price);

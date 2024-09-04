@@ -7,8 +7,10 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private GameObject[] inventoryObjects;
     [SerializeField] private LightSystem lightSystem;
     [SerializeField] private DishKeeper dishes;
+    [SerializeField] private EndGameWindow endGameWindow;
     private List<IInventoryData> allInventories = new();
     private WorldState state = new();
+
 
     private void Awake()
     {
@@ -32,6 +34,20 @@ public class ProgressManager : MonoBehaviour
         dishes.CountOfDish = state.DishCount;
     }
 
+    public bool EndDay()
+    {
+        if(!lightSystem.IsOpen && !lightSystem.isDayTime)
+        {
+            SaveInventories();
+            SaveState();
+            Bank.Instance.SaveMoney();
+
+            endGameWindow.Open();
+            return true;
+        }
+        return false;
+    }
+
     private void SaveState()
     {
         WorldStateData data = new WorldStateData()
@@ -42,12 +58,6 @@ public class ProgressManager : MonoBehaviour
         };
 
         state.SaveState(data);
-    }
-
-    private void OnDisable()
-    {
-        SaveInventories();
-        SaveState();
     }
 
     private void LoadInventories()

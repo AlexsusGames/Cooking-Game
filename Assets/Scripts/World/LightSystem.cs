@@ -9,6 +9,14 @@ public class LightSystem : MonoBehaviour
     [SerializeField] private Light[] kitchenLight;
     [SerializeField] private Light bedroomLight;
 
+    [SerializeField] private TimeChanger view;
+    private Coroutine coroutine;
+
+    private const float IntensityChangeForSecond = 0.008f;
+    public bool isDayTime;
+    public bool IsOpen;
+
+
     public bool Kitchen
     {
         get => kitchenValue;
@@ -34,7 +42,17 @@ public class LightSystem : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(DayCycle());
+        isDayTime = true;
+        view.OnFinish += () => IsOpen = false;
+    }
+
+    public void StartDayCycle()
+    {
+        if(coroutine == null)
+        {
+            IsOpen = true;
+            coroutine = StartCoroutine(DayCycle());
+        }
     }
 
     public void ChangeBedroomLight()
@@ -54,27 +72,28 @@ public class LightSystem : MonoBehaviour
 
     private IEnumerator DayCycle()
     {
-        while (worldLight[0].intensity < 1)
+        while (IsOpen)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
-            for (int i = 0; i < worldLight.Length; i++)
-            {
-                worldLight[i].intensity += 0.006f;
-            }
+            float time = worldLight[0].intensity < 1 && isDayTime
+                ? IntensityChangeForSecond
+                : -IntensityChangeForSecond;
 
-            shadowLight.transform.Rotate(0f, -0.3f, 0f);
+            ChangeLightIntensity(time);
+
+            if (worldLight[0].intensity >= 1)
+                isDayTime = false;
+
+            shadowLight.transform.Rotate(0f, -0.5f, 0f);
+            view.ChangeTime(300);
         }
-        while (worldLight[0].intensity > 0)
+    }
+    private void ChangeLightIntensity(float value)
+    {
+        for (int i = 0; i < worldLight.Length; i++)
         {
-            yield return new WaitForSeconds(1);
-
-            for (int i = 0; i < worldLight.Length; i++)
-            {
-                worldLight[i].intensity -= 0.006f;
-            }
-
-            shadowLight.transform.Rotate(0f, -0.3f, 0f);
+            worldLight[i].intensity += value;
         }
     }
 }

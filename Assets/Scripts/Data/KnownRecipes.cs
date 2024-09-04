@@ -109,6 +109,14 @@ public class KnownRecipes
             if (IsSelling(list[random])) return list[random];
         }
 
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (IsSelling(list[i]))
+            {
+                return list[i];
+            }
+        }
+
         return null;
     }
 
