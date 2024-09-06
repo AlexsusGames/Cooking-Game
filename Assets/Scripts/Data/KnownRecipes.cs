@@ -123,13 +123,20 @@ public class KnownRecipes
     public int GetCountOfSellingRecipes()
     {
         var list = GetAvailableRecipes();
-        int index = 0;
+        int count = 0;
 
         for (int i = 0; i < list.Count; i++)
         {
-            if (IsSelling(list[i])) index++;
+            if (IsSelling(list[i])) count++;
         }
 
-        return index;
+        return count;
+    }
+
+    public int GetCountOfAvailableRecipes()
+    {
+        var list = GetAvailableRecipes();
+
+        return list.Count;
     }
 }

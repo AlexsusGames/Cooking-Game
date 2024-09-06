@@ -14,7 +14,7 @@ public class Sink : InteractiveManager
         {
             if (!dishes.IsMaxCountOfDish)
             {
-                Bank.Instance.Taxes += 0.2f;
+               TaxCounter.Taxes += 0.2f;
                 var player = GetPlayer();
                 player.Interact();
 

@@ -8,9 +8,10 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private LightSystem lightSystem;
     [SerializeField] private DishKeeper dishes;
     [SerializeField] private EndGameWindow endGameWindow;
-    private List<IInventoryData> allInventories = new();
-    private WorldState state = new();
-
+    [SerializeField] private Bank bank;
+    private readonly List<IInventoryData> allInventories = new();
+    private readonly WorldState state = new();
+    private readonly PeopleCounter peopleCounter = new();
 
     private void Awake()
     {
@@ -36,11 +37,14 @@ public class ProgressManager : MonoBehaviour
 
     public bool EndDay()
     {
+        TaxCounter.PeopleServed += 20;
         if(!lightSystem.IsOpen && !lightSystem.isDayTime)
         {
             SaveInventories();
             SaveState();
-            Bank.Instance.SaveMoney();
+            bank.SaveMoney();
+            peopleCounter.ChangeCount(TaxCounter.PeopleServed);
+
 
             endGameWindow.Open();
             return true;

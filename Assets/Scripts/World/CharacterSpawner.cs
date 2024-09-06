@@ -16,6 +16,7 @@ public class CharacterSpawner : MonoBehaviour
         StartCoroutine(Spawner());
         MaxCountOfPeopleInQueue = 2;
     }
+    private void OnDisable() => StopAllCoroutines();
 
     private IEnumerator Spawner()
     {

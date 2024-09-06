@@ -27,6 +27,8 @@ public class ClientQueue : MonoBehaviour
         StartCoroutine(Timer());
     }
 
+    private void OnDisable() => StopAllCoroutines();
+
     public QueuePoint GetFreePoint()
     {
         for (int i = 0; i < queuePoints.Length; i++)
@@ -39,9 +41,9 @@ public class ClientQueue : MonoBehaviour
         return null;
     }
 
-    public void Service()
+    public void Service(CharacterMove movement)
     {
-        charactersInQueue.RemoveAt(0);
+        charactersInQueue.Remove(movement);
         UpdatePositions();
     }
 
@@ -55,6 +57,7 @@ public class ClientQueue : MonoBehaviour
 
     private void UpdatePositions()
     {
+        Print(charactersInQueue);
         ResetPositions();
 
         for(int i = 0;i < charactersInQueue.Count;i++)
@@ -62,10 +65,25 @@ public class ClientQueue : MonoBehaviour
             AddToQueue(charactersInQueue[i]);
         }
     }
+
+    private void Print(List<CharacterMove> movements)
+    {
+        string info = string.Empty;
+
+        for (int i = 0; i < movements.Count; i++)
+        {
+            info += movements[i].name;
+        }
+
+        Debug.Log(info);
+    }
     private void AddNewToQueue(CharacterMove movement)
     {
+        Debug.Log("Trying to add new to queue");
+
         if (!charactersInQueue.Contains(movement))
         {
+            Debug.Log(movement.name + " added");
             charactersInQueue.Add(movement);
             AddToQueue(movement);
         }
@@ -91,7 +109,7 @@ public class ClientQueue : MonoBehaviour
                     int random = Random.Range(0, characters.Count);
                     var character = characters[random];
 
-                    if (character.gameObject.activeInHierarchy)
+                    if (character.gameObject.activeInHierarchy && !character.IsServed)
                     {
                         AddNewToQueue(character);
                     }

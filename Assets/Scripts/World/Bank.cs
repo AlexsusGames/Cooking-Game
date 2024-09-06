@@ -5,22 +5,16 @@ using UnityEngine;
 
 public class Bank : MonoBehaviour
 {
-    [HideInInspector] public float Taxes;
-    [HideInInspector] public float IncomeTaxes;
     private int money;
 
-    private Wallet wallet = new();
+    private readonly Wallet wallet = new();
 
     public event Action<int> MoneyChanged;
-
-    public static Bank Instance;
 
     private void Awake()
     {
         money = wallet.GetMoney();
-        Instance = this;
-        Taxes = 0;
-        IncomeTaxes = 0;
+        TaxCounter.Reset();
     }
 
     public void SaveMoney()

@@ -17,6 +17,8 @@ public class CharacterMove : MonoBehaviour
     private Vector3 queuePosition;
     private Vector3 starePoint;
 
+    public bool IsServed { get; private set; }
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -27,6 +29,7 @@ public class CharacterMove : MonoBehaviour
 
     public void Bind(Transform[] wayPoints)
     {
+        IsServed = false;
         this.wayPoints = wayPoints;
         currentIndex = 0;
         gameObject.SetActive(true);
@@ -41,11 +44,12 @@ public class CharacterMove : MonoBehaviour
 
     public void GoToQueuePoint(Vector3 position, Vector3 starePoint)
     {
+        IsServed = true;
         isQueue = true;
         queuePosition = position;
         this.starePoint = starePoint;
 
-        Debug.Log("Is going to queue");
+        Debug.Log(name + " is going to queue");
     }
 
     private void Update()

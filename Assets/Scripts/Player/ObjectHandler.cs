@@ -4,48 +4,41 @@ using UnityEngine;
 
 public class ObjectHandler : MonoBehaviour
 {
-    [SerializeField] private Transform gameObjectHandler;
+    [SerializeField] private Transform dishHandler;
+    [SerializeField] private Transform cupHandler;
     [SerializeField] private Animator animator;
 
-    public void ChangeObject(GameObject gameObject = null)
+    private GameObject current;
+
+    public void ChangeObject(GameObject gameObject = null, bool isCup = false)
     {
+        GetRidOfLastObject();
+        current = gameObject;
+
         if(gameObject == null)
         {
-            GetRidOfLastObject();
             animator.SetLayerWeight(1, 0);
             return;
         }
 
-        GetRidOfLastObject();
-
-        gameObject.transform.SetParent(gameObjectHandler);
+        Transform parent = isCup ? cupHandler : dishHandler;
+        Vector3 offset = isCup ? new Vector3(-90, 0, 0) : Vector3.zero;
+        gameObject.transform.SetParent(parent);
         gameObject.transform.localPosition = Vector3.zero;
-        gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        gameObject.transform.localRotation = Quaternion.Euler(offset);
         animator.SetLayerWeight(1, 1);
     }
 
     private void GetRidOfLastObject()
     {
-        if(gameObjectHandler.childCount != 0)
-        {
-            Destroy(gameObjectHandler.GetChild(0).gameObject);
-        }
-    }
-    public void GetRidOfObject()
-    {
-        if (gameObjectHandler.childCount != 0)
-        {
-            Destroy(gameObjectHandler.GetChild(0).gameObject);
-            animator.SetLayerWeight(1, 0);
-        }
+        Destroy(current);
     }
 
     public GameObject GetObject()
     {
-        if (gameObjectHandler.childCount != 0)
-        {
-            return gameObjectHandler.GetChild(0).gameObject;
-        }
-        return null;
+        if (current == null)
+            return null;
+
+        return current;
     }
 }

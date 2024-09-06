@@ -267,6 +267,8 @@ MonoBehaviour:
   cookingPlaces:
   - {fileID: 21300000, guid: 7cc8d80f219871341a4274f20395375c, type: 3}
   - {fileID: 21300000, guid: cfedeaeab630737468aa25dd855b8d6e, type: 3}
+  - {fileID: 21300000, guid: 11034b0a7c7bb3b43be21435528a64de, type: 3}
+  - {fileID: 21300000, guid: 11034b0a7c7bb3b43be21435528a64de, type: 3}
   cookingPlace: {fileID: 2287691909426183054}
   foodImage: {fileID: 7549435338220726588}
   nameText: {fileID: 7608351269348449600}

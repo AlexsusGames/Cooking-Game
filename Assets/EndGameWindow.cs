@@ -15,9 +15,9 @@ public class EndGameWindow : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        taxes.text = $"{(int)Bank.Instance.Taxes}$";
-        incomeTaxes.text = $"{(int)Bank.Instance.IncomeTaxes}$";
-        all.text = $"{(int)Bank.Instance.Taxes + Bank.Instance.IncomeTaxes}$";
+        taxes.text = $"{(int)TaxCounter.Taxes}$";
+        incomeTaxes.text = $"{(int)TaxCounter.IncomeTaxes}$";
+        all.text = $"{(int)TaxCounter.Taxes + (int)TaxCounter.IncomeTaxes}$";
         button.onClick.AddListener(() => SceneManager.LoadScene(0));
         Cursor.visible = true;
     }

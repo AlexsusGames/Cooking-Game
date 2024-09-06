@@ -11,6 +11,7 @@ public class FoodConfigFinder
     private Dictionary<string, RecipeConfig> recipeMap;
 
     private KnownRecipes knownRecipes = new();
+    public int RecipeCount => recipeMap.Count;
 
     private void CreateProductMap()
     {
@@ -145,6 +146,23 @@ public class FoodConfigFinder
         }
 
         return list;
+    }
+
+    public string GetRandomRecipeName()
+    {
+        CreateRecipeMap();
+
+        var names = recipeMap.Keys.ToArray();
+
+        for (int i = 0;i < names.Length;i++)
+        {
+            if (!knownRecipes.IsAvailable(names[i]))
+            {
+                return names[i];
+            }
+        }
+
+        return null;
     }
 
 }

@@ -12,15 +12,15 @@ public class CashTrigger : InteractiveManager
     private GameObject lastPerson;
     private RecipeConfig randomFood;
 
-    private event Action<float> timer;
+    private event Action<float> Timer;
     private float time;
 
-    private FoodConfigFinder foodConfigFinder = new();
-    private KnownRecipes knownRecipes = new();
+    private readonly FoodConfigFinder foodConfigFinder = new();
+    private readonly KnownRecipes knownRecipes = new();
 
     private void Awake()
     {
-        timer += view.ChangePatience;
+        Timer += view.ChangePatience;
     }
 
     private void FixedUpdate()
@@ -29,7 +29,7 @@ public class CashTrigger : InteractiveManager
         {
             time -= Time.fixedDeltaTime;
             var fillAmount = time / timeToService;
-            timer?.Invoke(fillAmount);
+            Timer?.Invoke(fillAmount);
         }
 
         if(lastPerson != null && time <= 0)
@@ -49,7 +49,7 @@ public class CashTrigger : InteractiveManager
         lastPerson.TryGetComponent(out CharacterMove movement);
         if(movement != null) movement.ContinueWalking();
         lastPerson = null;
-        queue.Service();
+        queue.Service(movement);
         time = 0.02f;
     }
 
@@ -86,10 +86,10 @@ public class CashTrigger : InteractiveManager
             if (dish.GetFood() == randomFood)
             {
                 float tax = (float)randomFood.Price / 100;
-                Bank.Instance.IncomeTaxes += tax;
+                TaxCounter.OnServed(tax);
 
                 ShowAdvice("Приходите еще!");
-                handler.GetRidOfObject();
+                handler.ChangeObject();
                 bank.Change(randomFood.Price);
                 Service();
             }
