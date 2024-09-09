@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dish : MonoBehaviour
+public class Dish : MonoBehaviour, IFood
 {
-    private RecipeConfig config;
+    [SerializeField] private RecipeConfig config;
+
+    private void Awake()
+    {
+        if(config != null)
+        {
+            SetFood(config);
+        }
+    }
 
     public void SetFood(RecipeConfig config)
     {

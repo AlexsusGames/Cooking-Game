@@ -12,7 +12,6 @@ public class ObjectHandler : MonoBehaviour
 
     public void ChangeObject(GameObject gameObject = null, bool isCup = false)
     {
-        GetRidOfLastObject();
         current = gameObject;
 
         if(gameObject == null)
@@ -22,16 +21,17 @@ public class ObjectHandler : MonoBehaviour
         }
 
         Transform parent = isCup ? cupHandler : dishHandler;
-        Vector3 offset = isCup ? new Vector3(-90, 0, 0) : Vector3.zero;
         gameObject.transform.SetParent(parent);
         gameObject.transform.localPosition = Vector3.zero;
-        gameObject.transform.localRotation = Quaternion.Euler(offset);
+        gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
         animator.SetLayerWeight(1, 1);
     }
 
-    private void GetRidOfLastObject()
+    public void GetRidOfLastObject()
     {
         Destroy(current);
+
+        ChangeObject();
     }
 
     public GameObject GetObject()

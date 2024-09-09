@@ -14,6 +14,8 @@ public class RecipeConfig : ScriptableObject
     public string Description;
     public float RarityIndex;
 
+    public bool IsDrink;
+
     public int Price => GetCost();
 
     private int GetCost()

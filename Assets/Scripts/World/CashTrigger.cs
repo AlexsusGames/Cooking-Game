@@ -89,7 +89,7 @@ public class CashTrigger : InteractiveManager
                 TaxCounter.OnServed(tax);
 
                 ShowAdvice("Приходите еще!");
-                handler.ChangeObject();
+                handler.GetRidOfLastObject();
                 bank.Change(randomFood.Price);
                 Service();
             }

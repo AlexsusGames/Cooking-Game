@@ -33,13 +33,13 @@ public class CookingPlace : InteractiveManager
 
                     inventory.RemoveProducts();
 
+                    await Task.Delay(5000);
+
                     if (model != null)
                     {
                         dish.SetFood(model);
                     }
                     else dish.SetFood(spoiltFood);
-
-                    await Task.Delay(5000);
 
                     player.FinishInteracting();
                     effect.Stop();

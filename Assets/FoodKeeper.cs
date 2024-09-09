@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CoffeeKeeper : Keeper
+public class FoodKeeper : Keeper
 {
+    private GameObject GetFood()
+    {
+        for (int i = 0; i < objects.Count; i++)
+        {
+            return objects[i];
+        }
+
+        return null;
+    }
+
     public override void Interact()
     {
         var player = GetPlayer().gameObject;
@@ -17,14 +26,13 @@ public class CoffeeKeeper : Keeper
             {
                 if (objects.Count > 0)
                 {
-                    var cup = objects[objects.Count - 1];
-                    objects.Remove(cup);
-                    handler.ChangeObject(cup, true);
+                    var dish = GetFood();
+                    objects.Remove(dish);
+                    handler.ChangeObject(dish);
                 }
-                else ShowAdvice("Сначала кофе нужно сварить!");
             }
 
-            else if (obj.TryGetComponent(out Cup _) && !IsMaxCountOfObjects)
+            else if (obj.TryGetComponent(out Dish _) && !IsMaxCountOfObjects)
             {
                 PutObject(obj);
                 handler.ChangeObject();
