@@ -11,5 +11,12 @@ public class Bed : InteractiveManager
         {
             ShowAdvice("Рано спать.");
         }
+        else
+        {
+            var player = GetPlayer();
+
+            player.TryGetComponent(out MoveController controller);
+            controller.Interact();
+        }
     }
 }

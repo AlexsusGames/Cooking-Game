@@ -57,7 +57,7 @@ public class DishKeeper : InteractiveManager
                 if(dish.GetFood() == null)
                 {
                     CreateDish();
-                    handler.ChangeObject();
+                    handler.GetRidOfLastObject();
                 }
             }
         }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObjectHandler : MonoBehaviour
 {
-    [SerializeField] private Transform dishHandler;
-    [SerializeField] private Transform cupHandler;
+    [SerializeField] private Transform dishPlace;
+    [SerializeField] private Transform cupPlace;
     [SerializeField] private Animator animator;
 
     private GameObject current;
@@ -20,7 +20,7 @@ public class ObjectHandler : MonoBehaviour
             return;
         }
 
-        Transform parent = isCup ? cupHandler : dishHandler;
+        Transform parent = isCup ? cupPlace : dishPlace;
         gameObject.transform.SetParent(parent);
         gameObject.transform.localPosition = Vector3.zero;
         gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);

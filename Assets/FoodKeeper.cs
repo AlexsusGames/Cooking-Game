@@ -6,12 +6,14 @@ public class FoodKeeper : Keeper
 {
     private GameObject GetFood()
     {
-        for (int i = 0; i < objects.Count; i++)
+        var obj = GetOrderedFood();
+
+        if(obj == null)
         {
-            return objects[i];
+            obj = objects[objects.Count - 1];
         }
 
-        return null;
+        return obj;
     }
 
     public override void Interact()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class KnownRecipes 
 {
     private const string Key = "KnownRecipes";
+    private const int MaxCountOfSellingRecipes = 24;
     private KnownRecipesData data;
 
     private void SaveData()
@@ -37,23 +38,45 @@ public class KnownRecipes
     public void AddRecipe(string name)
     {
         LoadData();
-        data.Recipes.Add(new RecipeData { Name = name});
+
+        if (!Has(name))
+        {
+            data.Recipes.Add(new RecipeData { Name = name });
+        }
+
         SaveData();
     }
 
-    public void ChangeSelling(string name, bool value)
+    public bool Has(string name)
     {
-        LoadData();
+        for (int i = 0; i < data.Recipes.Count; i++)
+        {
+            if (data.Recipes[i].Name == name) return true;
+        }
+
+        return false;
+    }
+
+    public bool ChangeSelling(string name, bool value)
+    {
+        if (GetCountOfSellingRecipes() >= MaxCountOfSellingRecipes)
+        {
+            if (value)
+            {
+                return false;
+            }
+        }
 
         for (int i = 0; i < data.Recipes.Count; i++)
         {
-            if(data.Recipes[i].Name == name)
+            if (data.Recipes[i].Name == name)
             {
                 data.Recipes[i].IsSelling = value;
             }
         }
 
         SaveData();
+        return true;
     }
 
     public List<string> GetAvailableRecipes()
@@ -81,7 +104,7 @@ public class KnownRecipes
             }
         }
 
-        throw new System.Exception($"Name: {name} isn't found");
+        return false;
     }
 
     public bool IsAvailable(string name)
@@ -127,7 +150,10 @@ public class KnownRecipes
 
         for (int i = 0; i < list.Count; i++)
         {
-            if (IsSelling(list[i])) count++;
+            if (IsSelling(list[i]))
+            {
+                count++;
+            }
         }
 
         return count;

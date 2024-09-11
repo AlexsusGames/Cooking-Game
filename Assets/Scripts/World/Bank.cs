@@ -11,21 +11,11 @@ public class Bank : MonoBehaviour
 
     public event Action<int> MoneyChanged;
 
-    private void Awake()
-    {
-        money = wallet.GetMoney();
-        TaxCounter.Reset();
-    }
+    private void Awake() => money = wallet.GetMoney();
 
-    public void SaveMoney()
-    {
-        wallet.SaveMoney(money);
-    }
+    public void SaveMoney() => wallet.SaveMoney(money);
 
-    public bool Has(int money)
-    {
-        return this.money >= money;
-    }
+    public bool Has(int money) => this.money >= money;
 
     public void Change(int sum)
     {
@@ -33,8 +23,5 @@ public class Bank : MonoBehaviour
         MoneyChanged?.Invoke(money);
     }
 
-    public int Get()
-    {
-        return money;
-    }
+    public int Get() => money;
 }

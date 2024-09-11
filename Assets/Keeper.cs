@@ -6,10 +6,11 @@ public abstract class Keeper : InteractiveManager
 {
     [SerializeField] private GameObject spoiltProduct;
     [SerializeField] private Transform[] parents;
+    [SerializeField] private CashTrigger cash;
     protected List<GameObject> objects = new();
     protected int MaxObjectCount => parents.Length;
 
-    public int CountOfCoffee
+    public int CountOfFood
     {
         get => objects.Count;
         set
@@ -43,18 +44,40 @@ public abstract class Keeper : InteractiveManager
         product.transform.SetParent(parent);
         objects.Add(product);
 
+        product.transform.localPosition = Vector3.zero;
+        product.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     protected Transform GetFreePosition()
     {
-        for (int i = 0; i < objects.Count; i++)
+        for (int i = 0; i < parents.Length; i++)
         {
-            if (objects[i].transform.childCount == 0)
+            if (parents[i].transform.childCount == 0)
             {
-                return objects[i].transform;
+                return parents[i].transform;
             }
         }
 
+        return null;
+    }
+
+    public GameObject GetOrderedFood()
+    {
+        var order = cash.GetOrder();
+
+        if(order != null)
+        {
+            for (int i = 0; i < objects.Count; i++)
+            {
+                if (objects[i].TryGetComponent(out IFood food))
+                {
+                    if (order.Contains(food.GetFood()))
+                    {
+                        return objects[i];
+                    }
+                }
+            }
+        }
         return null;
     }
 }

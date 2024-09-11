@@ -10,7 +10,7 @@ public class Wallet
     {
         if (!PlayerPrefs.HasKey(Key))
         {
-            PlayerPrefs.SetInt(Key, 10000);
+            PlayerPrefs.SetInt(Key, 1000);
         }
 
 

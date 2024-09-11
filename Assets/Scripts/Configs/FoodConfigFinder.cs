@@ -74,6 +74,21 @@ public class FoodConfigFinder
         }
     }
 
+    public RecipeConfig GetRandomSellingDrink()
+    {
+        CreateRecipeMap();
+
+        var availableDrinks = recipeMap.Values.Where(item => knownRecipes.IsSelling(item.Name) && item.IsDrink).ToArray();
+        
+        if(availableDrinks.Length > 0)
+        {
+            int random = UnityEngine.Random.Range(0, availableDrinks.Length);
+            return availableDrinks[random];
+        }
+
+        return null;
+    }
+
     public ProductConfig GetProductByName(string name)
     {
         if (!string.IsNullOrEmpty(name))

@@ -17,7 +17,12 @@ public class RecipeOpenerView : MonoBehaviour
         string openedRecipe;
         if(recipeOpener.TryOpen(out openedRecipe))
         {
-            recipeImage.sprite = foodConfigFinder.GetRecipeByName(openedRecipe).picture;
+
+            if (!string.IsNullOrEmpty(openedRecipe))
+            {
+                recipeImage.sprite = foodConfigFinder.GetRecipeByName(openedRecipe).picture;
+            }
+
             StartCoroutine(Animation());
         }
         else

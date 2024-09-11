@@ -10,7 +10,7 @@ public class CashTrigger : InteractiveManager
     [SerializeField] private float timeToService;
     [SerializeField] private ClientQueue queue;
     private GameObject lastPerson;
-    private RecipeConfig randomFood;
+    private List<RecipeConfig> randomFood;
 
     private event Action<float> Timer;
     private float time;
@@ -40,8 +40,19 @@ public class CashTrigger : InteractiveManager
 
     private void ChangeRecipe()
     {
+        randomFood = new();
         string randomRecipe = knownRecipes.GetRandomSellingRecipe();
-        randomFood = foodConfigFinder.GetRecipeByName(randomRecipe);
+        randomFood.Add(foodConfigFinder.GetRecipeByName(randomRecipe));
+
+        if (!randomFood[0].IsDrink)
+        {
+            var randomDrink = foodConfigFinder.GetRandomSellingDrink();
+
+            if(randomDrink != null)
+            {
+                randomFood.Add(randomDrink);
+            }
+        }
     }
 
     private void Service()
@@ -60,7 +71,7 @@ public class CashTrigger : InteractiveManager
 
         if (randomFood != null)
         {
-            view.ShowClientOrder(randomFood.picture);
+            view.ShowClientOrder(randomFood);
             time = timeToService;
         }
         else Service();
@@ -75,25 +86,51 @@ public class CashTrigger : InteractiveManager
 
         if (obj == null)
         {
+            view.UpdateView(null);
             Service();
             return;
         }
 
-        obj.TryGetComponent(out Dish dish);
+        obj.TryGetComponent(out IFood food);
 
-        if (dish != null && randomFood != null)
+        if (food != null && randomFood != null)
         {
-            if (dish.GetFood() == randomFood)
-            {
-                float tax = (float)randomFood.Price / 100;
-                TaxCounter.OnServed(tax);
+            int price = 0;
+            var config = food.GetFood();
 
-                ShowAdvice("Приходите еще!");
+            if (randomFood.Contains(config))
+            {
+                price += config.Price;
+                randomFood.Remove(config);
                 handler.GetRidOfLastObject();
-                bank.Change(randomFood.Price);
-                Service();
+                view.UpdateView(randomFood);
+                bank.Change(config.Price);
+
+                if (randomFood.Count == 0)
+                {
+                    float tax = (float)price / 100;
+                    TaxCounter.OnServed(tax);
+
+                    ShowAdvice("Приходите еще!");
+
+                    Service();
+                }
+                else
+                {
+                    time += timeToService / 2;
+                    time = time > timeToService ? timeToService : time;
+                }
             }
             else ShowAdvice("Это блюдо не заказывали..");
         }
+    }
+    public List<RecipeConfig> GetOrder()
+    {
+        if(randomFood != null)
+        {
+            return randomFood;
+        }
+
+        return null;
     }
 }

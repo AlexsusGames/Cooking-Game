@@ -20,4 +20,9 @@ public static class TaxCounter
         IncomeTaxes += tax;
         PeopleServed++;
     }
+
+    public static int GetTaxes()
+    {
+        return (int)Taxes + (int)IncomeTaxes;
+    }
 }

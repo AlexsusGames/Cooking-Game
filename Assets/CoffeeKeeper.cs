@@ -17,9 +17,15 @@ public class CoffeeKeeper : Keeper
             {
                 if (objects.Count > 0)
                 {
-                    var cup = objects[objects.Count - 1];
-                    objects.Remove(cup);
-                    handler.ChangeObject(cup, true);
+                    var orderedCup = GetOrderedFood();
+
+                    if (orderedCup == null)
+                    {
+                        orderedCup = objects[objects.Count - 1];
+                    }
+
+                    objects.Remove(orderedCup);
+                    handler.ChangeObject(orderedCup, true);
                 }
                 else ShowAdvice("Сначала кофе нужно сварить!");
             }

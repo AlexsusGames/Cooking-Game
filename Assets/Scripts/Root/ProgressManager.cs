@@ -9,6 +9,9 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private DishKeeper dishes;
     [SerializeField] private EndGameWindow endGameWindow;
     [SerializeField] private Bank bank;
+    [SerializeField] private Keeper foodKeeper;
+    [SerializeField] private Keeper drinkKeeper;
+    [SerializeField] private TaxManager taxes;
     private readonly List<IInventoryData> allInventories = new();
     private readonly WorldState state = new();
     private readonly PeopleCounter peopleCounter = new();
@@ -20,6 +23,8 @@ public class ProgressManager : MonoBehaviour
             inventoryObjects[i].TryGetComponent(out IInventoryData data);
             allInventories.Add(data);
         }
+
+        TaxCounter.Reset();
 
         LoadInventories();
         LoadState();
@@ -33,11 +38,15 @@ public class ProgressManager : MonoBehaviour
         lightSystem.Bedroom = state.BedroomLight;
 
         dishes.CountOfDish = state.DishCount;
+
+        foodKeeper.CountOfFood = state.RemainedFood;
+        drinkKeeper.CountOfFood = state.RemainedDrinks;
+
+        taxes.Load();
     }
 
     public bool EndDay()
     {
-        TaxCounter.PeopleServed += 20;
         if(!lightSystem.IsOpen && !lightSystem.isDayTime)
         {
             SaveInventories();
@@ -45,6 +54,8 @@ public class ProgressManager : MonoBehaviour
             bank.SaveMoney();
             peopleCounter.ChangeCount(TaxCounter.PeopleServed);
 
+            taxes.Change(TaxCounter.GetTaxes());
+            taxes.Save();
 
             endGameWindow.Open();
             return true;
@@ -58,7 +69,9 @@ public class ProgressManager : MonoBehaviour
         {
             DishCount = dishes.CountOfDish,
             KitchenLight = lightSystem.Kitchen,
-            BedroomLight = lightSystem.Bedroom
+            BedroomLight = lightSystem.Bedroom,
+            RemainedFood = foodKeeper.CountOfFood,
+            RemainedDrinks = drinkKeeper.CountOfFood,
         };
 
         state.SaveState(data);

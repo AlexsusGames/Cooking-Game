@@ -12,7 +12,7 @@ public class ClientQueue : MonoBehaviour
     [SerializeField] private LightSystem lightSystem;
     private List<CharacterMove> characters = new();
     private List<CharacterMove> charactersInQueue = new();
-    private KnownRecipes knownRecipes = new KnownRecipes();
+    private KnownRecipes knownRecipes = new();
 
     private void Start()
     {
@@ -97,6 +97,14 @@ public class ClientQueue : MonoBehaviour
         freePoint.isAvailable = false;
     }
 
+    private void OnShopClose()
+    {
+        for (int i = 1; i < charactersInQueue.Count; i++)
+        {
+            charactersInQueue[i].ContinueWalking();
+        }
+    }
+
     private IEnumerator Timer()
     {
         while (true)
@@ -113,6 +121,10 @@ public class ClientQueue : MonoBehaviour
                     {
                         AddNewToQueue(character);
                     }
+                }
+                else
+                {
+                    OnShopClose();
                 }
 
                 yield return new WaitForSeconds(time - countRecipes);
