@@ -6,12 +6,17 @@ using UnityEngine;
 public class Bank : MonoBehaviour
 {
     private int money;
+    private int dayLoses;
 
     private readonly Wallet wallet = new();
 
     public event Action<int> MoneyChanged;
 
-    private void Awake() => money = wallet.GetMoney();
+    private void Awake()
+    {
+        dayLoses = 0;
+        money = wallet.GetMoney();
+    }
 
     public void SaveMoney() => wallet.SaveMoney(money);
 
@@ -21,7 +26,12 @@ public class Bank : MonoBehaviour
     {
         money += sum;
         MoneyChanged?.Invoke(money);
-    }
 
+        if(sum < 0)
+        {
+            dayLoses -= sum;
+        }
+    }
+    public int GetLoses() => dayLoses;
     public int Get() => money;
 }

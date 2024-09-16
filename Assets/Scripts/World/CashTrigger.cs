@@ -95,21 +95,19 @@ public class CashTrigger : InteractiveManager
 
         if (food != null && randomFood != null)
         {
-            int price = 0;
             var config = food.GetFood();
 
             if (randomFood.Contains(config))
             {
-                price += config.Price;
                 randomFood.Remove(config);
                 handler.GetRidOfLastObject();
                 view.UpdateView(randomFood);
                 bank.Change(config.Price);
+                TaxCounter.Income += config.Price;
 
                 if (randomFood.Count == 0)
                 {
-                    float tax = (float)price / 100;
-                    TaxCounter.OnServed(tax);
+                    TaxCounter.PeopleServed++;
 
                     ShowAdvice("Приходите еще!");
 

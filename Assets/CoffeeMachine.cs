@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class CoffeeMachine : InteractiveManager
+public class CoffeeMachine : InteractiveManager, IUpgradable
 {
     [SerializeField] private ParticleGroup effect;
     [SerializeField] private ProductConfig[] coffeeRecipe;
@@ -11,6 +11,9 @@ public class CoffeeMachine : InteractiveManager
     [SerializeField] private GameObject spoiltCoffee;
     private FoodConfigFinder foodConfigFinder = new();
     private bool isWorking;
+    private int msTime = 5000;
+    public InteractivePlaces InteractiveType => InteractivePlaces.CoffeeMachine;
+    public int InteractiveTime { get => msTime; set => msTime = 5000 - value * 1000; }
 
     public override async void Interact()
     {
@@ -31,11 +34,11 @@ public class CoffeeMachine : InteractiveManager
 
                     effect.Play();
 
-                    var model = foodConfigFinder.CookingFood(inventoryProducts, InteractivePlaces.CoffeeMachine);
+                    var model = foodConfigFinder.CookingFood(inventoryProducts, InteractiveType);
 
                     inventory.RemoveProducts();
 
-                    await Task.Delay(5000);
+                    await Task.Delay(msTime);
 
                     if (model != null)
                     {

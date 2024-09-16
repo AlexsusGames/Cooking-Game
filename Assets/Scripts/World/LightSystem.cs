@@ -74,7 +74,7 @@ public class LightSystem : MonoBehaviour
     {
         while (IsOpen)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(2);
 
             float time = worldLight[0].intensity < 1 && isDayTime
                 ? IntensityChangeForSecond

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class CookingPlace : InteractiveManager
+public class CookingPlace : InteractiveManager, IUpgradable
 {
     [SerializeField] private InteractivePlaces place;
     [SerializeField] private ParticleGroup effect;
     [SerializeField] private RecipeConfig spoiltFood;
 
     private FoodConfigFinder foodConfigFinder = new();
+    public InteractivePlaces InteractiveType => place;
+    private int msTime = 5000;
+    public int InteractiveTime { get => msTime; set => msTime = 5000 - value * 1000; }
 
     public override async void Interact()
     {
@@ -33,7 +36,7 @@ public class CookingPlace : InteractiveManager
 
                     inventory.RemoveProducts();
 
-                    await Task.Delay(5000);
+                    await Task.Delay(msTime);
 
                     if (model != null)
                     {
