@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class ProgressManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] inventoryObjects;
-    [SerializeField] private GameObject[] upgradableObjects;
+    [SerializeField] private GameObject[] progressObjects;
     [SerializeField] private LightSystem lightSystem;
     [SerializeField] private DishKeeper dishes;
     [SerializeField] private EndGameWindow endGameWindow;
@@ -14,43 +13,24 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private Keeper foodKeeper;
     [SerializeField] private Keeper drinkKeeper;
     [SerializeField] private TaxManager taxes;
-    [SerializeField] private KitchenUpgrade upgrades;
 
-    private readonly List<IInventoryData> allInventories = new();
-    private readonly List<IUpgradable> allUpgradable = new();
+    private readonly List<IProgressDataProvider> progress = new();
     private readonly WorldState state = new();
     private readonly PeopleCounter peopleCounter = new();
     private readonly StatsProvider stats = new();
-    private KitchenUpgradeProvider kitchenUpgradeProvider;
 
     private void Awake()
     {
-        kitchenUpgradeProvider = new();
-        upgrades.Init(kitchenUpgradeProvider);
-        var upgr = kitchenUpgradeProvider.GetUpgrades();
-
-        kitchenUpgradeProvider.OnUpgraded += UpgradeKitchen;
-
-        for (int i = 0; i < inventoryObjects.Length; i++)
+        for (int i = 0; i < progressObjects.Length; i++)
         {
-            inventoryObjects[i].TryGetComponent(out IInventoryData data);
-            allInventories.Add(data);
-        }
-
-        for (int i = 0; i < upgradableObjects.Length; i++)
-        {
-            upgradableObjects[i].TryGetComponent(out IUpgradable upgradable);
-            upgradable.InteractiveTime = upgr[upgradable.InteractiveType];
-            allUpgradable.Add(upgradable);
+            progressObjects[i].TryGetComponent(out IProgressDataProvider progress);
+            progress.Load();
+            this.progress.Add(progress);   
         }
 
         TaxCounter.Reset();
-
-        LoadInventories();
         LoadState();
     }
-
-
 
     private void LoadState()
     {
@@ -71,17 +51,21 @@ public class ProgressManager : MonoBehaviour
     {
         if(!lightSystem.IsOpen && !lightSystem.isDayTime)
         {
-            SaveInventories();
             SaveState();
             bank.SaveMoney();
             peopleCounter.ChangeCount(TaxCounter.PeopleServed);
 
             taxes.Change(TaxCounter.GetTaxes());
             taxes.Save();
-            kitchenUpgradeProvider.SaveData();
 
             UpdateStats();
             endGameWindow.Open();
+
+            for (int i = 0; i < progress.Count; i++)
+            {
+                progress[i].Save();
+            }
+
             return true;
         }
         return false;
@@ -111,32 +95,5 @@ public class ProgressManager : MonoBehaviour
         };
 
         state.SaveState(data);
-    }
-
-    public void UpgradeKitchen(InteractivePlaces type, int level)
-    {
-        for (int i = 0; i < allUpgradable.Count; i++)
-        {
-            if (allUpgradable[i].InteractiveType == type)
-            {
-                allUpgradable[i].InteractiveTime = level;
-            }
-        }
-    }
-
-    private void LoadInventories()
-    {
-        for (int i = 0; i < allInventories.Count; i++)
-        {
-            allInventories[i].Load();
-        }
-    }
-
-    private void SaveInventories()
-    {
-        for (int i = 0; i < allInventories.Count; i++)
-        {
-            allInventories[i].Save();
-        }
     }
 }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class FridgeInventory : InventoryManager, IInventoryData
 {
     [SerializeField] private InventoryTypes type;
-    [SerializeField] private InventoryGridView view;
+    [Inject] private InventoryGridView view;
 
     private Outline outline;
     private InventoryDataLoader dataLoader = new();

@@ -56,6 +56,6 @@ public enum InteractivePlaces
 {
     SlicingTable = 0,
     Stove = 1,
-    WashStand,
-    CoffeeMachine
+    WashStand = 3,
+    CoffeeMachine = 2
 }

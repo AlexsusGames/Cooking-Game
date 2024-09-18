@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class InteractiveObject : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private BoxCollider interactiveZone;
     [SerializeField] private string button;
     [Header("InputView")]
-    [SerializeField] private InputView inputView;
+    [Inject] private InputView inputView;
     [SerializeField] private string actionDescribtion;
 
     [SerializeField] private UnityEvent action;
