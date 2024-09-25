@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Latte
   m_EditorClassIdentifier: 
   picture: {fileID: 21300000, guid: 29dd48b63bc9eaa488ff8a41027c18de, type: 3}
-  CookingPlace: 3
+  CookingPlace: 2
   Products:
   - {fileID: 11400000, guid: 9ddaf6657333c6b408af11017f6855b3, type: 2}
   - {fileID: 11400000, guid: 4054101e70a9c514abb7990c40c17b68, type: 2}

@@ -47,6 +47,8 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
                     }
                     else coffeeKeeper.CreateObject(spoiltCoffee);
 
+                    Debug.Log(model);
+
                     effect.Stop();
                     isWorking = false;
                 }

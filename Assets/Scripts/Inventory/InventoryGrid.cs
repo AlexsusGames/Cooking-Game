@@ -55,7 +55,7 @@ public class InventoryGrid : IReadOnlyInventoryGrid
         return items;
     }
 
-    public bool CanTake(string itemId, int amount)
+    public bool CanTake(string itemId, int amount = 1)
     {
         var itemsToAdd = amount;
 

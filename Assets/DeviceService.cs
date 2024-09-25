@@ -8,20 +8,22 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
     [SerializeField] private Transform parent;
 
     private DeviceConfig[] deviceConfigs;
-    private DeviceDataProvider dataProvider;
+    [Inject] private DeviceDataProvider dataProvider;
 
     [Inject] private DiContainer container;
+
     [Inject] private InventoryService inventoryService;
     [Inject] private UpgradeService upgradeService;
+    [Inject] private KitchenStateSevice kitchenStateSevice;
 
     public void Load()
     {
-        dataProvider = new();
         deviceConfigs = Resources.LoadAll<DeviceConfig>("Devices");
 
-        var device = deviceConfigs[0];
-
-        AddObject(device); // test
+        if (deviceConfigs[0] is UnmovableDeviceConfig config)
+        {
+            dataProvider.AddDevice(config.name, config.StandartPosition);
+        }
 
         Setup();
     }
@@ -32,25 +34,11 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
         {
             var device = deviceConfigs[i];
 
-            if(dataProvider.Has(device.Name))
+            if(dataProvider.Has(device.name))
             {
-                var position = dataProvider.GetPosition(device.Name);
+                var position = dataProvider.GetPosition(device.name);
                 Spawn(device.Prefab, position);
             }
-        }
-    }
-
-    public void AddObject(DeviceConfig config, Vector3 position = new Vector3())
-    {
-        if(!dataProvider.Has(config.Name))
-        {
-            if(config is UnmovableDeviceConfig unmovable)
-            {
-                position = unmovable.StandartPosition;
-            }
-
-            dataProvider.AddDevice(config.Name, position);
-            Spawn(config.Prefab, position);
         }
     }
 
@@ -69,6 +57,11 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
         if (obj.TryGetComponent(out IUpgradable _))
         {
             upgradeService.Add(obj);
+        }
+
+        if(obj.TryGetComponent(out Keeper keeper))
+        {
+            kitchenStateSevice.Add(keeper);
         }
     }
 }

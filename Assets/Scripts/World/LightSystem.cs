@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class LightSystem : MonoBehaviour
     public bool isDayTime;
     public bool IsOpen;
 
+    public event Action OnDayStart;
+    public event Action OnDayEnd;
 
     public bool Kitchen
     {
@@ -43,7 +46,11 @@ public class LightSystem : MonoBehaviour
     private void Start()
     {
         isDayTime = true;
-        view.OnFinish += () => IsOpen = false;
+        view.OnFinish += () =>
+        {
+            IsOpen = false;
+            OnDayEnd?.Invoke();
+        };
     }
 
     public void StartDayCycle()
@@ -52,6 +59,7 @@ public class LightSystem : MonoBehaviour
         {
             IsOpen = true;
             coroutine = StartCoroutine(DayCycle());
+            OnDayStart?.Invoke();
         }
     }
 

@@ -10,14 +10,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Door
+  - NPCInteract
   - Water
   - UI
   - HouseShadow
   - Customer
   - Cash
-  - 
-  - 
+  - Girl
+  - NavMeshIgnore
   - 
   - 
   - 

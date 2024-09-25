@@ -5,4 +5,6 @@ public class DeviceConfig : ScriptableObject
 {
     public GameObject Prefab;
     public string Name;
+    public int Price;
+    public Sprite Icon;
 }

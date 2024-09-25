@@ -19,12 +19,12 @@ public class InteractiveObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         isInTrigger = true;
-        if(interactiveMesh != null)
+        if (interactiveMesh != null)
         {
             interactiveMesh.enabled = true;
         }
 
-        if(inputView != null)
+        if (inputView != null)
         {
             inputView.Show(button, actionDescribtion);
         }

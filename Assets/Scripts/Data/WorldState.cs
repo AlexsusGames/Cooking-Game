@@ -32,6 +32,5 @@ public class WorldStateData
     public bool KitchenLight;
     public bool BedroomLight;
     public int DishCount;
-    public int RemainedFood;
-    public int RemainedDrinks;
+    public List<int> Keepers;
 }

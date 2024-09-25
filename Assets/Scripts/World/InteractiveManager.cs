@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class InteractiveManager : MonoBehaviour
 {
-    private float radius = 20f;
+    [SerializeField] private float radius = 20f;
 
     protected MoveController GetPlayer()
     {

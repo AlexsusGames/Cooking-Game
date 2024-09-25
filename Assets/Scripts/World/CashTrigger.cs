@@ -42,17 +42,23 @@ public class CashTrigger : InteractiveManager
     {
         randomFood = new();
         string randomRecipe = knownRecipes.GetRandomSellingRecipe();
-        randomFood.Add(foodConfigFinder.GetRecipeByName(randomRecipe));
 
-        if (!randomFood[0].IsDrink)
+        if (!string.IsNullOrEmpty(randomRecipe))
         {
-            var randomDrink = foodConfigFinder.GetRandomSellingDrink();
+            randomFood.Add(foodConfigFinder.GetRecipeByName(randomRecipe));
 
-            if(randomDrink != null)
+            if (!randomFood[0].IsDrink)
             {
-                randomFood.Add(randomDrink);
+                var randomDrink = foodConfigFinder.GetRandomSellingDrink();
+
+                if (randomDrink != null)
+                {
+                    if (UnityEngine.Random.Range(0, 2) > 0)
+                        randomFood.Add(randomDrink);
+                }
             }
         }
+        else randomFood = null;
     }
 
     private void Service()
@@ -83,6 +89,11 @@ public class CashTrigger : InteractiveManager
         var player = GetPlayer();
         var handler = player.GetComponent<ObjectHandler>();
         var obj = handler.GetObject();
+
+        if(lastPerson == null)
+        {
+            return;
+        }
 
         if (obj == null)
         {

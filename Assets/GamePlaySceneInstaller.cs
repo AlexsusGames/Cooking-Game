@@ -13,8 +13,10 @@ public class GamePlaySceneInstaller : MonoInstaller
     private void InstallServices()
     {
         Container.Bind<KitchenUpgradeProvider>().FromNew().AsSingle();
+        Container.Bind<DeviceDataProvider>().FromNew().AsSingle();
         Container.Bind<InventoryService>().FromComponentInHierarchy().AsSingle();
         Container.Bind<UpgradeService>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<KitchenStateSevice>().FromComponentInHierarchy().AsSingle();
     }
 
     private void InstallObjects()

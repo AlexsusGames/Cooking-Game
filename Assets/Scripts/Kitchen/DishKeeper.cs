@@ -8,7 +8,7 @@ public class DishKeeper : InteractiveManager
     [SerializeField] private GameObject dishPrefab;
     [SerializeField] private Transform[] parents;
     private List<GameObject> dishes = new();
-    private int maxDishCount = 22;
+    private int maxDishCount = 6;
 
     public int CountOfDish
     {
