@@ -8,6 +8,7 @@ public class NpcActionCommand
     public Transform Target;
     public Vector3 TargetRotation;
     public float distanceOffset;
-    public string animatorAction;
+    public string mainAction;
+    public string additionalAction;
     public int MsDelay;
 }

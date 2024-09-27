@@ -7,8 +7,11 @@ public class NPCManager : MonoBehaviour
 {
     [SerializeField] private GirlController controller;
     [SerializeField] private LightSystem lightSystem;
-    [SerializeField] private NpcActionCommand[] command;
+    [SerializeField] private NpcActionCommand[] firstCommands;
+    [SerializeField] private NpcActionCommand[] secondCommands;
     [SerializeField] private NpcActionCommand sleapCommand;
+    [SerializeField] private FeedTable feedTable;
+    private int randomDelay => Random.Range(2000, 10000);
 
     private void Awake()
     {
@@ -19,9 +22,24 @@ public class NPCManager : MonoBehaviour
 
     private async void StartDay()
     {
-        for (int i = 0; i < command.Length; i++)
+        await Task.Delay(randomDelay);
+
+        for (int i = 0; i < firstCommands.Length; i++)
         {
-            await controller.Commit(command[i]);
+            await controller.Commit(firstCommands[i]);
+        }
+
+        await Task.Delay(randomDelay);
+
+        while (!feedTable.IsCovered())
+        {
+            await Task.Delay(1000);
+        }
+
+        for (int i = 0;i < secondCommands.Length; i++)
+        {
+            await controller.Commit(secondCommands[i]);
+            if (i == 0) feedTable.RemoveFood();
         }
     }
 

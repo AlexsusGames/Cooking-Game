@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3379871790659572701, guid: ed46b31e832367d44a464078bbae8555, type: 3}
   Name: "\u0421\u0442\u043E\u043B \u0434\u043B\u044F \u0435\u0434\u044B"
-  Price: 0
+  Price: 1499
   Icon: {fileID: 21300000, guid: 9829e65b1b9505b40bf35d914ec9238d, type: 3}
   StandartPosition: {x: -20, y: 0, z: -70}

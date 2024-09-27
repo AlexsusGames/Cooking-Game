@@ -22,8 +22,7 @@ public class ObjectHandler : MonoBehaviour
 
         Transform parent = isCup ? cupPlace : dishPlace;
         gameObject.transform.SetParent(parent);
-        gameObject.transform.localPosition = Vector3.zero;
-        gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        gameObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
         animator.SetLayerWeight(1, 1);
     }
 

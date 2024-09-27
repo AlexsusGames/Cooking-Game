@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Sink : InteractiveManager
@@ -26,6 +27,23 @@ public class Sink : InteractiveManager
             }
             else ShowAdvice("Все тарелки чистые!");
         }
+    }
+
+    public async void NPC_Interact()
+    {
+        effect.Play();
+        int dishToWash = dishes.MaxDishCount;
+
+        for (int i = 0; i < dishToWash; i++)
+        {
+            if(dishes.CountOfDish < dishes.MaxDishCount)
+            {
+                dishes.CreateDish();
+            }
+            await Task.Delay(1000);
+        } 
+
+        effect.Stop();
     }
 
     private IEnumerator Washing(Action callBack)

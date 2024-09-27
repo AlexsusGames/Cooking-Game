@@ -11,26 +11,29 @@ public class GirlController : MonoBehaviour
     [SerializeField] private GameObject bag;
     private NavMeshAgent agent;
     private Animator animator;
+    private GirlAnimationState state;
     private string catchedAction;
 
+    private Vector3 cachedPosition;
     private CancellationTokenSource cancellationTokenSource;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-    }
-
-    public void ChangeBagEnabled()
-    {
-        if (bag.activeInHierarchy) bag.SetActive(false);
-        else bag.SetActive(true);
+        state = GetComponent<GirlAnimationState>();
     }
 
     public async Task Commit(NpcActionCommand command)
     {
         cancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = cancellationTokenSource.Token;
+        state.ResetActions();
+
+        if (cachedPosition != Vector3.zero)
+        {
+            transform.position = cachedPosition;
+        }
 
         var rotation = command.TargetRotation;
         if (!string.IsNullOrEmpty(catchedAction))
@@ -39,7 +42,7 @@ public class GirlController : MonoBehaviour
         }
 
         agent.enabled = true;
-        catchedAction = command.animatorAction;
+        catchedAction = command.mainAction;
         agent.SetDestination(command.Target.position);
 
         await Task.Delay(100); // agent bag
@@ -55,33 +58,32 @@ public class GirlController : MonoBehaviour
                     await Task.Delay(100, token);
                 }
 
+                cachedPosition = transform.position;
+
+                agent.isStopped = true;
+                agent.enabled = false;
+
+                if (!string.IsNullOrEmpty(command.mainAction))
+                {
+                    animator.SetBool(command.mainAction, true);
+                }
+                else animator.SetInteger("walkingState", 0);
+
+                state.CommitAction(command.additionalAction);
+
+                transform.position = command.Target.position;
+
+                Quaternion targetRotation = Quaternion.Euler(rotation);
+                transform.localRotation = targetRotation;
+
                 await Task.Delay(command.MsDelay, token);
-
-                if (agent.remainingDistance <= command.distanceOffset)
-                    break;
-
-                await Task.Yield();
+                break;
             }
         }
         catch(OperationCanceledException)
         {
             animator.SetInteger("walkingState", 0);
         }
-
-        agent.isStopped = true;
-        agent.enabled = false;
-
-        if (!string.IsNullOrEmpty(command.animatorAction))
-        {
-            animator.SetBool(command.animatorAction, true);
-
-        }
-        else animator.SetInteger("walkingState", 0);
-
-        transform.position = command.Target.position;
-
-        Quaternion targetRotation = Quaternion.Euler(rotation);
-        transform.localRotation = targetRotation;
     }
     public void CancelToken()
     {
