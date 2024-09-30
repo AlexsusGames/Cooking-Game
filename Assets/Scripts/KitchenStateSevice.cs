@@ -21,8 +21,6 @@ public class KitchenStateSevice : MonoBehaviour, IProgressDataProvider
 
         dishes.CountOfDish = state.DishCount;
 
-        state.Keepers = new List<int>(new int[2]);
-
         for (int i = 0; i < keepers.Count; i++)
         {
             keepers[i].CountOfFood = state.Keepers[i];
@@ -33,7 +31,7 @@ public class KitchenStateSevice : MonoBehaviour, IProgressDataProvider
     {
         List<int> remainingFood = new();
 
-        for (int i = 0; i < remainingFood.Count; i++)
+        for (int i = 0; i < keepers.Count; i++)
         {
             remainingFood.Add(keepers[i].CountOfFood);
         }

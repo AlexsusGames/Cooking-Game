@@ -27,6 +27,7 @@ public class WorldState
     }
 }
 
+[System.Serializable]
 public class WorldStateData
 {
     public bool KitchenLight;

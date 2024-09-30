@@ -49,18 +49,21 @@ public class GirlController : MonoBehaviour
 
         try
         {
-            while (!token.IsCancellationRequested)
+            while (agent.isOnNavMesh && agent.remainingDistance > command.distanceOffset)
             {
-                while (agent.remainingDistance > command.distanceOffset)
-                {
-                    int walkingState = agent.velocity.sqrMagnitude > 0 ? 1 : 0;
-                    animator.SetInteger("walkingState", walkingState);
-                    await Task.Delay(100, token);
-                }
+                int walkingState = agent.velocity.sqrMagnitude > 0 ? 1 : 0;
+                animator.SetInteger("walkingState", walkingState);
+                await Task.Delay(100, token);
+            }
 
+            if (!token.IsCancellationRequested)
+            {
                 cachedPosition = transform.position;
 
                 agent.isStopped = true;
+
+                await Task.Yield();
+
                 agent.enabled = false;
 
                 if (!string.IsNullOrEmpty(command.mainAction))
@@ -77,12 +80,12 @@ public class GirlController : MonoBehaviour
                 transform.localRotation = targetRotation;
 
                 await Task.Delay(command.MsDelay, token);
-                break;
             }
         }
         catch(OperationCanceledException)
         {
             animator.SetInteger("walkingState", 0);
+            cachedPosition = Vector3.zero;
         }
     }
     public void CancelToken()

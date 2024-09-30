@@ -14,29 +14,15 @@ public class KitchenUpgradeProvider
 
     public void SaveData()
     {
-        Print();
         for (int i = 0; i < levelMap.Count; i++)
         {
             data.Upgrades[i].Level = levelMap[data.Upgrades[i].Type];
         }
-        Print();
 
         string save = JsonUtility.ToJson(data);
         PlayerPrefs.SetString(Key, save);
     }
 
-    public void Print()
-    {
-        string msg = "Map: ";
-
-        foreach (var item in data.Upgrades)
-        {
-            msg += item.Type;
-            msg += ", ";
-        }
-
-        Debug.Log(msg);
-    }
 
     private void LoadData()
     {

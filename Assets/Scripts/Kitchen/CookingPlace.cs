@@ -19,11 +19,12 @@ public class CookingPlace : InteractiveManager, IUpgradable
         var player = GetPlayer();
         var inventory = player.gameObject.GetComponent<Inventory>();
         var inventoryProducts = foodConfigFinder.GetProductsByName(inventory.GetProducts());
-        var handleObject = player.GetComponent<ObjectHandler>().GetObject();
+        var objHandler = player.GetComponent<ObjectHandler>();
+        var obj = objHandler.GetObject();
 
-        if (handleObject != null)
+        if (obj != null)
         {
-            if(handleObject.TryGetComponent(out Dish dish))
+            if(obj.TryGetComponent(out Dish dish))
             {
                 if (dish.GetFood() == null && inventoryProducts.Count > 1)
                 {
@@ -43,6 +44,8 @@ public class CookingPlace : InteractiveManager, IUpgradable
                         dish.SetFood(model);
                     }
                     else dish.SetFood(spoiltFood);
+
+                    objHandler.UpdateFoodImage();
 
                     player.FinishInteracting();
                     effect.Stop();

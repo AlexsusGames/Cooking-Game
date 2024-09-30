@@ -24,9 +24,16 @@ public class NPCManager : MonoBehaviour
     {
         await Task.Delay(randomDelay);
 
+        if (feedTable.IsCovered())
+            await controller.Commit(secondCommands[0]);
+
         for (int i = 0; i < firstCommands.Length; i++)
         {
-            await controller.Commit(firstCommands[i]);
+            if (lightSystem.IsOpen)
+            {
+                await controller.Commit(firstCommands[i]);
+            }
+            else return;
         }
 
         await Task.Delay(randomDelay);
@@ -38,8 +45,12 @@ public class NPCManager : MonoBehaviour
 
         for (int i = 0;i < secondCommands.Length; i++)
         {
-            await controller.Commit(secondCommands[i]);
-            if (i == 0) feedTable.RemoveFood();
+            if(lightSystem.IsOpen)
+            {
+                await controller.Commit(secondCommands[i]);
+                if (i == 0) feedTable.RemoveFood();
+            }
+            else return;
         }
     }
 

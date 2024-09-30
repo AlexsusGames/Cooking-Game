@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectHandler : MonoBehaviour
 {
+    [SerializeField] private Image heldFoodImage;
+    [SerializeField] private Sprite standartFood;
+
     [SerializeField] private Transform dishPlace;
     [SerializeField] private Transform cupPlace;
     [SerializeField] private Animator animator;
@@ -17,6 +21,7 @@ public class ObjectHandler : MonoBehaviour
         if(gameObject == null)
         {
             animator.SetLayerWeight(1, 0);
+            heldFoodImage.sprite = standartFood;
             return;
         }
 
@@ -24,6 +29,17 @@ public class ObjectHandler : MonoBehaviour
         gameObject.transform.SetParent(parent);
         gameObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
         animator.SetLayerWeight(1, 1);
+
+        UpdateFoodImage();
+    }
+
+    public void UpdateFoodImage()
+    {
+        if(current.TryGetComponent(out IFood food))
+        {
+            if (food.GetFood() != null)
+                heldFoodImage.sprite = food.GetFood().picture;
+        }
     }
 
     public void GetRidOfLastObject()
