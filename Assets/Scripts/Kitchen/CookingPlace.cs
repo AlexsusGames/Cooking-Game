@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 public class CookingPlace : InteractiveManager, IUpgradable
 {
     [SerializeField] private InteractivePlaces place;
     [SerializeField] private ParticleGroup effect;
     [SerializeField] private RecipeConfig spoiltFood;
+    [Inject] private InteractSound sound;
+    [Inject] private TaxManager taxManager;
 
     private FoodConfigFinder foodConfigFinder = new();
     public InteractivePlaces InteractiveType => place;
@@ -28,27 +31,32 @@ public class CookingPlace : InteractiveManager, IUpgradable
             {
                 if (dish.GetFood() == null && inventoryProducts.Count > 1)
                 {
-                    TaxCounter.Taxes += 0.5f;
-
-                    effect.Play();
-                    player.Interact();
-
-                    var model = foodConfigFinder.CookingFood(inventoryProducts, place);
-
-                    inventory.RemoveProducts();
-
-                    await Task.Delay(msTime);
-
-                    if (model != null)
+                    if (!taxManager.IsTaxDebt)
                     {
-                        dish.SetFood(model);
+                        TaxCounter.Taxes += 0.5f;
+
+                        effect.Play();
+                        player.Interact();
+
+                        var model = foodConfigFinder.CookingFood(inventoryProducts, place);
+
+                        inventory.RemoveProducts();
+
+                        sound.Play(InteractiveType, msTime);
+                        await Task.Delay(msTime);
+
+                        if (model != null)
+                        {
+                            dish.SetFood(model);
+                        }
+                        else dish.SetFood(spoiltFood);
+
+                        objHandler.UpdateFoodImage();
+
+                        player.FinishInteracting();
+                        effect.Stop();
                     }
-                    else dish.SetFood(spoiltFood);
-
-                    objHandler.UpdateFoodImage();
-
-                    player.FinishInteracting();
-                    effect.Stop();
+                    else ShowAdvice("Похоже отключили подачу электричества, нужно бы оплатить налоги.");
                 }
             }
             else ShowAdvice("Тарелку забыл.");

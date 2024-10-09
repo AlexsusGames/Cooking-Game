@@ -9,6 +9,7 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
     [SerializeField] private ParticleGroup effect;
     [SerializeField] private ProductConfig[] coffeeRecipe;
     [Inject] private CoffeeKeeper coffeeKeeper;
+    [Inject] private InteractSound sound;
     [SerializeField] private GameObject spoiltCoffee;
     private FoodConfigFinder foodConfigFinder = new();
     private bool isWorking;
@@ -39,6 +40,7 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
 
                     inventory.RemoveProducts();
 
+                    sound.Play(InteractiveType, msTime);
                     await Task.Delay(msTime);
 
                     if (model != null)

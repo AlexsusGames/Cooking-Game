@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class ShoppingСart : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ShoppingСart : MonoBehaviour
     [SerializeField] private Bank bank;
     [SerializeField] private Delivery delivery;
     [SerializeField] private InternerConfirmMenu confirmWindow;
+
+    [Inject] private InteractSound sound;
     private List<ProductView> items = new();
     private DeliveryData deliveryData;
 
@@ -48,6 +51,7 @@ public class ShoppingСart : MonoBehaviour
         UnityAction action = () =>
         {
             items.Remove(view);
+            sound.Play(NonLoopSounds.Click);
             Destroy(product);
         };
 

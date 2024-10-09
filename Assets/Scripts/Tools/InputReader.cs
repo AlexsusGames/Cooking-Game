@@ -14,9 +14,16 @@ public class InputReader : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
+            bool settingsEnable = SceneContextRoot.instance.SettingsMenuEnabled;
+
+            if (!settingsEnable)
+            {
+                Cursor.visible = false;
+            }
+            else Cursor.visible = true;
+
             recipesPanel.SetActive(false);
             internetPanel.SetActive(false);
-            Cursor.visible = false;
         }
 
         if (Input.GetButtonDown("B"))

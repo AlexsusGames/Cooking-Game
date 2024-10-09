@@ -18,6 +18,7 @@ public class FridgeInventory : InventoryManager, IInventoryData
     {
         if(other.TryGetComponent(out Inventory player))
         {
+            sound.Play(NonLoopSounds.Fridge);
             outline.enabled = true;
             view.gameObject.SetActive(true);
             view.Setup(myInventory);

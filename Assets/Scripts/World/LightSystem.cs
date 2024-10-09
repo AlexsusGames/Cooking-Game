@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class LightSystem : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class LightSystem : MonoBehaviour
     [SerializeField] private Light bedroomLight;
 
     [SerializeField] private TimeChanger view;
+    [Inject] private InteractSound sound;
     private Coroutine coroutine;
 
     private const float IntensityChangeForSecond = 0.008f;
@@ -26,7 +28,7 @@ public class LightSystem : MonoBehaviour
         set
         {
             kitchenValue = !value;
-            ChangeKitchenLight();
+            ChangeKitchenLight(false);
         }
 
     }
@@ -36,7 +38,7 @@ public class LightSystem : MonoBehaviour
         set
         {
             bedroomValue = !value;
-            ChangeBedroomLight();
+            ChangeBedroomLight(false);
         }
     }
 
@@ -63,16 +65,28 @@ public class LightSystem : MonoBehaviour
         }
     }
 
-    public void ChangeBedroomLight()
+    public void ChangeBedroomLight(bool soundEnabled = true)
     {
         bedroomValue = !bedroomValue;
+
+        if(soundEnabled)
+        {
+            sound.Play(NonLoopSounds.Turner);
+        }
+
         bedroomLight.intensity = bedroomValue ? 1 : 0;
     }
 
-    public void ChangeKitchenLight()
+    public void ChangeKitchenLight(bool soundEnabled)
     {
         kitchenValue = !kitchenValue;
-        for(int i = 0; i < kitchenLight.Length; i++)
+
+        if (soundEnabled)
+        {
+            sound.Play(NonLoopSounds.Turner);
+        }
+
+        for (int i = 0; i < kitchenLight.Length; i++)
         {
             kitchenLight[i].intensity = kitchenValue ? 1 : 0;
         }

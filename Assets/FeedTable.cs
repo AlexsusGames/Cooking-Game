@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class FeedTable : InteractiveManager
 {
     [SerializeField] private Transform dishPlace;
+    [Inject] private InteractSound sound;
     public override void Interact()
     {
         var player = GetPlayer();
@@ -24,6 +26,7 @@ public class FeedTable : InteractiveManager
 
                 if(food != null && !food.IsDrink)
                 {
+                    sound.Play(NonLoopSounds.Plate);
                     obj.transform.parent = dishPlace;
                     obj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
                     handler.ChangeObject();

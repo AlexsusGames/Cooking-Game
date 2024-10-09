@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] protected int countItems;
+    [Inject] protected InteractSound sound;
     protected InventoryGrid myInventory;
     protected InventoryGrid anotherInventory;
 
@@ -30,6 +32,7 @@ public class InventoryManager : MonoBehaviour
                 var amount = result.RemovedItemsAmount;
 
                 anotherInventory.AddItems(itemId, amount);
+                sound.Play(NonLoopSounds.Click);
             }
         }
     }

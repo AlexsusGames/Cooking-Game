@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Delivery : InteractiveManager
 {
     [SerializeField] private Animator deliveryAnimator;
     [SerializeField] private GameObject deliveryCollider;
     [SerializeField] private DeliverInventory inventory;
+    [SerializeField] private AudioSource audioSource;
+    [Inject] private InteractSound sound;
     public bool IsDelivering;
     private Coroutine deliveryCoroutine;
 
@@ -38,7 +41,8 @@ public class Delivery : InteractiveManager
         IsDelivering = true;
         yield return new WaitForSeconds(time);
         deliveryAnimator.SetTrigger("drivingIn");
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(8);
+        sound.Play(NonLoopSounds.DrivingIn, audioSource);
     }
 
     public void DeleteProducts()
@@ -57,6 +61,7 @@ public class Delivery : InteractiveManager
             if (playerInventoryGrid.CanTake(item.name, item.amount))
             {
                 playerInventoryGrid.AddItems(item.name, item.amount);
+                sound.Play(NonLoopSounds.Click);
             }
 
             else inventory.AddItemToDeliver(item.name, item.amount);
@@ -72,6 +77,7 @@ public class Delivery : InteractiveManager
     {
         IsDelivering = false;
         deliveryAnimator.SetTrigger("drivingOut");
+        sound.Play(NonLoopSounds.DrivingOut, audioSource);
         yield return new WaitForSeconds(3);
         deliveryCoroutine = null;
     }

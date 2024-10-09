@@ -16,4 +16,5 @@ MonoBehaviour:
   Name: "\u0425\u043E\u043B\u043E\u0434\u0438\u043B\u044C\u043D\u0438\u043A"
   Price: 4999
   Icon: {fileID: 21300000, guid: 69c2765c86aefc646b197820db173166, type: 3}
+  Describtion: "\u0412\u0442\u043E\u0440\u043E\u0439 \u0445\u043E\u043B\u043E\u0434\u0438\u043B\u044C\u043D\u0438\u043A."
   StandartPosition: {x: 25.9, y: 0, z: -67.46}

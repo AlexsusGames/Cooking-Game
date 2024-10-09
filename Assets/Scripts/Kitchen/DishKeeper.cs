@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class DishKeeper : InteractiveManager
 {
     [SerializeField] private GameObject dishPrefab;
     [SerializeField] private Transform[] parents;
+    [Inject] private InteractSound sound;
     private List<GameObject> dishes = new();
     public int MaxDishCount { get; } = 6;
 
@@ -48,6 +50,7 @@ public class DishKeeper : InteractiveManager
                     var dish = dishes[dishes.Count - 1];
                     dishes.Remove(dish);
                     handler.ChangeObject(dish);
+                    sound.Play(NonLoopSounds.Plate);
                 }
                 else ShowAdvice("Чистых тарелок нет..\nпридется мыть.");
             }
@@ -57,6 +60,7 @@ public class DishKeeper : InteractiveManager
                 if(dish.GetFood() == null)
                 {
                     CreateDish();
+                    sound.Play(NonLoopSounds.Plate);
                     handler.GetRidOfLastObject();
                 }
             }

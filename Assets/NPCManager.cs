@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 public class NPCManager : MonoBehaviour
 {
+    [SerializeField] private QuestData girlQuest;
     [SerializeField] private GirlController controller;
     [SerializeField] private LightSystem lightSystem;
     [SerializeField] private NpcActionCommand[] firstCommands;
     [SerializeField] private NpcActionCommand[] secondCommands;
     [SerializeField] private NpcActionCommand sleapCommand;
     [SerializeField] private FeedTable feedTable;
+    [Inject] private QuestHandler quests;
     private int randomDelay => Random.Range(2000, 10000);
 
     private void Awake()
@@ -25,7 +28,10 @@ public class NPCManager : MonoBehaviour
         await Task.Delay(randomDelay);
 
         if (feedTable.IsCovered())
+        {
             await controller.Commit(secondCommands[0]);
+            feedTable.RemoveFood();
+        }
 
         for (int i = 0; i < firstCommands.Length; i++)
         {
@@ -36,12 +42,16 @@ public class NPCManager : MonoBehaviour
             else return;
         }
 
+        quests.AddQuest(girlQuest);
+
         await Task.Delay(randomDelay);
 
         while (!feedTable.IsCovered())
         {
             await Task.Delay(1000);
         }
+
+        quests.ChangeProgress(girlQuest, 1);
 
         for (int i = 0;i < secondCommands.Length; i++)
         {

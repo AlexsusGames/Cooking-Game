@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class CashTrigger : InteractiveManager
 {
@@ -9,11 +10,15 @@ public class CashTrigger : InteractiveManager
     [SerializeField] private Bank bank;
     [SerializeField] private float timeToService;
     [SerializeField] private ClientQueue queue;
+    [Inject] private InteractSound sound;
     private GameObject lastPerson;
     private List<RecipeConfig> randomFood;
 
+    private float cathedTime;
     private event Action<float> Timer;
     private float time;
+
+    public float TimeToService { get => timeToService; set => timeToService = value; }
 
     private readonly FoodConfigFinder foodConfigFinder = new();
     private readonly KnownRecipes knownRecipes = new();
@@ -28,7 +33,7 @@ public class CashTrigger : InteractiveManager
         if(time > 0)
         {
             time -= Time.fixedDeltaTime;
-            var fillAmount = time / timeToService;
+            var fillAmount = time / cathedTime;
             Timer?.Invoke(fillAmount);
         }
 
@@ -78,7 +83,8 @@ public class CashTrigger : InteractiveManager
         if (randomFood != null)
         {
             view.ShowClientOrder(randomFood);
-            time = timeToService;
+            cathedTime = timeToService;
+            time = cathedTime;
         }
         else Service();
     }
@@ -120,6 +126,7 @@ public class CashTrigger : InteractiveManager
                 {
                     TaxCounter.PeopleServed++;
 
+                    sound.Play(NonLoopSounds.Cash);
                     ShowAdvice("Приходите еще!");
 
                     Service();

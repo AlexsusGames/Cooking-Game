@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class BrowserManager : MonoBehaviour
 {
     [SerializeField] private ShopCells shopCells;
     [SerializeField] private ShoppingÑart shoppingÑart;
+
+    [Inject] private InteractSound sound;
     private int amountToAdd = 1;
 
     private FoodConfigFinder foodConfigFinder = new();
@@ -25,6 +28,7 @@ public class BrowserManager : MonoBehaviour
             UnityAction action = () =>
             {
                 ProductToBuy info = new(buttons[index].ItemName, prices[index], amountToAdd);
+                PlayClick();
                 shoppingÑart.AddProductToCart(info);
             };
 
@@ -38,4 +42,6 @@ public class BrowserManager : MonoBehaviour
     {
         amountToAdd = amount;
     }
+
+    public void PlayClick() => sound.Play(NonLoopSounds.Click);
 }

@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using Zenject;
 
 public class DeviseShop : MonoBehaviour
@@ -12,6 +13,7 @@ public class DeviseShop : MonoBehaviour
     [SerializeField] private GameObject shopViewPrefab;
     [SerializeField] private Transform[] points;
     [SerializeField] private Bank bank;
+    [SerializeField] private TMP_Text itemInfo;
     [Inject] private DeviceDataProvider dataProvider;
     private DeviceConfig[] devices;
     private List<DeviceShopView> views = new();
@@ -29,6 +31,8 @@ public class DeviseShop : MonoBehaviour
             views.Add(shopView);
 
             shopView.GetButton().onClick.AddListener(() => BuyDevice(devices[index]));
+            shopView.TryGetComponent(out Button button);
+            button.onClick.AddListener(() => itemInfo.text = devices[index].Describtion);
         }
     }
 

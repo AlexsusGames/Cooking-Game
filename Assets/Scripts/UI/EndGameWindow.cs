@@ -10,7 +10,8 @@ public class EndGameWindow : MonoBehaviour
     [SerializeField] private TMP_Text taxes;
     [SerializeField] private TMP_Text incomeTaxes;
     [SerializeField] private TMP_Text all;
-    [SerializeField] private Button button;
+    [SerializeField] private Button menuButton;
+    [SerializeField] private Button continueButton;
 
     public void Open()
     {
@@ -18,7 +19,8 @@ public class EndGameWindow : MonoBehaviour
         taxes.text = $"{(int)TaxCounter.Taxes}$";
         incomeTaxes.text = $"{(int)TaxCounter.IncomeTaxes}$";
         all.text = $"{(int)TaxCounter.Taxes + (int)TaxCounter.IncomeTaxes}$";
-        button.onClick.AddListener(() => SceneManager.LoadScene(0));
+        menuButton.onClick.AddListener(() => SceneManager.LoadScene(0));
+        continueButton.onClick.AddListener(() => SceneManager.LoadScene(1));
         Cursor.visible = true;
     }
 }

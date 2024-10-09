@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class CookingBook : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CookingBook : MonoBehaviour
 
     [SerializeField] private RecipeView firstPage;
     [SerializeField] private RecipeView secondPage;
+
+    [Inject] private InteractSound sound;
 
     private FoodConfigFinder foodConfigFinder = new();
     private List<int> pageNumbers = new List<int>();
@@ -70,7 +73,8 @@ public class CookingBook : MonoBehaviour
             index = 0;
             openedBook.SetActive(false);
         }
-        else if(index >= pageNumbers.Count)  index = pageNumbers.Count - 1;
+        else if (index >= pageNumbers.Count) index = pageNumbers.Count - 1;
+        else sound.Play(NonLoopSounds.Page);
 
         SetRecipes(pageNumbers[index]);
     }

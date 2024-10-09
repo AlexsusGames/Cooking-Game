@@ -7,4 +7,5 @@ public class DeviceConfig : ScriptableObject
     public string Name;
     public int Price;
     public Sprite Icon;
+    public string Describtion;
 }

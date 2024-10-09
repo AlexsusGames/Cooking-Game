@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class FoodKeeper : Keeper
 {
+    [Inject] private InteractSound sound;
     private GameObject GetFood()
     {
         var obj = GetOrderedFood();
@@ -31,12 +33,14 @@ public class FoodKeeper : Keeper
                     var dish = GetFood();
                     objects.Remove(dish);
                     handler.ChangeObject(dish);
+                    sound.Play(NonLoopSounds.Plate);
                 }
             }
 
             else if (obj.TryGetComponent(out Dish _) && !IsMaxCountOfObjects)
             {
                 PutObject(obj);
+                sound.Play(NonLoopSounds.Plate);
                 handler.ChangeObject();
             }
         }

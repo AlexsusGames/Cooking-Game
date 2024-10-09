@@ -20,11 +20,6 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
     {
         deviceConfigs = Resources.LoadAll<DeviceConfig>("Devices");
 
-        if (deviceConfigs[0] is UnmovableDeviceConfig config)
-        {
-            dataProvider.AddDevice(config.name, config.StandartPosition);
-        }
-
         Setup();
     }
 
@@ -45,7 +40,7 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
     public void Save() => dataProvider.SaveData();
 
     private void Spawn(GameObject gameObject, Vector3 position)
-    {
+    { 
         var obj = container.InstantiatePrefab(gameObject, parent);
         obj.transform.localPosition = position;
 

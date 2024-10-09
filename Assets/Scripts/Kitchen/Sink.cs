@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 public class Sink : InteractiveManager
 {
+    private const int INTERRUCT_TIME_MS = 1000;
+
     [SerializeField] private DishKeeper dishes;
     [SerializeField] private ParticleGroup effect;
+
+    [Inject] private InteractSound sound;
     private bool isWashing;
     public override void Interact()
     {
@@ -40,7 +45,9 @@ public class Sink : InteractiveManager
             {
                 dishes.CreateDish();
             }
-            await Task.Delay(1000);
+
+            sound.Play(InteractivePlaces.WashStand, INTERRUCT_TIME_MS);
+            await Task.Delay(INTERRUCT_TIME_MS);
         } 
 
         effect.Stop();
@@ -48,6 +55,7 @@ public class Sink : InteractiveManager
 
     private IEnumerator Washing(Action callBack)
     {
+        sound.Play(InteractivePlaces.WashStand, INTERRUCT_TIME_MS);
         yield return new WaitForSeconds(1);
         dishes.CreateDish();
         effect.Stop();
