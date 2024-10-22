@@ -7,8 +7,10 @@ public class MoveController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
-    [SerializeField] private Animator animator;
     [SerializeField] private Stamina stamina;
+
+    private Animator animator;
+
     private Rigidbody rb;
     private Vector3 moveDirection;
     private bool isInCollision;
@@ -22,6 +24,12 @@ public class MoveController : MonoBehaviour
         anims = new(animator);
     }
 
+
+    public void Init(Animator animator)
+    {
+        this.animator = animator;
+        anims.ChangeController(animator);
+    }
 
     private void Update()
     {

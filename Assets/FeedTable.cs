@@ -6,6 +6,10 @@ using Zenject;
 public class FeedTable : InteractiveManager
 {
     [SerializeField] private Transform dishPlace;
+
+    private const string QUEST_REQUEST = "tutor6";
+    [Inject] private QuestHandler questHander;
+    [Inject] private FamilyStateManager familyStateManager;
     [Inject] private InteractSound sound;
     public override void Interact()
     {
@@ -26,6 +30,8 @@ public class FeedTable : InteractiveManager
 
                 if(food != null && !food.IsDrink)
                 {
+                    questHander.TryChangeProgress(QUEST_REQUEST);
+
                     sound.Play(NonLoopSounds.Plate);
                     obj.transform.parent = dishPlace;
                     obj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
@@ -45,6 +51,7 @@ public class FeedTable : InteractiveManager
 
     public void RemoveFood()
     {
+        familyStateManager.IsFed = true;
         Destroy(dishPlace.GetChild(0).gameObject);
     }
 }

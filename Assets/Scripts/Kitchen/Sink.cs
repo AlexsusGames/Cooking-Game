@@ -12,6 +12,8 @@ public class Sink : InteractiveManager
     [SerializeField] private DishKeeper dishes;
     [SerializeField] private ParticleGroup effect;
 
+    private const string QUEST_REQUEST = "tutor4";
+    [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
     private bool isWashing;
     public override void Interact()
@@ -20,6 +22,8 @@ public class Sink : InteractiveManager
         {
             if (!dishes.IsMaxCountOfDish)
             {
+                questHander.TryChangeProgress(QUEST_REQUEST);
+
                TaxCounter.Taxes += 0.2f;
                 var player = GetPlayer();
                 player.Interact();

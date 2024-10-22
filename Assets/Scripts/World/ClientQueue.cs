@@ -10,6 +10,7 @@ public class ClientQueue : MonoBehaviour
     [SerializeField] private float time;
     [SerializeField] private int maxPeopleInQueue;
     [SerializeField] private LightSystem lightSystem;
+
     private List<CharacterMove> characters = new();
     private List<CharacterMove> charactersInQueue = new();
     private KnownRecipes knownRecipes = new();

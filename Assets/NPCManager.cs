@@ -12,16 +12,21 @@ public class NPCManager : MonoBehaviour
     [SerializeField] private NpcActionCommand[] firstCommands;
     [SerializeField] private NpcActionCommand[] secondCommands;
     [SerializeField] private NpcActionCommand sleapCommand;
-    [SerializeField] private FeedTable feedTable;
+    [SerializeField] private NpcActionCommand sitCommand;
     [Inject] private QuestHandler quests;
+
+    private FeedTable feedTable;
     private int randomDelay => Random.Range(2000, 10000);
 
-    private void Awake()
+    private async void Start()
     {
+        feedTable = FindObjectOfType<FeedTable>();
+
         lightSystem.OnDayStart += StartDay;
         lightSystem.OnDayEnd += GoTobed;
+
+        await controller.Commit(sitCommand);
     }
-    private void Start() => GoTobed();
 
     private async void StartDay()
     {

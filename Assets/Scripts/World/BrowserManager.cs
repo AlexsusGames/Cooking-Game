@@ -9,6 +9,8 @@ public class BrowserManager : MonoBehaviour
     [SerializeField] private ShopCells shopCells;
     [SerializeField] private Shopping—art shopping—art;
 
+    private const string FIRST_DAY_KEY = "First_day_price";
+
     [Inject] private InteractSound sound;
     private int amountToAdd = 1;
 
@@ -16,7 +18,10 @@ public class BrowserManager : MonoBehaviour
 
     private void Start()
     {
-        var prices = foodConfigFinder.GetRandomPrices();
+        float secondMultiplier = PlayerPrefs.HasKey(FIRST_DAY_KEY) ? 1.2f : 1.0f;
+        PlayerPrefs.SetString(FIRST_DAY_KEY, "");
+
+        var prices = foodConfigFinder.GetRandomPrices(0.7f, secondMultiplier);
         var configs = foodConfigFinder.GetAllProducts();
         shopCells.Init(prices, configs);
         

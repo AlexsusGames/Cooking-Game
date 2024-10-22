@@ -31,6 +31,7 @@ public class QuestView : MonoBehaviour
         }
 
         Destroy(gameObject);
+        await Task.Yield();
         callBacl?.Invoke();
     }
 }

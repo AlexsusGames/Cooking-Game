@@ -10,7 +10,11 @@ public class CashTrigger : InteractiveManager
     [SerializeField] private Bank bank;
     [SerializeField] private float timeToService;
     [SerializeField] private ClientQueue queue;
+
+    private const string QUEST_REQUEST = "serving";
+    [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
+
     private GameObject lastPerson;
     private List<RecipeConfig> randomFood;
 
@@ -124,6 +128,8 @@ public class CashTrigger : InteractiveManager
 
                 if (randomFood.Count == 0)
                 {
+                    questHander.TryChangeProgress(QUEST_REQUEST);
+
                     TaxCounter.PeopleServed++;
 
                     sound.Play(NonLoopSounds.Cash);

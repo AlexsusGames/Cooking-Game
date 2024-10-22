@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class ProgressManager : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private EndGameWindow endGameWindow;
     [SerializeField] private Bank bank;
     [SerializeField] private TaxManager taxes;
+    [SerializeField] private PlayerChanger playerChanger;
+    [SerializeField] private DialogSystem dialogSystem;
+
+    [SerializeField] private WorldSettings worldSettings;
+    [Inject] private FamilyStateManager familyStateManager;
 
     private readonly List<IProgressDataProvider> progress = new();
     private readonly PeopleCounter peopleCounter = new();
@@ -17,11 +23,30 @@ public class ProgressManager : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
+        familyStateManager.Load();
+
+        worldSettings.Init(playerChanger, familyStateManager.IsHasParent);
+
         for (int i = 0; i < progressObjects.Length; i++)
         {
             progressObjects[i].TryGetComponent(out IProgressDataProvider progress);
             progress.Load();
             this.progress.Add(progress);   
+        }
+
+        bool isHasStory = false;
+
+        if (familyStateManager.IsHasGirl)
+        {
+            isHasStory = dialogSystem.TryShowStory();
+        }
+        else worldSettings.ChangeGirlEnable(false);
+
+        if(!isHasStory)
+        {
+            DialogSelector dialogSelector = GetComponent<DialogSelector>();
+            dialogSelector.SelectDialog(dialogSystem);
         }
 
         TaxCounter.Reset();
@@ -45,6 +70,8 @@ public class ProgressManager : MonoBehaviour
             {
                 progress[i].Save();
             }
+
+            familyStateManager.Save();
 
             return true;
         }

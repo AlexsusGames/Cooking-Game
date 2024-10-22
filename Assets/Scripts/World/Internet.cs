@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Internet : MonoBehaviour
 {
     [SerializeField] private GameObject internerWindow;
+    [Inject] private WindowController windowController;
 
     private void OnTriggerExit(Collider other)
     {
@@ -13,7 +15,12 @@ public class Internet : MonoBehaviour
 
     public void MakeActive(bool isActive)
     {
-        internerWindow.SetActive(isActive);
         Cursor.visible = isActive;
+
+        if (isActive)
+        {
+            windowController.AddWindow(internerWindow);
+        }
+        else windowController.CloseWindow(internerWindow);
     }
 }

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Bed : InteractiveManager
 {
-    [SerializeField] private ProgressManager progressManager;
+    [Inject] private ProgressManager progressManager;
     public override void Interact()
     {
         if (!progressManager.EndDay())

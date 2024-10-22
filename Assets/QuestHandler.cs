@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class QuestHandler 
 {
@@ -11,13 +12,15 @@ public class QuestHandler
     public event Action<QuestData> OnQuestCompleted;
     public event Action<QuestData> OnQuestProgressChange;
 
+    [Inject] private QuestConfigFinder configFinder;
+
     public void AddQuest(QuestData data, int progress = 0)
     {
         if (!quests.Contains(data))
         {
             quests.Add(data);
-            OnQuestAdded?.Invoke(data);
             data.CurrentProgress = progress;
+            OnQuestAdded?.Invoke(data);
         }
     }
 
@@ -29,7 +32,7 @@ public class QuestHandler
 
     public void ChangeProgress(QuestData data, int newProgress)
     {
-        data.CurrentProgress = newProgress;
+        data.CurrentProgress += newProgress;
 
         OnQuestProgressChange?.Invoke(data);
 
@@ -47,10 +50,23 @@ public class QuestHandler
         {
             if (quests[i].IsGlobal)
             {
-                result.Add((quests[i].QuestName, quests[i].CurrentProgress));
+                result.Add((quests[i].QuestId, quests[i].CurrentProgress));
             }
         }
 
         return result;
+    }
+
+    public void TryChangeProgress(string questId, int amount = 1)
+    {
+        var quest = configFinder.GetQuestById(questId);
+
+        if (quest == null)
+            throw new Exception($"There is no such a quest: {questId}");
+
+        if (quests.Contains(quest))
+        {
+            ChangeProgress(quest, amount);
+        }
     }
 }

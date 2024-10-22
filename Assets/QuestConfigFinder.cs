@@ -14,9 +14,10 @@ public class QuestConfigFinder
 
         for (int i = 0; i < quests.Length; i++)
         {
-            questMap[quests[i].QuestName] = quests[i];
+            questMap[quests[i].QuestId] = quests[i];
         }
     }
 
-    public QuestData GetQuestByName(string name) => questMap[name];
+    public QuestData GetQuestById(string id) => questMap[id];
+
 }

@@ -26,14 +26,6 @@ public class SceneContextRoot : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            ChangeSettingEnable();
-        }
-    }
-
     public void ChangeSettingEnable()
     {
         SettingsMenuEnabled = !SettingsMenuEnabled;

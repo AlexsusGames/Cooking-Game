@@ -9,6 +9,9 @@ public class CookingPlace : InteractiveManager, IUpgradable
     [SerializeField] private InteractivePlaces place;
     [SerializeField] private ParticleGroup effect;
     [SerializeField] private RecipeConfig spoiltFood;
+
+    private const string QUEST_REQUEST = "tutor5";
+    [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
     [Inject] private TaxManager taxManager;
 
@@ -55,6 +58,8 @@ public class CookingPlace : InteractiveManager, IUpgradable
 
                         player.FinishInteracting();
                         effect.Stop();
+
+                        questHander.TryChangeProgress(QUEST_REQUEST);
                     }
                     else ShowAdvice("Похоже отключили подачу электричества, нужно бы оплатить налоги.");
                 }

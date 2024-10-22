@@ -10,7 +10,11 @@ public class Delivery : InteractiveManager
     [SerializeField] private GameObject deliveryCollider;
     [SerializeField] private DeliverInventory inventory;
     [SerializeField] private AudioSource audioSource;
+
+    private const string QUEST_REQUEST = "tutor3";
+    [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
+
     public bool IsDelivering;
     private Coroutine deliveryCoroutine;
 
@@ -75,6 +79,8 @@ public class Delivery : InteractiveManager
 
     private IEnumerator FinishDelivering()
     {
+        questHander.TryChangeProgress(QUEST_REQUEST);
+
         IsDelivering = false;
         deliveryAnimator.SetTrigger("drivingOut");
         sound.Play(NonLoopSounds.DrivingOut, audioSource);

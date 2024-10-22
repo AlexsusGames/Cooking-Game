@@ -7,6 +7,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using System.Linq;
 
 public class DeviseShop : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class DeviseShop : MonoBehaviour
 
     private void Start()
     {
+        devices = Array.FindAll(devices, d => !string.IsNullOrEmpty(d.Describtion));
+
         for (int i = 0; i < devices.Length; i++)
         {
             int index = i;

@@ -72,6 +72,8 @@ public class QuestTabView : MonoBehaviour
                 var newPosition = GetFreeParent();
                 rectTransform[i].SetParent(newPosition);
                 rectTransform[i].localPosition = Vector3.zero;
+
+                Debug.Log(newPosition.name);
             }
         }
     }

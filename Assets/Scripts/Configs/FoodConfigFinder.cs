@@ -46,14 +46,14 @@ public class FoodConfigFinder
         return productsMap.Values.ToArray();
     }
 
-    public int[] GetRandomPrices()
+    public int[] GetRandomPrices(float multiplyValueA, float multiplayValueB)
     {
         var allProducts = GetAllProducts();
         int[] prices = new int[allProducts.Length];
 
         for (int i = 0; i < allProducts.Length; i++)
         {
-            float random = UnityEngine.Random.Range(0.5f, 1.5f);
+            float random = UnityEngine.Random.Range(multiplyValueA, multiplayValueB);
             prices[i] = (int)(allProducts[i].ProductCost * random);
         }
 

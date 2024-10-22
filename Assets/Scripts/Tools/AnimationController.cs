@@ -10,9 +10,17 @@ public class AnimationController
         this.animator = animator;
     }
 
+    public void ChangeController(Animator animator)
+    {
+        this.animator = animator;
+    }
+
     public void SetWalkingState(WalkingStates state)
     {
-        animator.SetInteger("walkingState", (int)state);
+        if(animator != null)
+        {
+            animator.SetInteger("walkingState", (int)state);
+        }
     }
 }
 public enum WalkingStates

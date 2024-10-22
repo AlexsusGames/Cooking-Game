@@ -11,5 +11,6 @@ public class QuestData : ScriptableObject
     public int Progress;
     public int CurrentProgress;
     public bool IsGlobal;
+    public string QuestId;
     public string QuestDescribtion => $"{Describtion}\n[{CurrentProgress}/{Progress}]";
 }

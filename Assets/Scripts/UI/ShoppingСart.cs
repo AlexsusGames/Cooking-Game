@@ -13,7 +13,10 @@ public class ShoppingСart : MonoBehaviour
     [SerializeField] private Delivery delivery;
     [SerializeField] private InternerConfirmMenu confirmWindow;
 
+    private const string QUEST_REQUEST = "tutor2";
+    [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
+
     private List<ProductView> items = new();
     private DeliveryData deliveryData;
 
@@ -103,6 +106,8 @@ public class ShoppingСart : MonoBehaviour
             delivery.Deliver(deliveryData);
             bank.Change(-price);
             confirmWindow.gameObject.SetActive(false);
+
+            questHander.TryChangeProgress(QUEST_REQUEST); // tutor
         }
         else
         {

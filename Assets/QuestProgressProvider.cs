@@ -23,7 +23,7 @@ public class QuestProgressProvider : MonoBehaviour, IProgressDataProvider
             for(int i = 0; i < globalQuests.Quests.Count; i++)
             {
                 var quest = globalQuests.Quests[i];
-                var data = configFinder.GetQuestByName(quest.QuestId);
+                var data = configFinder.GetQuestById(quest.QuestId);
 
                 questHandler.AddQuest(data, quest.Progress);
             }

@@ -8,11 +8,23 @@ public class ObjectHandler : MonoBehaviour
     [SerializeField] private Image heldFoodImage;
     [SerializeField] private Sprite standartFood;
 
-    [SerializeField] private Transform dishPlace;
-    [SerializeField] private Transform cupPlace;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Transform[] dishPlaces;
+    [SerializeField] private Transform[] cupPlaces;
+    [SerializeField] private Animator[] animators;
+
+    private Animator animator;
+
+    private Transform dishPlace;
+    private Transform cupPlace;
 
     private GameObject current;
+
+    public void ChangeCharacter(int id)
+    {
+        animator = animators[id];
+        dishPlace = dishPlaces[id];
+        cupPlace = cupPlaces[id];
+    }
 
     public void ChangeObject(GameObject gameObject = null, bool isCup = false)
     {

@@ -15,6 +15,9 @@ public class CookingBook : MonoBehaviour
     [SerializeField] private RecipeView secondPage;
 
     [Inject] private InteractSound sound;
+    [Inject] private QuestHandler questHander;
+    private const string FIRST_QUEST_REQUEST = "tutor1";
+    private const string SECOND_QUEST_REQUEST = "tutor7";
 
     private FoodConfigFinder foodConfigFinder = new();
     private List<int> pageNumbers = new List<int>();
@@ -24,6 +27,8 @@ public class CookingBook : MonoBehaviour
 
     private void OnEnable()
     {
+        questHander.TryChangeProgress(FIRST_QUEST_REQUEST);
+
         UpdateData();
         CreateMenu();
 
@@ -106,6 +111,8 @@ public class CookingBook : MonoBehaviour
             if (knownRecipes.IsSelling(recipes[i].Name))
             {
                 sellingRecipes.Add(recipes[i]);
+
+                questHander.TryChangeProgress(SECOND_QUEST_REQUEST);
             }
         }
 

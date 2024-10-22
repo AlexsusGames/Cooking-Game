@@ -51,6 +51,11 @@ public class DeviceDataProvider
         map[name] = position;
     }
 
+    public void RemovedDevice(string name)
+    {
+        map.Remove(name);
+    }
+
     public bool Has(string name) => map.ContainsKey(name);
     public Vector3 GetPosition(string name) => map[name];
 }
