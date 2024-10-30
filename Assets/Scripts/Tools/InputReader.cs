@@ -48,8 +48,6 @@ public class InputReader : MonoBehaviour
                 windowController.CloseWindow(recipesPanel);
             }
             else windowController.AddWindow(recipesPanel);
-
-            Cursor.visible = !activeWindow;
         }
 
         if (Input.GetButtonDown("R") && !isTutor)

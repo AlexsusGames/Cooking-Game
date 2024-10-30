@@ -1301,6 +1301,7 @@ GameObject:
   - component: {fileID: 947070814}
   - component: {fileID: 947070813}
   - component: {fileID: 947070817}
+  - component: {fileID: 947070818}
   m_Layer: 5
   m_Name: LSCanvas
   m_TagString: Untagged
@@ -1407,6 +1408,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screen: {fileID: 943484042}
   settings: {fileID: 1560806452}
+--- !u!114 &947070818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947070812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3073912a7f4004bafc997375ffea92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: d35af2c1c646bf948a8d1471b27702e1, type: 2}
 --- !u!1 &960942867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,6 +2002,7 @@ GameObject:
   - component: {fileID: 1359920814}
   - component: {fileID: 1359920816}
   - component: {fileID: 1359920815}
+  - component: {fileID: 1359920817}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2112,6 +2127,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359920813}
   m_CullTransparentMesh: 1
+--- !u!114 &1359920817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359920813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90327cbe01035b54c9f918f42a50b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1387463665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,6 +2330,7 @@ GameObject:
   - component: {fileID: 1436965970}
   - component: {fileID: 1436965972}
   - component: {fileID: 1436965971}
+  - component: {fileID: 1436965973}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2427,6 +2455,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436965969}
   m_CullTransparentMesh: 1
+--- !u!114 &1436965973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436965969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90327cbe01035b54c9f918f42a50b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1477128974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,6 +3511,7 @@ GameObject:
   - component: {fileID: 1930375325}
   - component: {fileID: 1930375327}
   - component: {fileID: 1930375326}
+  - component: {fileID: 1930375328}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3595,6 +3636,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930375324}
   m_CullTransparentMesh: 1
+--- !u!114 &1930375328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930375324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90327cbe01035b54c9f918f42a50b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1938900965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,6 +4019,7 @@ GameObject:
   - component: {fileID: 1995180115}
   - component: {fileID: 1995180117}
   - component: {fileID: 1995180116}
+  - component: {fileID: 1995180118}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4090,6 +4144,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995180114}
   m_CullTransparentMesh: 1
+--- !u!114 &1995180118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995180114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90327cbe01035b54c9f918f42a50b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2061702695
 GameObject:
   m_ObjectHideFlags: 0

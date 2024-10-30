@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3379871790659572701, guid: ed46b31e832367d44a464078bbae8555, type: 3}
   Name: "\u0421\u0442\u043E\u043B \u0434\u043B\u044F \u0435\u0434\u044B"
-  Price: 1499
+  Price: 500
   Icon: {fileID: 21300000, guid: 9829e65b1b9505b40bf35d914ec9238d, type: 3}
   Describtion: "\u0414\u0430\u0435\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C
     \u043F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0434\u043E 8 \u0442\u0430\u0440\u0435\u043B\u043E\u043A."

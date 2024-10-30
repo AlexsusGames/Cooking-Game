@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: firstConfigurationObj
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1073243896701031045, guid: 94e6b0f45ca1b104b95cd05f7f9e5ad5, type: 3}
-  Name: dresser
+  Name: "\u0428\u043A\u0430\u0444"
   Price: 0
   Icon: {fileID: 0}
   Describtion: 

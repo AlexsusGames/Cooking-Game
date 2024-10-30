@@ -12,7 +12,7 @@ public class Bank : MonoBehaviour
 
     public event Action<int> MoneyChanged;
 
-    private void Awake()
+    public void Init()
     {
         dayLoses = 0;
         money = wallet.GetMoney();

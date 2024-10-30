@@ -28,7 +28,7 @@ public class TaxManager : MonoBehaviour
         {
             var remainingMoney = bank.Get();
             Change(-remainingMoney); 
-            bank.Change(remainingMoney);
+            bank.Change(-remainingMoney);
         }
         UpdateView();
     }

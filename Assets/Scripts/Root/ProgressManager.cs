@@ -13,6 +13,10 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private TaxManager taxes;
     [SerializeField] private PlayerChanger playerChanger;
     [SerializeField] private DialogSystem dialogSystem;
+    [Space]
+    [Header("StoryEnd")]
+    [SerializeField] private StoryEndView storyEndView;
+    [SerializeField] private StoryEndConfig badEndConfig;
 
     [SerializeField] private WorldSettings worldSettings;
     [Inject] private FamilyStateManager familyStateManager;
@@ -25,6 +29,7 @@ public class ProgressManager : MonoBehaviour
     {
         Cursor.visible = false;
         familyStateManager.Load();
+        bank.Init();
 
         worldSettings.Init(playerChanger, familyStateManager.IsHasParent);
 
@@ -35,6 +40,15 @@ public class ProgressManager : MonoBehaviour
             this.progress.Add(progress);   
         }
 
+        TaxCounter.Reset();
+        taxes.Load();
+
+        if(!familyStateManager.IsHasParent && !familyStateManager.IsHasGirl)
+        {
+            storyEndView.ShowEndStory(badEndConfig);
+            return;
+        }
+
         bool isHasStory = false;
 
         if (familyStateManager.IsHasGirl)
@@ -43,14 +57,11 @@ public class ProgressManager : MonoBehaviour
         }
         else worldSettings.ChangeGirlEnable(false);
 
-        if(!isHasStory)
+        if(!isHasStory && StoryProgress.CurrentDay < 10)
         {
             DialogSelector dialogSelector = GetComponent<DialogSelector>();
             dialogSelector.SelectDialog(dialogSystem);
         }
-
-        TaxCounter.Reset();
-        taxes.Load();
     }
 
     public bool EndDay()

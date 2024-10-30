@@ -6,4 +6,5 @@ using UnityEngine;
 public class StoryEndConfig : ScriptableObject
 {
     public List<DialogData> storyEndSlides;
+    public int StoryId;
 }

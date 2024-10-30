@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: secondConfig1
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5967240429430383630, guid: 577f7d0e5e2314f48b0fffd7c48916b6, type: 3}
-  Name: table
+  Name: "\u0421\u0442\u043E\u043B"
   Price: 0
   Icon: {fileID: 0}
   Describtion: 

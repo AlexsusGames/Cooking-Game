@@ -19,6 +19,7 @@ public class WindowController
         }
 
         window.SetActive(true);
+        Cursor.visible = true;
     }
 
     public void CloseWindow(GameObject window)
@@ -29,6 +30,9 @@ public class WindowController
         {
             windows.Remove(window);
         }
+
+        if (windows.Count > 0) Cursor.visible = true;
+        else Cursor.visible = false;
     }
 
     public void CloseLastWindow()

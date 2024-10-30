@@ -66,10 +66,14 @@ public class FoodConfigFinder
         {
             recipeMap = new();
             var allRecipes = Resources.LoadAll<RecipeConfig>("Recipes");
+            Array.Sort(allRecipes, (x, y) => x.Price.CompareTo(y.Price));
 
             for (int i = 0; i < allRecipes.Length; i++)
             {
-                recipeMap[allRecipes[i].Name] = allRecipes[i];
+                if (!string.IsNullOrEmpty(allRecipes[i].Description))
+                {
+                    recipeMap[allRecipes[i].Name] = allRecipes[i];
+                }
             }
         }
     }

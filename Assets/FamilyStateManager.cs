@@ -39,6 +39,11 @@ public class FamilyStateManager : IProgressDataProvider
         PlayerPrefs.SetInt(P_HEALTH_SAVE, parentHealth);
     }
 
+    public void EndStory()
+    {
+        parentHealth = 100000;
+        girlHealth = 0;
+    }
     public int GetParentHealth() => parentHealth;
     public int GetGirlHealth() => girlHealth;
 }

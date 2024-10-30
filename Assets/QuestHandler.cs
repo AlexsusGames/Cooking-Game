@@ -24,10 +24,13 @@ public class QuestHandler
         }
     }
 
-    private void CompleteQuest(QuestData data)
+    public void CompleteQuest(QuestData data)
     {
-        OnQuestCompleted?.Invoke(data);
-        quests.Remove(data);
+        if(quests.Contains(data))
+        {
+            OnQuestCompleted?.Invoke(data);
+            quests.Remove(data);
+        }
     }
 
     public void ChangeProgress(QuestData data, int newProgress)
@@ -36,7 +39,7 @@ public class QuestHandler
 
         OnQuestProgressChange?.Invoke(data);
 
-        if(newProgress >= data.Progress)
+        if(data.CurrentProgress >= data.Progress)
         {
             CompleteQuest(data);
         }

@@ -107,6 +107,7 @@ public class CashTrigger : InteractiveManager
 
         if (obj == null)
         {
+            ShowAdvice("К сожалению данный товар закончился");
             view.UpdateView(null);
             Service();
             return;

@@ -32,8 +32,6 @@ public class CookingBook : MonoBehaviour
         UpdateData();
         CreateMenu();
 
-        openedBook.SetActive(false);
-
         firstPage.sellingChanged += UpdateMenu;
         secondPage.sellingChanged += UpdateMenu;
     }

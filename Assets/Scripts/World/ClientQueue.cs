@@ -123,12 +123,15 @@ public class ClientQueue : MonoBehaviour
                         AddNewToQueue(character);
                     }
                 }
-                else
-                {
-                    OnShopClose();
-                }
 
-                yield return new WaitForSeconds(time - countRecipes);
+                float delay = this.time - countRecipes * 2;
+                float time = delay < 10 ? 10 : delay;
+
+                yield return new WaitForSeconds(time);
+            }
+            else
+            {
+                OnShopClose();
             }
 
             yield return null;

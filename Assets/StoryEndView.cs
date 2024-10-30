@@ -6,19 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class StoryEndView : MonoBehaviour
 {
-    private const string KEY = "EndStoryKey";
+    private const string KEY = "endStory_Key";
     [SerializeField] private StoryEndSlideView slide;
 
-    public bool isSkiped;
+    private bool isSkiped;
+
 
     public async void ShowEndStory(StoryEndConfig config)
     {
-        if(!PlayerPrefs.HasKey(KEY))
+        if (!PlayerPrefs.HasKey(KEY))
         {
+            Cursor.visible = true;
             gameObject.SetActive(true);
             for (int i = 0; i < config.storyEndSlides.Count; i++)
             {
                 slide.SetData(config.storyEndSlides[i]);
+                isSkiped = false;
 
                 while (!isSkiped)
                 {
@@ -26,8 +29,12 @@ public class StoryEndView : MonoBehaviour
                 }
             }
 
-            PlayerPrefs.SetInt(KEY, config.storyEndSlides.Count);
+            PlayerPrefs.SetInt(KEY, config.StoryId);
             SceneManager.LoadScene(0);
         }
     }
+
+    public int GetStoryEndId() => PlayerPrefs.GetInt(KEY);
+
+    public void Skip() => isSkiped = true;
 }

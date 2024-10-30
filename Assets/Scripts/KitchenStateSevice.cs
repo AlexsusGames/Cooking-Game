@@ -23,7 +23,7 @@ public class KitchenStateSevice : MonoBehaviour, IProgressDataProvider
 
         if(state.Keepers != null)
         {
-            for (int i = 0; i < keepers.Count; i++)
+            for (int i = 0; i < state.Keepers.Count; i++)
             {
                 keepers[i].CountOfFood = state.Keepers[i];
             }

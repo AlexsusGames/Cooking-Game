@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -93,5 +94,13 @@ public class CharacterMove : MonoBehaviour
     public void ContinueWalking()
     {
         isQueue = false;
+        ServeDelay();
+    }
+
+    public async void ServeDelay()
+    {
+        await Task.Delay(10000);
+
+        IsServed = false;
     }
 }
