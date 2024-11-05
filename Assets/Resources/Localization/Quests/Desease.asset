@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8410fc671ba004997f2c76febc1bb8, type: 3}
+  m_Name: Desease
+  m_EditorClassIdentifier: 
+  CachedKeys:
+  - "\u0423\u0436\u0435 \u043D\u0435 \u0440\u0435\u0431\u0435\u043D\u043E\u043A"
+  - "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C \u043E\u0442\u0446\u0443 \u043B\u0435\u0447\u0435\u043D\u0438\u0435
+    \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 \u0431\u043E\u043B\u044C\u043D\u0438\u0446\u044B"
+  QuestIcon: {fileID: 21300000, guid: 10246c04c3284924e9e455c5f2520a23, type: 3}
+  QuestName: "\u0423\u0436\u0435 \u043D\u0435 \u0440\u0435\u0431\u0435\u043D\u043E\u043A"
+  Describtion: "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C \u043E\u0442\u0446\u0443
+    \u043B\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435
+    \u0431\u043E\u043B\u044C\u043D\u0438\u0446\u044B"
+  Progress: 1
+  CurrentProgress: 0
+  IsGlobal: 1
+  QuestId: desease

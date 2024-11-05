@@ -28,10 +28,10 @@ public class KnownRecipes
     private void CreateData()
     {
         data = new KnownRecipesData();
-        data.Recipes.Add(new RecipeData { Name = "Кофе" });
-        data.Recipes.Add(new RecipeData { Name = "Шоколадный пончик" });
-        data.Recipes.Add(new RecipeData { Name = "Клубнийчный пончик" });
-        data.Recipes.Add(new RecipeData { Name = "Тост с апельсином" });
+        data.Recipes.Add(new RecipeData { Name = "Coffee" });
+        data.Recipes.Add(new RecipeData { Name = "Orange toast" });
+        data.Recipes.Add(new RecipeData { Name = "Strawberry donut" });
+        data.Recipes.Add(new RecipeData { Name = "Chocolate donut" });
         SaveData();
     }
 
@@ -69,9 +69,11 @@ public class KnownRecipes
 
         for (int i = 0; i < data.Recipes.Count; i++)
         {
+            Debug.Log($"{data.Recipes[i].Name} / {name}");
             if (data.Recipes[i].Name == name)
             {
                 data.Recipes[i].IsSelling = value;
+                Debug.Log($"{data.Recipes[i].Name} / {data.Recipes[i].IsSelling}");
             }
         }
 

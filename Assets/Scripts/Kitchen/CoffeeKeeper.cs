@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CoffeeKeeper : Keeper
 {
+    private string[] advices = { "Сначала кофе нужно сварить!" };
     public override void Interact()
     {
         var player = GetPlayer().gameObject;
@@ -27,7 +28,7 @@ public class CoffeeKeeper : Keeper
                     objects.Remove(orderedCup);
                     handler.ChangeObject(orderedCup, true);
                 }
-                else ShowAdvice("Сначала кофе нужно сварить!");
+                else ShowAdvice(advices[0]);
             }
 
             else if (obj.TryGetComponent(out Cup _) && !IsMaxCountOfObjects)
@@ -37,4 +38,16 @@ public class CoffeeKeeper : Keeper
             }
         }
     }
+
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+        {
+            CachedKeys = advices;
+        }
+
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param) => advices = param;
 }

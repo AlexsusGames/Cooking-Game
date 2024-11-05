@@ -19,6 +19,7 @@ public class CookingPlace : InteractiveManager, IUpgradable
     public InteractivePlaces InteractiveType => place;
     private int msTime = 5000;
     public int InteractiveTime { get => msTime; set => msTime = 5000 - value * 1000; }
+    private string[] advices = { "Похоже отключили подачу электричества, нужно бы оплатить налоги.", "Тарелку забыл." };
 
     public override async void Interact()
     {
@@ -61,12 +62,24 @@ public class CookingPlace : InteractiveManager, IUpgradable
 
                         questHander.TryChangeProgress(QUEST_REQUEST);
                     }
-                    else ShowAdvice("Похоже отключили подачу электричества, нужно бы оплатить налоги.");
+                    else ShowAdvice(advices[0]);
                 }
             }
-            else ShowAdvice("Тарелку забыл.");
+            else ShowAdvice(advices[1]);
         }
     }
+
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+        {
+            CachedKeys = advices;
+        }
+
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param) => advices = param;
 }
 public enum InteractivePlaces
 {

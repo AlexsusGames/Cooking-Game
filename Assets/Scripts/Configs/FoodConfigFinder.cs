@@ -65,14 +65,15 @@ public class FoodConfigFinder
         if (recipeMap == null)
         {
             recipeMap = new();
-            var allRecipes = Resources.LoadAll<RecipeConfig>("Recipes");
+            var allRecipes = Resources.LoadAll<RecipeConfig>("Localization/Recipes");
+            Debug.Log($"[Create recipe Map]: {allRecipes.Length}");
             Array.Sort(allRecipes, (x, y) => x.Price.CompareTo(y.Price));
 
             for (int i = 0; i < allRecipes.Length; i++)
             {
                 if (!string.IsNullOrEmpty(allRecipes[i].Description))
                 {
-                    recipeMap[allRecipes[i].Name] = allRecipes[i];
+                    recipeMap[allRecipes[i].name] = allRecipes[i];
                 }
             }
         }
@@ -82,7 +83,7 @@ public class FoodConfigFinder
     {
         CreateRecipeMap();
 
-        var availableDrinks = recipeMap.Values.Where(item => knownRecipes.IsSelling(item.Name) && item.IsDrink).ToArray();
+        var availableDrinks = recipeMap.Values.Where(item => knownRecipes.IsSelling(item.name) && item.IsDrink).ToArray();
         
         if(availableDrinks.Length > 0)
         {
@@ -130,9 +131,9 @@ public class FoodConfigFinder
         {
             var recipe = remainingRecipes[0];
 
-            if (!knownRecipes.IsAvailable(recipe.Name))
+            if (!knownRecipes.IsAvailable(recipe.name))
             {
-                knownRecipes.AddRecipe(recipe.Name);
+                knownRecipes.AddRecipe(recipe.name);
             }
 
             return recipe;

@@ -6,6 +6,7 @@ using Zenject;
 public class FoodKeeper : Keeper
 {
     [Inject] private InteractSound sound;
+    private string[] advices = { };
     private GameObject GetFood()
     {
         var obj = GetOrderedFood();
@@ -45,4 +46,15 @@ public class FoodKeeper : Keeper
             }
         }
     }
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+        {
+            CachedKeys = advices;
+        }
+
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param) => advices = param;
 }

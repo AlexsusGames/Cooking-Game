@@ -1,5 +1,4 @@
-using log4net.Appender;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEditor;
@@ -9,12 +8,14 @@ public class LocalizationWindow : EditorWindow
 {
     private LocalizationData data;
     private string id;
+    private int indexToStart;
     private string stringToEdit;
     private string newValue;
 
     private List<string> localization = new();
     private int loadedLocalizations;
     private LibreTranslate translator = new();
+    private List<SoLocalization> soLocalizations = new();
 
     private bool isBusy = false;
 
@@ -22,186 +23,190 @@ public class LocalizationWindow : EditorWindow
     public static void Init()
     {
         LocalizationWindow window = GetWindow<LocalizationWindow>("Localization");
+        window.minSize = new Vector2(350, 450);
         window.Show();
     }
 
     private void OnGUI()
     {
+        GUILayout.BeginVertical("box");
+
+        EditorGUILayout.LabelField("Localization Data", EditorStyles.boldLabel);
+        data = (LocalizationData)EditorGUILayout.ObjectField("Data Source:", data, typeof(LocalizationData), true);
         EditorGUILayout.Space(10);
-        data = (LocalizationData)EditorGUILayout.ObjectField(data, typeof(LocalizationData), true);
-        EditorGUILayout.Space(10);
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        GUILayout.Label("RegionId");
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("Region ID", EditorStyles.label);
         id = EditorGUILayout.TextField(id);
-        EditorGUILayout.Space(20);
 
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        GUILayout.Label($"Current loaded: {loadedLocalizations}");
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
+        EditorGUILayout.LabelField($"Loaded Localizations: {loadedLocalizations}");
 
+        EditorGUILayout.Space(10);
+
+        EditorGUILayout.LabelField("Load Localizations", EditorStyles.boldLabel);
         GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Get Resources localization", GUILayout.Width(300), GUILayout.Height(50)))
+        if (GUILayout.Button("Load Resources", GUILayout.Width(150)))
         {
-            SoLocalization[] loc = Resources.LoadAll<SoLocalization>("");
-
-            Debug.Log($"LOCALIZATION: Founded SOLocalization: {loc.Length}.");
-
-            for (int i = 0; i < loc.Length; i++)
-            {
-                var texts = loc[i].Get();
-
-                for (int j = 0; j < texts.Length; j++)
-                {
-                    localization.Add(texts[j]);
-                    loadedLocalizations++;
-                }
-            }
+            LoadResourcesLocalization();
         }
-        GUILayout.FlexibleSpace();
+        if (GUILayout.Button("Load Mono", GUILayout.Width(150)))
+        {
+            LoadMonoLocalization();
+        }
         GUILayout.EndHorizontal();
 
         EditorGUILayout.Space(10);
 
+        EditorGUILayout.LabelField("Clear Actions", EditorStyles.boldLabel);
         GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Get Mono localization", GUILayout.Width(300), GUILayout.Height(50)))
-        {
-            MonoLocalization[] loc = FindObjectsOfType<MonoLocalization>(true);
-
-            Debug.Log($"LOCALIZATION: Founded MonoLocalization: {loc.Length}.");
-
-            for (int i = 0; i < loc.Length; i++)
-            {
-                var texts = loc[i].Get();
-
-                for (int j = 0; j < texts.Length; j++)
-                {
-                    localization.Add(texts[j]);
-                    loadedLocalizations++;
-                }
-            }
-
-            Debug.Log($"LOCALIZATION: Total Count: {localization.Count}");
-        }
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
-
-        EditorGUILayout.Space(20);
-
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Clear localization by ID", GUILayout.Width(200), GUILayout.Height(40)))
+        if (GUILayout.Button("Clear by ID", GUILayout.Width(100)))
         {
             data.Clear(id);
         }
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
-
-        EditorGUILayout.Space(10);
-
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Clear all localization", GUILayout.Width(200), GUILayout.Height(40)))
+        if (GUILayout.Button("Clear All", GUILayout.Width(100)))
         {
             data.Clear();
         }
-        GUILayout.FlexibleSpace();
+        if (GUILayout.Button("Clear Data", GUILayout.Width(100)))
+        {
+            loadedLocalizations = 0;
+            localization.Clear();
+            soLocalizations.Clear();
+        }
         GUILayout.EndHorizontal();
 
         EditorGUILayout.Space(10);
 
+        EditorGUILayout.LabelField("Create Localization", EditorStyles.boldLabel);
         GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Clear this data", GUILayout.Width(200), GUILayout.Height(40)))
+        if (GUILayout.Button("Create Keys", GUILayout.Width(100)))
         {
-            loadedLocalizations = 0;
-            localization.Clear();
-        }
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
-
-        EditorGUILayout.Space(20);
-
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Create localization keys", GUILayout.Width(200), GUILayout.Height(40)))
-        {
-            Debug.Log("Keys created");
             data.CreateKeys(localization);
-            loadedLocalizations = 0;
-            localization.Clear();
+            ResetLocalizationData();
         }
-        GUILayout.FlexibleSpace();
+        if (GUILayout.Button("Create by ID", GUILayout.Width(100)) && !isBusy)
+        {
+            _ = CreateLocalization(new List<string>(data.keys));
+        }
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.Space(5);
+
+        EditorGUILayout.LabelField("Start Index", EditorStyles.label);
+        indexToStart = EditorGUILayout.IntField(indexToStart);
+
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Continue by ID", GUILayout.Width(150)) && !isBusy)
+        {
+            _ = CreateLocalization(new List<string>(data.keys), indexToStart);
+        }
         GUILayout.EndHorizontal();
 
         EditorGUILayout.Space(10);
 
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Create localization by ID", GUILayout.Width(200), GUILayout.Height(40)))
+        EditorGUILayout.LabelField("Edit Localization", EditorStyles.boldLabel);
+
+        EditorGUILayout.LabelField("Edit Key", EditorStyles.label);
+        stringToEdit = EditorGUILayout.TextField(stringToEdit);
+
+        EditorGUILayout.LabelField("New Value", EditorStyles.label);
+        newValue = EditorGUILayout.TextField(newValue);
+
+        if (GUILayout.Button("Apply Edit", GUILayout.Width(150)))
         {
-            if(!isBusy)
-            {
-                List<string> list = new List<string>(data.keys);
-
-                _ = CreateLocalization(list);
-            }
+            data.EditString(id, stringToEdit, newValue);
         }
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
 
-        EditorGUILayout.Space(20);
+        EditorGUILayout.Space(5);
 
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("Print localization by ID", GUILayout.Width(200), GUILayout.Height(40)))
+        if (GUILayout.Button("Print Localization by ID", GUILayout.Width(200)))
         {
             data.Debug(id);
         }
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
 
-        GUILayout.Label("Editting: key");
+        EditorGUILayout.Space(10);
 
-        stringToEdit = EditorGUILayout.TextField(stringToEdit);
-
-        GUILayout.Label("Editting: newValue");
-
-        newValue = EditorGUILayout.TextField(newValue);
-
-        if (GUILayout.Button("Edit", GUILayout.Width(100), GUILayout.Height(20)))
+        EditorGUILayout.LabelField("SO Actions", EditorStyles.boldLabel);
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Create keys", GUILayout.Width(100)))
         {
-            data.EditString(id, stringToEdit, newValue);
+            CreateSoKeys();
+        }
+        if (GUILayout.Button("Clear keys", GUILayout.Width(100)))
+        {
+            for (int i = 0; i < soLocalizations.Count; i++)
+            {
+                soLocalizations[i].ClearKey();
+            }
+        }
+        GUILayout.EndHorizontal();
+        GUILayout.EndVertical();
+    }
+
+    private void LoadResourcesLocalization()
+    {
+        SoLocalization[] loc = Resources.LoadAll<SoLocalization>("Localization");
+        Debug.Log("loaded " +  loc.Length);
+        foreach (var localizationObject in loc)
+        {
+            localization.AddRange(localizationObject.Get());
+            loadedLocalizations += localizationObject.Get().Length;
+            soLocalizations.Add(localizationObject);
+            Debug.Log(loadedLocalizations);
+        }
+    }
+
+    private void LoadMonoLocalization()
+    {
+        MonoLocalization[] loc = FindObjectsOfType<MonoLocalization>(true);
+        foreach (var localizationObject in loc)
+        {
+            localization.AddRange(localizationObject.Get());
+            loadedLocalizations += localizationObject.Get().Length;
+        }
+    }
+
+    private void ResetLocalizationData()
+    {
+        loadedLocalizations = 0;
+        localization.Clear();
+        soLocalizations.Clear();
+    }
+
+    private void CreateSoKeys()
+    {
+        for (int i = 0; i < soLocalizations.Count; i++)
+        {
+            var key = soLocalizations[i].Get();
+            soLocalizations[i].CreateKey(key);
         }
     }
 
     public async Task CreateLocalization(List<string> keys)
     {
-        Debug.Log("Start creating");
-
         isBusy = true;
-
-        var regionId = id;
-        var source = "ru";
-        List<string> translated = new();
-
+        var translated = new List<string>();
         for (int i = 0; i < keys.Count; i++)
         {
-            string result = await translator.TranslateText(keys[i], source, regionId);
+            string result = await translator.TranslateText(keys[i], "ru", id);
             Debug.Log($"{i + 1}/{keys.Count} created");
             translated.Add(result);
         }
-
         data.CreateLocalization(id, translated);
+        isBusy = false;
+    }
 
-
-        Debug.Log("Localization created");
+    public async Task CreateLocalization(List<string> keys, int index)
+    {
+        isBusy = true;
+        var translated = new List<string>();
+        for (int i = index; i < keys.Count; i++)
+        {
+            string result = await translator.TranslateText(keys[i], "ru", id);
+            Debug.Log(keys[i] + $"Index: {i}");
+            Debug.Log($"{i + 1}/{keys.Count} created");
+            translated.Add(result);
+        }
+        data.UpdateLocalization(id, translated, index);
         isBusy = false;
     }
 }

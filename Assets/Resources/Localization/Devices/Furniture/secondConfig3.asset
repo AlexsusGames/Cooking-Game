@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019ac476508ede0479fc74ab671a1278, type: 3}
+  m_Name: secondConfig3
+  m_EditorClassIdentifier: 
+  CachedKeys:
+  - "\u0414\u0438\u0432\u0430\u043D"
+  - 
+  Prefab: {fileID: 7341892138535364516, guid: b025a7e31bf126f4d8781344d5c2091f, type: 3}
+  Name: "\u0414\u0438\u0432\u0430\u043D"
+  Price: 0
+  Icon: {fileID: 0}
+  Describtion: 
+  StandartPosition: {x: -32, y: 0, z: -98}

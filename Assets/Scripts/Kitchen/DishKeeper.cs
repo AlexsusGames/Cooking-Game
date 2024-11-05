@@ -11,6 +11,7 @@ public class DishKeeper : InteractiveManager
     [Inject] private InteractSound sound;
     private List<GameObject> dishes = new();
     public int MaxDishCount { get; } = 6;
+    private string[] advices = { "Чистых тарелок нет..\nпридется мыть." };
 
     public int CountOfDish
     {
@@ -52,7 +53,7 @@ public class DishKeeper : InteractiveManager
                     handler.ChangeObject(dish);
                     sound.Play(NonLoopSounds.Plate);
                 }
-                else ShowAdvice("Чистых тарелок нет..\nпридется мыть.");
+                else ShowAdvice(advices[0]);
             }
 
             else if (obj.TryGetComponent(out Dish dish))
@@ -66,4 +67,16 @@ public class DishKeeper : InteractiveManager
             }
         }
     }
+
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+        {
+            CachedKeys = advices;
+        }
+
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param) => advices = param;
 }

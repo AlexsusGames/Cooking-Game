@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "CreateConfig/Recipe", fileName = "Recipe")]
-public class RecipeConfig : ScriptableObject
+public class RecipeConfig : SoLocalization
 {
     public Sprite picture;
     public InteractivePlaces CookingPlace;
@@ -17,6 +17,22 @@ public class RecipeConfig : ScriptableObject
     public bool IsDrink;
 
     public int Price => GetCost();
+
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+        {
+            CachedKeys = new string[] { Name, Description };
+        }
+
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param)
+    {
+        Name = param[0];
+        Description = param[1];
+    }
 
     private int GetCost()
     {

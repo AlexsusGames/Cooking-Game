@@ -93,6 +93,7 @@ public class MoveController : MonoBehaviour
     public void Interact()
     {
         isInteract = true;
+        anims.SetWalkingState(WalkingStates.Idle);
         animator.SetLayerWeight(2, 1);
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.right);
         rb.rotation = targetRotation;

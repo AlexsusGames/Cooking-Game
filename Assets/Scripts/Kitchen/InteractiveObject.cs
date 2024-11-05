@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
-public class InteractiveObject : MonoBehaviour
+public class InteractiveObject : MonoLocalization
 {
     [SerializeField] private Outline interactiveMesh;
     [SerializeField] private BoxCollider interactiveZone;
@@ -15,6 +15,16 @@ public class InteractiveObject : MonoBehaviour
 
     [SerializeField] private UnityEvent action;
     private bool isInTrigger;
+
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+            CachedKeys = new string[] { actionDescribtion };
+
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param) => actionDescribtion = param[0];
 
     private void OnTriggerEnter(Collider other)
     {

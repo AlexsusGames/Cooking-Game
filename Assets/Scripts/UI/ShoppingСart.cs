@@ -111,7 +111,7 @@ public class ShoppingСart : MonoBehaviour
         }
         else
         {
-            confirmWindow.ShowError("Не хватает денег");
+            confirmWindow.ShowError();
         }
     }
 }

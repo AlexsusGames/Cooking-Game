@@ -5,9 +5,12 @@ using UnityEngine;
 public class LocalizationData : ScriptableObject
 {
     public List<string> keys = new();
-    private List<string> regionId = new List<string> { "ru", "en" };
+    private List<string> regionIdList = new List<string> { "ru", "en" };
     public List<LocalizationEntry> Localization = new();
     private Dictionary<string, List<string>> localizationMap = new();
+    private int RegionId;
+
+    public void ChangeRegionId(int newId) => RegionId = newId; 
 
     public void CreateMap()
     {
@@ -15,6 +18,7 @@ public class LocalizationData : ScriptableObject
         {
             localizationMap[keys[i]] = Localization[i].Values;
         }
+        UnityEngine.Debug.Log($"[Create localization Map]: loaded {localizationMap.Count} files");
     }
 
     public void CreateKeys(List<string> localization)
@@ -36,10 +40,25 @@ public class LocalizationData : ScriptableObject
     {
         for (int i = 0; i < localization.Count; i++)
         {
-            if (Localization[i].Values.Count <= regionId.IndexOf(id))
+            if (Localization[i].Values.Count <= regionIdList.IndexOf(id))
             {
                 Localization[i].Values.Add(localization[i]);
             }
+        }
+
+#if UNITY_EDITOR
+        UnityEditor.EditorUtility.SetDirty(this);
+#endif
+    }
+
+
+    public void UpdateLocalization(string id, List<string> localization, int indexOfStart)
+    {
+        int indexOfId = regionIdList.IndexOf(id);
+
+        for (int i = indexOfStart; i < localization.Count; i++)
+        {
+            Localization[i].Values[indexOfId] = localization[i];
         }
 
 #if UNITY_EDITOR
@@ -54,10 +73,12 @@ public class LocalizationData : ScriptableObject
 
         for (int i = 0; i < keys.Count; i++)
         {
-            if (keys[i] == key) index = i;
+            if (keys[i] == key)
+            {
+                index = i;
+                Localization[index].Values[regionIdList.IndexOf(id)] = newValue;
+            }
         }
-
-        Localization[index].Values[regionId.IndexOf(id)] = newValue;
 
 #if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(this);
@@ -66,10 +87,12 @@ public class LocalizationData : ScriptableObject
 
     public string GetTranslated(string message)
     {
-        int regionId = 1;
-
-
-        return localizationMap[message][regionId];
+        if (localizationMap.TryGetValue(message, out var translations) && RegionId < translations.Count)
+        {
+            return translations[RegionId];
+        }
+        UnityEngine.Debug.Log($"[Missing Translation: {message}]/[Region index - {RegionId}]");
+        return "";
     }
 
     public void Debug(string id)
@@ -78,7 +101,7 @@ public class LocalizationData : ScriptableObject
 
         for (int i = 0; i < Localization.Count; i++)
         {
-            result += Localization[i].Values[regionId.IndexOf(id)];
+            result += Localization[i].Values[regionIdList.IndexOf(id)];
         }
 
         UnityEngine.Debug.Log(result);
@@ -100,7 +123,7 @@ public class LocalizationData : ScriptableObject
     {
         for (int i = 0;i < Localization.Count; i++)
         {
-            Localization[i].Values.RemoveAt(regionId.IndexOf(id));
+            Localization[i].Values.RemoveAt(regionIdList.IndexOf(id));
         }
 
 #if UNITY_EDITOR

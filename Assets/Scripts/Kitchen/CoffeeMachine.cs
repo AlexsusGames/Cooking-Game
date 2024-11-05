@@ -16,6 +16,7 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
     private int msTime = 5000;
     public InteractivePlaces InteractiveType => InteractivePlaces.CoffeeMachine;
     public int InteractiveTime { get => msTime; set => msTime = 5000 - value * 1000; }
+    private string[] advices = { "Не хватает места на столе.", "Чего-то не хватает...", "Рука занята." };
 
     public override async void Interact()
     {
@@ -52,11 +53,11 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
                     effect.Stop();
                     isWorking = false;
                 }
-                else ShowAdvice("Не хватает места на столе.");
+                else ShowAdvice(advices[0]);
             }
-            else ShowAdvice("Чего-то не хватает...");
+            else ShowAdvice(advices[1]);
         }
-        else ShowAdvice("Рука занята.");
+        else ShowAdvice(advices[2]);
     }
 
     private bool CompareRecipes(List<ProductConfig> recipe)
@@ -72,4 +73,15 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
 
         return true;
     }
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+        {
+            CachedKeys = advices;
+        }
+
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param) => advices = param;
 }

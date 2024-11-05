@@ -28,7 +28,7 @@ public class RecipeView : MonoBehaviour
         set
         {
             isSelling = value;
-            sellingChanged?.Invoke(config.Name, isSelling);
+            sellingChanged?.Invoke(config.name, isSelling);
         }
     }
 
@@ -37,7 +37,7 @@ public class RecipeView : MonoBehaviour
         cookingPlace.sprite = cookingPlaces[(int)config.CookingPlace];
         foodImage.sprite = config.picture;
         nameText.text = config.Name;
-        priceText.text = $"Цена:\n<color=green>{config.Price}$";
+        priceText.text = $"<color=green>{config.Price}$";
         descriptionText.text = config.Description;
 
         for (int i = 0; i < ingridientsImages.Length; i++)

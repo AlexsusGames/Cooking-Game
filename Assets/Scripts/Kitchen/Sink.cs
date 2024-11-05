@@ -16,6 +16,8 @@ public class Sink : InteractiveManager
     [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
     private bool isWashing;
+
+    private string[] advices = { "Все тарелки чистые!" };
     public override void Interact()
     {
         if (!isWashing)
@@ -34,7 +36,7 @@ public class Sink : InteractiveManager
                 Action action = () => player.FinishInteracting();
                 StartCoroutine(Washing(action));
             }
-            else ShowAdvice("Все тарелки чистые!");
+            else ShowAdvice(advices[0]);
         }
     }
 
@@ -67,5 +69,15 @@ public class Sink : InteractiveManager
         callBack?.Invoke();
     }
 
+    public override string[] Get()
+    {
+        if (CachedKeys == null)
+        {
+            CachedKeys = advices;
+        }
 
+        return CachedKeys;
+    }
+
+    public override void Set(params string[] param) => advices = param;
 }

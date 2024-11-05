@@ -10,16 +10,17 @@ public class UILocalixation : MonoLocalization
     public override string[] Get()
     {
         text = GetComponent<TMP_Text>();
-        return new string[] { text.text };
+
+        if (CachedKeys == null)
+        {
+            CachedKeys = new string[] { text.text };
+        }
+
+        return CachedKeys;
     }
 
     public override void Set(params string[] param)
     {
         text.text = param[0];
-    }
-
-    private void Awake()
-    {
-        text = GetComponent<TMP_Text>();
     }
 }
