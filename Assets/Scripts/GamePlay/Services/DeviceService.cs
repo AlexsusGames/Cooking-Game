@@ -15,6 +15,7 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
     [Inject] private InventoryService inventoryService;
     [Inject] private UpgradeService upgradeService;
     [Inject] private KitchenStateSevice kitchenStateSevice;
+    [Inject] private SteamAchievements achievements;
 
     public void Load()
     {
@@ -25,6 +26,7 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
 
     public void Setup()
     {
+        List<string> devicesNames = new();
         for (int i = 0; i < deviceConfigs.Length; i++)
         {
             var device = deviceConfigs[i];
@@ -33,7 +35,18 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
             {
                 var position = dataProvider.GetPosition(device.name);
                 Spawn(device.Prefab, position);
+                achievements.CheckBoughtDevices(device.name);
+
+                if (string.IsNullOrEmpty(device.Describtion))
+                {
+                    devicesNames.Add(device.name);
+                }
             }
+        }
+
+        if(devicesNames.Count == 5)
+        {
+            achievements.TrySetAchievement(achievements.ACH_ALLDEV);
         }
     }
 

@@ -6,7 +6,7 @@ using Zenject;
 
 public class FontChanger : MonoBehaviour
 {
-    [SerializeField] private List<TMP_FontAsset> fonts;
+    [SerializeField] private bool isBook;
     [Inject] private LanguageChanger languageChanger;
     private TMP_Text text;
 
@@ -21,6 +21,6 @@ public class FontChanger : MonoBehaviour
     private void ChangeFont(int index)
     {
         text = GetComponent<TMP_Text>();
-        text.font = fonts[index];
+        text.font = languageChanger.GetFont(index, isBook);
     }
 }

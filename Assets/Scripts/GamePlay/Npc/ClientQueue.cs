@@ -61,6 +61,8 @@ public class ClientQueue : MonoBehaviour
         Print(charactersInQueue);
         ResetPositions();
 
+        charactersInQueue.Sort((a, b) => a.GetDistanceFromQueue(queuePoints[0].point).CompareTo(b.GetDistanceFromQueue(queuePoints[0].point)));
+
         for(int i = 0;i < charactersInQueue.Count;i++)
         {
             AddToQueue(charactersInQueue[i]);
@@ -87,6 +89,7 @@ public class ClientQueue : MonoBehaviour
             Debug.Log(movement.name + " added");
             charactersInQueue.Add(movement);
             AddToQueue(movement);
+            UpdatePositions();
         }
     }
 
@@ -100,9 +103,10 @@ public class ClientQueue : MonoBehaviour
 
     private void OnShopClose()
     {
-        for (int i = 1; i < charactersInQueue.Count; i++)
+        for (int i = charactersInQueue.Count - 1; i > 0; i--)
         {
             charactersInQueue[i].ContinueWalking();
+            charactersInQueue.RemoveAt(i);
         }
     }
 

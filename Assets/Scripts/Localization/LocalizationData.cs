@@ -5,7 +5,6 @@ using UnityEngine;
 public class LocalizationData : ScriptableObject
 {
     public List<string> keys = new();
-    private List<string> regionIdList = new List<string> { "ru", "en" };
     public List<LocalizationEntry> Localization = new();
     private Dictionary<string, List<string>> localizationMap = new();
     private int RegionId;
@@ -40,7 +39,7 @@ public class LocalizationData : ScriptableObject
     {
         for (int i = 0; i < localization.Count; i++)
         {
-            if (Localization[i].Values.Count <= regionIdList.IndexOf(id))
+            if (Localization[i].Values.Count <= int.Parse(id))
             {
                 Localization[i].Values.Add(localization[i]);
             }
@@ -54,7 +53,7 @@ public class LocalizationData : ScriptableObject
 
     public void UpdateLocalization(string id, List<string> localization, int indexOfStart)
     {
-        int indexOfId = regionIdList.IndexOf(id);
+        int indexOfId = int.Parse(id);
 
         for (int i = indexOfStart; i < localization.Count; i++)
         {
@@ -76,7 +75,7 @@ public class LocalizationData : ScriptableObject
             if (keys[i] == key)
             {
                 index = i;
-                Localization[index].Values[regionIdList.IndexOf(id)] = newValue;
+                Localization[index].Values[int.Parse(id)] = newValue;
             }
         }
 
@@ -101,7 +100,7 @@ public class LocalizationData : ScriptableObject
 
         for (int i = 0; i < Localization.Count; i++)
         {
-            result += Localization[i].Values[regionIdList.IndexOf(id)];
+            result += Localization[i].Values[int.Parse(id)];
         }
 
         UnityEngine.Debug.Log(result);
@@ -123,7 +122,7 @@ public class LocalizationData : ScriptableObject
     {
         for (int i = 0;i < Localization.Count; i++)
         {
-            Localization[i].Values.RemoveAt(regionIdList.IndexOf(id));
+            Localization[i].Values.RemoveAt(int.Parse(id));
         }
 
 #if UNITY_EDITOR

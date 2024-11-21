@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class StoryEndView : MonoBehaviour
 {
     private const string KEY = "endStory_Key";
     [SerializeField] private StoryEndSlideView slide;
+    [Inject] private SteamAchievements achievements;
 
     private bool isSkiped;
 
@@ -16,10 +18,12 @@ public class StoryEndView : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey(KEY))
         {
-            Cursor.visible = true;
+            achievements.TrySetAchievement(achievements.ACH_STORY);
+
             gameObject.SetActive(true);
             for (int i = 0; i < config.storyEndSlides.Count; i++)
             {
+                Cursor.visible = true;
                 slide.SetData(config.storyEndSlides[i]);
                 isSkiped = false;
 

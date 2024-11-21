@@ -16,6 +16,7 @@ public class ShoppingСart : MonoBehaviour
     private const string QUEST_REQUEST = "tutor2";
     [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
+    [Inject] private SteamAchievements achievements;
 
     private List<ProductView> items = new();
     private DeliveryData deliveryData;
@@ -106,6 +107,11 @@ public class ShoppingСart : MonoBehaviour
             delivery.Deliver(deliveryData);
             bank.Change(-price);
             confirmWindow.gameObject.SetActive(false);
+
+            if (price >= 2000)
+            {
+                achievements.TrySetAchievement(achievements.ACH_DELIVER);
+            }
 
             questHander.TryChangeProgress(QUEST_REQUEST); // tutor
         }

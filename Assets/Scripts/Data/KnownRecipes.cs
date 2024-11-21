@@ -69,11 +69,9 @@ public class KnownRecipes
 
         for (int i = 0; i < data.Recipes.Count; i++)
         {
-            Debug.Log($"{data.Recipes[i].Name} / {name}");
             if (data.Recipes[i].Name == name)
             {
                 data.Recipes[i].IsSelling = value;
-                Debug.Log($"{data.Recipes[i].Name} / {data.Recipes[i].IsSelling}");
             }
         }
 

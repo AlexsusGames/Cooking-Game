@@ -10,8 +10,10 @@ public class Hospital : MonoBehaviour, IProgressDataProvider
     [Header("EndStory")]
     [SerializeField] private StoryEndView storyEndView;
     [SerializeField] private StoryEndConfig goodEndConfig;
+
     [Inject] private FamilyStateManager familyStateManager;
     [Inject] private QuestHandler questHandler;
+    [Inject] private SteamAchievements achievements;
     private const string QUEST_REQUEST = "desease";
     private const string KEY = "Hospital_Key";
     private const int PAYMENT_VALUE = 5000;
@@ -22,6 +24,8 @@ public class Hospital : MonoBehaviour, IProgressDataProvider
     {
         if (bank.Has(PAYMENT_VALUE))
         {
+            achievements.TrySetAchievement(achievements.ACH_CURE);
+
             bank.Change(-PAYMENT_VALUE);
             questHandler.TryChangeProgress(QUEST_REQUEST);
             familyStateManager.EndStory();

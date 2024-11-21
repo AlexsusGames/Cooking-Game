@@ -11,6 +11,10 @@ public class QuestTabView : MonoBehaviour
 
     private Dictionary<QuestData, QuestView> viewMap = new();
     [Inject] private DiContainer container;
+    [Inject] private LanguageChanger changer;
+
+    private void OnEnable() => changer.OnLocalizationChange += Rebuild;
+    private void OnDisable() => changer.OnLocalizationChange -= Rebuild;
 
     [Inject]
     public void Construct(QuestHandler dataHandler)
@@ -53,6 +57,10 @@ public class QuestTabView : MonoBehaviour
 
        throw new System.Exception("There is no more point for quest");
     }
+    private void Rebuild(int _)
+    {
+        Rebuild();
+    }
 
     private void Rebuild()
     {
@@ -66,6 +74,7 @@ public class QuestTabView : MonoBehaviour
                 view.TryGetComponent(out RectTransform transform);
                 transform.SetParent(null);
                 rectTransform.Add(transform);
+                view.UpdateView(item);
             }
 
             for (int i = 0;i < rectTransform.Count; i++)
@@ -73,8 +82,6 @@ public class QuestTabView : MonoBehaviour
                 var newPosition = GetFreeParent();
                 rectTransform[i].SetParent(newPosition);
                 rectTransform[i].localPosition = Vector3.zero;
-
-                Debug.Log(newPosition.name);
             }
         }
     }

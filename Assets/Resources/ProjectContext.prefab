@@ -74,3 +74,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42204c820ed5aaa4685103af3b51b634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standartFonts:
+  - {fileID: 11400000, guid: 1a970728066f5b540bbfb597dc304bd4, type: 2}
+  - {fileID: 11400000, guid: 5016b8ea716652944a774c030715f36d, type: 2}
+  - {fileID: 11400000, guid: 723f7e2fd81614e44b02b7c02512c671, type: 2}
+  - {fileID: 11400000, guid: 723f7e2fd81614e44b02b7c02512c671, type: 2}
+  - {fileID: 11400000, guid: 723f7e2fd81614e44b02b7c02512c671, type: 2}
+  - {fileID: 11400000, guid: ae9b43422341271409d8a9139d1ecd5b, type: 2}
+  bookFonts:
+  - {fileID: 11400000, guid: aba8c1e763c141e48b55ce94f8d757a8, type: 2}
+  - {fileID: 11400000, guid: af968cb7ee704cd418cdd25586c0ede2, type: 2}
+  - {fileID: 11400000, guid: 697fbea29597d57479ef56ee16a8c0f0, type: 2}
+  - {fileID: 11400000, guid: 697fbea29597d57479ef56ee16a8c0f0, type: 2}
+  - {fileID: 11400000, guid: 697fbea29597d57479ef56ee16a8c0f0, type: 2}
+  - {fileID: 11400000, guid: 6b7da0315013bbc478933a150ec6f7df, type: 2}

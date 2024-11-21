@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class TaxManager : MonoBehaviour
 {
     [SerializeField] private Bank bank;
     [SerializeField] private TMP_Text taxText;
+    [Inject] private SteamAchievements achievements;
     private const string Key = "Tax_Amount_Save";
     private int taxAmount;
     public bool IsTaxDebt => taxAmount >= 100;
@@ -23,6 +25,8 @@ public class TaxManager : MonoBehaviour
         {
             bank.Change(-taxAmount);
             Change(-taxAmount);
+
+            achievements.TrySetAchievement(achievements.ACH_TAX);
         }
         else
         {

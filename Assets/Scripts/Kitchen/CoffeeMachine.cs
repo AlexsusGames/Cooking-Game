@@ -10,13 +10,14 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
     [SerializeField] private ProductConfig[] coffeeRecipe;
     [Inject] private CoffeeKeeper coffeeKeeper;
     [Inject] private InteractSound sound;
+    [Inject] private TaxManager taxes;
     [SerializeField] private GameObject spoiltCoffee;
     private FoodConfigFinder foodConfigFinder = new();
     private bool isWorking;
     private int msTime = 5000;
     public InteractivePlaces InteractiveType => InteractivePlaces.CoffeeMachine;
     public int InteractiveTime { get => msTime; set => msTime = 5000 - value * 1000; }
-    private string[] advices = { "Не хватает места на столе.", "Чего-то не хватает...", "Рука занята." };
+    private string[] advices = { "Не хватает места на столе.", "Чего-то не хватает...", "Рука занята.", "Похоже отключили подачу электричества, нужно бы оплатить налоги." };
 
     public override async void Interact()
     {
@@ -26,38 +27,42 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
         var handler = player.GetComponent<ObjectHandler>();
         var handleObject = handler.GetObject();
 
-        if (handleObject == null && !isWorking)
+        if (!taxes.IsTaxDebt)
         {
-            if (CompareRecipes(inventoryProducts))
+            if (handleObject == null && !isWorking)
             {
-                if (!coffeeKeeper.IsMaxCountOfObjects)
+                if (CompareRecipes(inventoryProducts))
                 {
-                    isWorking = true;
-                    TaxCounter.Taxes += 0.5f;
-
-                    effect.Play();
-
-                    var model = foodConfigFinder.CookingFood(inventoryProducts, InteractiveType);
-
-                    inventory.RemoveProducts();
-
-                    sound.Play(InteractiveType, msTime);
-                    await Task.Delay(msTime);
-
-                    if (model != null)
+                    if (!coffeeKeeper.IsMaxCountOfObjects)
                     {
-                        coffeeKeeper.CreateObject(model.Model);
-                    }
-                    else coffeeKeeper.CreateObject(spoiltCoffee);
+                        isWorking = true;
+                        TaxCounter.Taxes += 0.5f;
 
-                    effect.Stop();
-                    isWorking = false;
+                        effect.Play();
+
+                        var model = foodConfigFinder.CookingFood(inventoryProducts, InteractiveType);
+
+                        inventory.RemoveProducts();
+
+                        sound.Play(InteractiveType, msTime);
+                        await Task.Delay(msTime);
+
+                        if (model != null)
+                        {
+                            coffeeKeeper.CreateObject(model.Model);
+                        }
+                        else coffeeKeeper.CreateObject(spoiltCoffee);
+
+                        effect.Stop();
+                        isWorking = false;
+                    }
+                    else ShowAdvice(advices[0]);
                 }
-                else ShowAdvice(advices[0]);
+                else ShowAdvice(advices[1]);
             }
-            else ShowAdvice(advices[1]);
+            else ShowAdvice(advices[2]);
         }
-        else ShowAdvice(advices[2]);
+        else ShowAdvice(advices[3]);
     }
 
     private bool CompareRecipes(List<ProductConfig> recipe)

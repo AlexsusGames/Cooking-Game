@@ -6,6 +6,7 @@ using Zenject;
 public class UpgradeService : MonoBehaviour, IProgressDataProvider
 {
     [SerializeField] private List<GameObject> upgradableObjects;
+    [Inject] private SteamAchievements achievements;
 
     private KitchenUpgradeProvider upgradeProvider;
     private readonly List<IUpgradable> allUpgradable = new();
@@ -27,6 +28,22 @@ public class UpgradeService : MonoBehaviour, IProgressDataProvider
     public void Load()
     {
         var upgradeMap = upgradeProvider.GetUpgrades();
+
+        bool isFullUpgrade = true;
+
+        foreach (var upgrade in upgradeMap.Keys)
+        {
+            if (upgradeMap[upgrade] < 3)
+            {
+                isFullUpgrade = false;
+                break;
+            }
+        }
+
+        if(isFullUpgrade)
+        {
+            achievements.TrySetAchievement(achievements.ACH_UPGRADE);
+        }
 
         for (int i = 0; i < upgradableObjects.Count; i++)
         {

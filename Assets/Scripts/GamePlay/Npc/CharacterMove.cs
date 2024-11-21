@@ -28,6 +28,29 @@ public class CharacterMove : MonoBehaviour
         animController = new(animator);
     }
 
+    private float GetPathDistance(NavMeshPath path)
+    {
+        float distance = 0f;
+
+        for (int i = 0; i < path.corners.Length - 1; i++)
+        {
+            distance += Vector3.Distance(path.corners[i], path.corners[i + 1]);
+        }
+
+        return distance;
+    }
+
+    public float GetDistanceFromQueue(Transform aim)
+    {
+        NavMeshPath path = new();
+
+        if(agent.CalculatePath(aim.position, path))
+        {
+            return GetPathDistance(path);
+        }
+        return 100;
+    }
+
     public void Bind(Transform[] wayPoints)
     {
         IsServed = false;

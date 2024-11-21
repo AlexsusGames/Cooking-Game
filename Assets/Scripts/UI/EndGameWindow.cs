@@ -12,9 +12,16 @@ public class EndGameWindow : MonoBehaviour
     [SerializeField] private TMP_Text all;
     [SerializeField] private Button menuButton;
     [SerializeField] private Button continueButton;
+    public bool isDemo;
 
     public void Open()
     {
+        if (isDemo)
+        {
+            PlayerPrefs.DeleteKey("Save");
+            continueButton.interactable = false;
+        }
+
         gameObject.SetActive(true);
         taxes.text = $"{(int)TaxCounter.Taxes}$";
         incomeTaxes.text = $"{(int)TaxCounter.IncomeTaxes}$";

@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class DeviceShopView : MonoBehaviour
 {
     [SerializeField] private Button buyButton;
-    [SerializeField] private TMP_Text buttonText;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text priceText;
     [SerializeField] private Image icon;
+    [SerializeField] private Image buttonIcon;
+    [SerializeField] private Sprite checkMarkSprite;
     public DeviceConfig config { get; private set; }
 
     public void SetData(DeviceConfig config, bool isBought)
@@ -22,7 +23,8 @@ public class DeviceShopView : MonoBehaviour
         priceText.text = $"{config.Price}$";
 
         buyButton.interactable = !isBought;
-        buttonText.text = isBought ? "Куплено" : "Купить";
+        buyButton.image.color = isBought ? Color.yellow : buyButton.image.color;
+        if (isBought) buttonIcon.sprite = checkMarkSprite;
     }
 
     public Button GetButton() => buyButton;

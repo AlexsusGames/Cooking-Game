@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,7 @@ public class CashTrigger : InteractiveManager
     private const string QUEST_REQUEST = "serving";
     [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
+    [Inject] private SteamAchievements achievements;
 
     private GameObject lastPerson;
     private List<RecipeConfig> randomFood;
@@ -134,6 +136,11 @@ public class CashTrigger : InteractiveManager
                     questHander.TryChangeProgress(QUEST_REQUEST);
 
                     TaxCounter.PeopleServed++;
+
+                    if(TaxCounter.PeopleServed == 10)
+                    {
+                        achievements.TrySetAchievement(achievements.ACH_SERVICE);
+                    }
 
                     sound.Play(NonLoopSounds.Cash);
                     ShowAdvice(advices[1]);

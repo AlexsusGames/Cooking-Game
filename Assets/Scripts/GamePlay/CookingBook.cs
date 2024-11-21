@@ -14,6 +14,7 @@ public class CookingBook : MonoBehaviour
     [SerializeField] private RecipeView firstPage;
     [SerializeField] private RecipeView secondPage;
 
+    [Inject] private SteamAchievements achievements;
     [Inject] private InteractSound sound;
     [Inject] private QuestHandler questHander;
     private const string FIRST_QUEST_REQUEST = "tutor1";
@@ -51,6 +52,8 @@ public class CookingBook : MonoBehaviour
     private void UpdateData()
     {
         var availableRecipes = knownRecipes.GetAvailableRecipes();
+        achievements.CheckDishCountAchievements(availableRecipes.Count);
+
         var recipesConfig = foodConfigFinder.GetRecipesByName(availableRecipes);
         recipes = recipesConfig.ToArray();
 

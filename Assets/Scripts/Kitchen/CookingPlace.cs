@@ -14,6 +14,7 @@ public class CookingPlace : InteractiveManager, IUpgradable
     [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
     [Inject] private TaxManager taxManager;
+    [Inject] private SteamAchievements achievements;
 
     private FoodConfigFinder foodConfigFinder = new();
     public InteractivePlaces InteractiveType => place;
@@ -53,7 +54,11 @@ public class CookingPlace : InteractiveManager, IUpgradable
                         {
                             dish.SetFood(model);
                         }
-                        else dish.SetFood(spoiltFood);
+                        else
+                        {
+                            dish.SetFood(spoiltFood);
+                            achievements.TrySetAchievement(achievements.ACH_SPOILT);
+                        }
 
                         objHandler.UpdateFoodImage();
 
