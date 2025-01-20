@@ -23,7 +23,7 @@ public class BrowserManager : MonoBehaviour
 
         var prices = foodConfigFinder.GetRandomPrices(0.7f, secondMultiplier);
         var configs = foodConfigFinder.GetAllProducts();
-        shopCells.Init(prices, configs);
+        shopCells.Init(prices.prices,prices.colorIndex, configs);
         
         var buttons = shopCells.GetItems();
 
@@ -32,7 +32,7 @@ public class BrowserManager : MonoBehaviour
             int index = i;
             UnityAction action = () =>
             {
-                ProductToBuy info = new(buttons[index].ItemName, prices[index], amountToAdd);
+                ProductToBuy info = new(buttons[index].ItemName, prices.prices[index], amountToAdd);
                 PlayClick();
                 shopping—art.AddProductToCart(info);
             };

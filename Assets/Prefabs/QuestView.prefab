@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -154.29996, y: -9.4}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -154.29996, y: -30.747}
+  m_SizeDelta: {x: 200, y: 92.6938}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4953018261653700823
 CanvasRenderer:
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u043A\u0432\u0435\u0441\u0442"
+  m_text: "\u043A\u0432\u0435\u0441\u0442 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a970728066f5b540bbfb597dc304bd4, type: 2}
   m_sharedMaterial: {fileID: 700379875006807603, guid: 1a970728066f5b540bbfb597dc304bd4, type: 2}
@@ -97,9 +97,9 @@ MonoBehaviour:
   m_fontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 15
+  m_fontSizeMax: 20
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
@@ -148,9 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8668b54898ed44ebfdb05a8b24a244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fonts:
-  - {fileID: 11400000, guid: 1a970728066f5b540bbfb597dc304bd4, type: 2}
-  - {fileID: 11400000, guid: 5016b8ea716652944a774c030715f36d, type: 2}
+  isBook: 0
 --- !u!1 &1777558318114020112
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,9 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8668b54898ed44ebfdb05a8b24a244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fonts:
-  - {fileID: 11400000, guid: 1a970728066f5b540bbfb597dc304bd4, type: 2}
-  - {fileID: 11400000, guid: 5016b8ea716652944a774c030715f36d, type: 2}
+  isBook: 0
 --- !u!1 &7315431885391725273
 GameObject:
   m_ObjectHideFlags: 0

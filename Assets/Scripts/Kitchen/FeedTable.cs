@@ -22,6 +22,7 @@ public class FeedTable : InteractiveManager
         if(dishPlace.transform.childCount > 0)
         {
             ShowAdvice(advices[0]);
+            return;
         }
 
         if( obj != null)
@@ -38,6 +39,7 @@ public class FeedTable : InteractiveManager
                     obj.transform.parent = dishPlace;
                     obj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
                     handler.ChangeObject();
+                    handler.EmojiSender.SendEmoji(EmojiType.Heart);
                     return;
                 }
             }
@@ -55,6 +57,17 @@ public class FeedTable : InteractiveManager
     {
         familyStateManager.IsFed = true;
         Destroy(dishPlace.GetChild(0).gameObject);
+    }
+
+    public RecipeConfig GetFood()
+    {
+        if(dishPlace.transform.childCount > 0)
+        {
+            dishPlace.GetChild(0).TryGetComponent(out Dish dish);
+            return dish.GetFood();
+        }
+
+        return null;
     }
 
     public override string[] Get()

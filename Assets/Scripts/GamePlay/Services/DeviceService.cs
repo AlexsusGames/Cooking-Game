@@ -37,13 +37,15 @@ public class DeviceService : MonoBehaviour, IProgressDataProvider
                 Spawn(device.Prefab, position);
                 achievements.CheckBoughtDevices(device.name);
 
-                if (string.IsNullOrEmpty(device.Describtion))
+                if (!string.IsNullOrEmpty(device.Describtion))
                 {
+                    Debug.Log(device.name);
                     devicesNames.Add(device.name);
                 }
             }
         }
 
+        Debug.Log(devicesNames.Count);
         if(devicesNames.Count == 5)
         {
             achievements.TrySetAchievement(achievements.ACH_ALLDEV);

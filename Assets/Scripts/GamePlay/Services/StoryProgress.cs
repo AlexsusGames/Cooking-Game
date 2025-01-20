@@ -32,12 +32,12 @@ public class StoryProgress : MonoBehaviour, IProgressDataProvider
             tutor.StartTutor();
         }
 
-        if(currentDay > 11 && currentDay < 21)
+        if(currentDay > 11 && currentDay < 21 && !storyEndView.isGamePassed())
         {
             hospitalButton.SetActive(true);
         }
 
-        if(currentDay == 12)
+        if(currentDay == 12 && !storyEndView.isGamePassed())
         {
             questHandler.AddQuest(questConfig);
         }

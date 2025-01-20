@@ -9,6 +9,7 @@ public class SceneContextRoot : MonoBehaviour
     [SerializeField] private GameObject settings;
     [SerializeField] private LocalizationFinder localizationFinder;
     [SerializeField] private SettingsView settingsView;
+    [SerializeField] private GameObject controllView;
 
     public static SceneContextRoot instance = null;
 
@@ -36,6 +37,11 @@ public class SceneContextRoot : MonoBehaviour
     {
         SettingsMenuEnabled = !SettingsMenuEnabled;
         Time.timeScale = SettingsMenuEnabled ? 0f : 1f;
+
+        if(SettingsMenuEnabled == false)
+        {
+            controllView.SetActive(false);
+        }
     }
 
     public async void ShowLoadScreen()

@@ -35,7 +35,7 @@ public class MoneyView : MonoBehaviour
         profitText.color = profit > 0 ? green : red;
         profitText.text = profit > 0 ? $"+{profit}$" : $"{profit}$";
 
-        await Task.Delay(3000);
+        await Task.Delay(2000);
         profitText.text = "";
     }
 }

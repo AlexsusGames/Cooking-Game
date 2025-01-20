@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -10,6 +11,7 @@ public class ClientQueue : MonoBehaviour
     [SerializeField] private float time;
     [SerializeField] private int maxPeopleInQueue;
     [SerializeField] private LightSystem lightSystem;
+    [SerializeField] private Bank bank;
 
     private List<CharacterMove> characters = new();
     private List<CharacterMove> charactersInQueue = new();
@@ -42,9 +44,27 @@ public class ClientQueue : MonoBehaviour
         return null;
     }
 
-    public void Service(CharacterMove movement)
+    public void Service(CharacterMove movement, float time, bool isServed)
     {
         charactersInQueue.Remove(movement);
+
+        int tips = 0;
+
+        if (time > 30 && isServed)
+        {
+            movement.EmojiSender.SendEmoji(EmojiType.Heart);
+            tips = 3;
+        }
+        else if (time > 10 && isServed)
+        {
+            movement.EmojiSender.SendEmoji(EmojiType.Happy);
+            tips = 1;
+        }
+        else if (time > 1 && isServed) movement.EmojiSender.SendEmoji(EmojiType.Upset);
+        else movement.EmojiSender.SendEmoji(EmojiType.Angry);
+
+        GiveMoneyWithDelay(tips);
+
         UpdatePositions();
     }
 
@@ -140,6 +160,12 @@ public class ClientQueue : MonoBehaviour
 
             yield return null;
         }
+    }
+    private async void GiveMoneyWithDelay(int amount)
+    {
+        await Task.Delay(2500);
+        if (amount > 0) 
+        bank.Change(amount);
     }
 }
 

@@ -29,7 +29,14 @@ public class LanguageChanger
 
     public int RegionIndex
     {
-        get => PlayerPrefs.GetInt(KEY);
+        get
+        {
+            if (PlayerPrefs.HasKey(KEY))
+            {
+                return PlayerPrefs.GetInt(KEY);
+            }
+            else return 1;
+        }
         set
         {
             PlayerPrefs.SetInt(KEY, value);

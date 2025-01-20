@@ -21,6 +21,8 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
 
     public override async void Interact()
     {
+        if(isWorking) return;
+
         var player = GetPlayer();
         var inventory = player.gameObject.GetComponent<Inventory>();
         var inventoryProducts = foodConfigFinder.GetProductsByName(inventory.GetProducts());
@@ -29,7 +31,7 @@ public class CoffeeMachine : InteractiveManager, IUpgradable
 
         if (!taxes.IsTaxDebt)
         {
-            if (handleObject == null && !isWorking)
+            if (handleObject == null)
             {
                 if (CompareRecipes(inventoryProducts))
                 {

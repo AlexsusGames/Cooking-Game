@@ -46,18 +46,29 @@ public class FoodConfigFinder
         return productsMap.Values.ToArray();
     }
 
-    public int[] GetRandomPrices(float multiplyValueA, float multiplayValueB)
+    public (int[] prices, int[] colorIndex) GetRandomPrices(float multiplyValueA, float multiplayValueB)
     {
         var allProducts = GetAllProducts();
         int[] prices = new int[allProducts.Length];
+        int[] indexes = new int[allProducts.Length];
+
+        float sum = multiplyValueA + multiplayValueB;
+        float avarage = sum / 2;
+        float offset = avarage * 1.2f;
 
         for (int i = 0; i < allProducts.Length; i++)
         {
             float random = UnityEngine.Random.Range(multiplyValueA, multiplayValueB);
+            int index = 0;
             prices[i] = (int)(allProducts[i].ProductCost * random);
+
+            if (random > offset) index = 2;
+            else if(random < offset && random > avarage) index = 1;
+
+            indexes[i] = index;
         }
 
-        return prices;
+        return (prices, indexes);
     }
 
     private void CreateRecipeMap()
@@ -168,11 +179,38 @@ public class FoodConfigFinder
         return list;
     }
 
+    public List<RecipeConfig> GetUnAvailableRecipes()
+    {
+        CreateRecipeMap();
+
+        List<RecipeConfig> result = new List<RecipeConfig>();
+
+        foreach(var item in recipeMap.Keys)
+        {
+            if(!knownRecipes.IsAvailable(item))
+            {
+                result.Add(recipeMap[item]);
+            }
+        }
+
+        return result;
+    }
+
     public string GetRandomRecipeName()
     {
         CreateRecipeMap();
 
         var names = recipeMap.Keys.ToArray();
+
+        for(int i = 0; i < names.Length; i++)
+        {
+            int random = UnityEngine.Random.Range(0, names.Length);
+
+            if (!knownRecipes.IsAvailable(names[random]))
+            {
+                return names[random];
+            }
+        }
 
         for (int i = 0;i < names.Length;i++)
         {

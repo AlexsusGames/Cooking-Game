@@ -12,6 +12,10 @@ public class ObjectHandler : MonoBehaviour
     [SerializeField] private Transform[] cupPlaces;
     [SerializeField] private Animator[] animators;
 
+    [SerializeField] private EmojiSender emojiSender;
+
+    public EmojiSender EmojiSender { get => emojiSender; }
+
     private Animator animator;
 
     private Transform dishPlace;

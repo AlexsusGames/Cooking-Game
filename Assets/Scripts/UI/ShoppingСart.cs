@@ -21,7 +21,6 @@ public class ShoppingСart : MonoBehaviour
     private List<ProductView> items = new();
     private DeliveryData deliveryData;
 
-    private void OnDisable() => Clear();
     private void OnEnable() => SetInputBlock(delivery.IsDelivering);
     public void AddProductToCart(ProductToBuy productToBuy)
     {
@@ -114,6 +113,7 @@ public class ShoppingСart : MonoBehaviour
             }
 
             questHander.TryChangeProgress(QUEST_REQUEST); // tutor
+            Clear();
         }
         else
         {

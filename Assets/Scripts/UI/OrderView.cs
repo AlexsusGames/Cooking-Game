@@ -8,6 +8,7 @@ public class OrderView : MonoBehaviour
     [SerializeField] private GameObject[] orderImage;
     [SerializeField] private Image[] foodImage;
     [SerializeField] private Image waitingBar;
+    [SerializeField] private Color[] barColors;
 
     public void ShowClientOrder(List<RecipeConfig> configs)
     {
@@ -40,6 +41,10 @@ public class OrderView : MonoBehaviour
     public void ChangePatience(float amount)
     {
         waitingBar.fillAmount = amount;
+
+        if (amount > 0.5) waitingBar.color = barColors[0];
+        else if(amount > 0.2) waitingBar.color = barColors[1];
+        else waitingBar.color = barColors[2];
 
         if(amount < 0)
         {

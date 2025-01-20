@@ -10,6 +10,7 @@ public class CookingPlace : InteractiveManager, IUpgradable
     [SerializeField] private ParticleGroup effect;
     [SerializeField] private RecipeConfig spoiltFood;
 
+    private bool isBusy;
     private const string QUEST_REQUEST = "tutor5";
     [Inject] private QuestHandler questHander;
     [Inject] private InteractSound sound;
@@ -24,6 +25,8 @@ public class CookingPlace : InteractiveManager, IUpgradable
 
     public override async void Interact()
     {
+        if(isBusy) return;
+
         var player = GetPlayer();
         var inventory = player.gameObject.GetComponent<Inventory>();
         var inventoryProducts = foodConfigFinder.GetProductsByName(inventory.GetProducts());
@@ -38,6 +41,7 @@ public class CookingPlace : InteractiveManager, IUpgradable
                 {
                     if (!taxManager.IsTaxDebt)
                     {
+                        isBusy = true;
                         TaxCounter.Taxes += 0.5f;
 
                         effect.Play();
@@ -57,6 +61,7 @@ public class CookingPlace : InteractiveManager, IUpgradable
                         else
                         {
                             dish.SetFood(spoiltFood);
+                            objHandler.EmojiSender.SendEmoji(EmojiType.Upset);
                             achievements.TrySetAchievement(achievements.ACH_SPOILT);
                         }
 
@@ -66,12 +71,13 @@ public class CookingPlace : InteractiveManager, IUpgradable
                         effect.Stop();
 
                         questHander.TryChangeProgress(QUEST_REQUEST);
+                        isBusy = false;
                     }
                     else ShowAdvice(advices[0]);
                 }
             }
-            else ShowAdvice(advices[1]);
         }
+        else ShowAdvice(advices[1]);
     }
 
     public override string[] Get()

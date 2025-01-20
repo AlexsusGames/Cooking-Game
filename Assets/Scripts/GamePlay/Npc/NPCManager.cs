@@ -13,6 +13,7 @@ public class NPCManager : MonoBehaviour
     [SerializeField] private NpcActionCommand[] secondCommands;
     [SerializeField] private NpcActionCommand sleapCommand;
     [SerializeField] private NpcActionCommand sitCommand;
+    [SerializeField] private EmojiSender emoji;
     [Inject] private QuestHandler quests;
 
     private FeedTable feedTable;
@@ -56,6 +57,7 @@ public class NPCManager : MonoBehaviour
             await Task.Delay(1000);
         }
 
+        emoji.SendEmoji(EmojiType.Happy);
         quests.ChangeProgress(girlQuest, 1);
 
         for (int i = 0;i < secondCommands.Length; i++)
@@ -63,7 +65,16 @@ public class NPCManager : MonoBehaviour
             if(lightSystem.IsOpen)
             {
                 await controller.Commit(secondCommands[i]);
-                if (i == 0) feedTable.RemoveFood();
+                if (i == 0)
+                {
+                    var food = feedTable.GetFood();
+                    feedTable.RemoveFood();
+                    if(food.name == "SpoiltFood")
+                    {
+                        emoji.SendEmoji(EmojiType.Upset);
+                    }
+                    else emoji.SendEmoji(EmojiType.Heart);
+                }
             }
             else return;
         }
@@ -73,6 +84,7 @@ public class NPCManager : MonoBehaviour
     {
         controller.CancelToken();
 
+        emoji.SendEmoji(EmojiType.Sleap);
         await Task.Yield();
         await controller.Commit(sleapCommand);
     }

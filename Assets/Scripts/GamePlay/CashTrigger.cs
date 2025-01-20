@@ -47,7 +47,7 @@ public class CashTrigger : InteractiveManager
 
         if(lastPerson != null && time <= 0)
         {
-            Service();
+            Service(false);
         }
     }
 
@@ -74,12 +74,12 @@ public class CashTrigger : InteractiveManager
         else randomFood = null;
     }
 
-    private void Service()
+    private void Service(bool isServed = true)
     {
         lastPerson.TryGetComponent(out CharacterMove movement);
         if(movement != null) movement.ContinueWalking();
         lastPerson = null;
-        queue.Service(movement);
+        queue.Service(movement, time, isServed);
         time = 0.02f;
     }
 
@@ -94,7 +94,7 @@ public class CashTrigger : InteractiveManager
             cathedTime = timeToService;
             time = cathedTime;
         }
-        else Service();
+        else Service(false);
     }
     private void OnTriggerExit(Collider other) => randomFood = null;
 
@@ -113,7 +113,7 @@ public class CashTrigger : InteractiveManager
         {
             ShowAdvice(advices[0]);
             view.UpdateView(null);
-            Service();
+            Service(false);
             return;
         }
 

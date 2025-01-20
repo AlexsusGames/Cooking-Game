@@ -26,10 +26,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05225dd790f90e64ab79dfa00b7b11b7, type: 2}
   - {fileID: 11400000, guid: 9c3451f965c272549aee6cea52a1aab2, type: 2}
   Model: {fileID: 1601469556114963341, guid: 40a372f4e3e2a2b4a808c65f391045dd, type: 3}
-  Name: "\u0422\u043E\u0441\u0442 \u0441 \u0442\u043E\u043C\u0430\u0442\u043E\u043C"
-  Description: "\u2013 \u0422\u043E\u0441\u0442 \u0441 \u0442\u043E\u043C\u0430\u0442\u043E\u043C:
-    \u044D\u0442\u043E \u043A\u0430\u043A \u0431\u0443\u0442\u0435\u0440\u0431\u0440\u043E\u0434,
-    \u043D\u043E \u0440\u0435\u0448\u0438\u043B \"\u0441\u0435\u0433\u043E\u0434\u043D\u044F
-    \u2014 \u043C\u0438\u043D\u0438\u043C\u0443\u043C \u0443\u0441\u0438\u043B\u0438\u0439\"."
-  RarityIndex: 1.5
+  Name: Tomato - toast
+  Description: "\u2013 Toast with tomato: it\u2019s like a sandwich, but I decided
+    \u201Ctoday it\u2019s a minimum of effort.\u201D"
+  RarityIndex: 1.2
   IsDrink: 0

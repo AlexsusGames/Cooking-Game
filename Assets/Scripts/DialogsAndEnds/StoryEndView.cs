@@ -9,10 +9,21 @@ public class StoryEndView : MonoBehaviour
 {
     private const string KEY = "endStory_Key";
     [SerializeField] private StoryEndSlideView slide;
+    [SerializeField] private GameObject titre;
     [Inject] private SteamAchievements achievements;
 
     private bool isSkiped;
 
+
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public bool isGamePassed()
+    {
+        return PlayerPrefs.HasKey(KEY);
+    }
 
     public async void ShowEndStory(StoryEndConfig config)
     {
@@ -34,7 +45,7 @@ public class StoryEndView : MonoBehaviour
             }
 
             PlayerPrefs.SetInt(KEY, config.StoryId);
-            SceneManager.LoadScene(0);
+            titre.SetActive(true);
         }
     }
 

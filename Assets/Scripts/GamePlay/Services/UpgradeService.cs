@@ -33,6 +33,9 @@ public class UpgradeService : MonoBehaviour, IProgressDataProvider
 
         foreach (var upgrade in upgradeMap.Keys)
         {
+            if (upgrade == InteractivePlaces.WashStand)
+                continue;
+
             if (upgradeMap[upgrade] < 3)
             {
                 isFullUpgrade = false;

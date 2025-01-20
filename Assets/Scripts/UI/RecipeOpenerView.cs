@@ -9,11 +9,18 @@ public class RecipeOpenerView : MonoBehaviour
     [SerializeField] private Image fillArea;
     [SerializeField] private TMP_Text progressText;
     [SerializeField] private Image recipeImage;
+
+    [SerializeField] private RecipeSlotMachine recipeSlotMachine;
+    [SerializeField] private float animationDuration;
+
     private RecipeOpener recipeOpener = new();
     private FoodConfigFinder foodConfigFinder = new();
+    private List<RecipeConfig> recipeConfigList = new();
 
     private void OnEnable()
     {
+        recipeConfigList = foodConfigFinder.GetUnAvailableRecipes();
+
         string openedRecipe;
         if(recipeOpener.TryOpen(out openedRecipe))
         {
@@ -23,7 +30,8 @@ public class RecipeOpenerView : MonoBehaviour
                 recipeImage.sprite = foodConfigFinder.GetRecipeByName(openedRecipe).picture;
             }
 
-            StartCoroutine(Animation());
+            RecipeConfig config = foodConfigFinder.GetRecipeByName(openedRecipe);
+            StartCoroutine(Animation(config));
         }
         else
         {
@@ -32,7 +40,7 @@ public class RecipeOpenerView : MonoBehaviour
         }
     }
 
-    private IEnumerator Animation()
+    private IEnumerator Animation(RecipeConfig openedRecipe)
     {
         int todayServed = TaxCounter.PeopleServed;
         int remainedCount = recipeOpener.CatchedPeopleCount - todayServed;
@@ -51,11 +59,14 @@ public class RecipeOpenerView : MonoBehaviour
 
             if (remainedCount == 20)
             {
+                recipeSlotMachine.SetData(recipeConfigList.ToArray(), openedRecipe);
+                yield return new WaitForSeconds(animationDuration);
+                recipeSlotMachine.DisableSlotMachine();
+
                 remainedCount -= 20;
                 recipeImage.gameObject.SetActive(true);
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
                 recipeImage.gameObject.SetActive(false);
-
             }
 
             todayServed--;

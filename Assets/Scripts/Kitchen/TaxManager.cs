@@ -21,6 +21,11 @@ public class TaxManager : MonoBehaviour
 
     public void Pay()
     {
+        if(taxAmount == 0)
+        {
+            return;
+        }
+
         if (bank.Has(taxAmount))
         {
             bank.Change(-taxAmount);

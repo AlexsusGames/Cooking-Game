@@ -8,12 +8,12 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
     [SerializeField] private Stamina stamina;
+    [SerializeField] private Transform playerRotation;
 
     private Animator animator;
 
     private Rigidbody rb;
     private Vector3 moveDirection;
-    private bool isInCollision;
     private bool isInteract;
 
     private AnimationController anims;
@@ -38,11 +38,10 @@ public class MoveController : MonoBehaviour
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             float moveVertical = Input.GetAxisRaw("Vertical");
 
-            if (moveHorizontal == 0 && moveVertical == 0 || isInCollision)
+            if (moveHorizontal == 0 && moveVertical == 0)
             {
                 anims.SetWalkingState(WalkingStates.Idle);
                 ResetVelosity();
-                moveSpeed = 1;
             }
             else
             {
@@ -64,26 +63,13 @@ public class MoveController : MonoBehaviour
             if (moveDirection != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.deltaTime));
+                playerRotation.rotation = Quaternion.Slerp(playerRotation.rotation, targetRotation, turnSpeed * Time.deltaTime);
             }
 
-            rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.deltaTime);
+            rb.velocity = moveDirection * moveSpeed;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        isInCollision = true;
-        ContactPoint contact = collision.contacts[0];
-
-        Vector3 collisionDirection = (transform.position - contact.point).normalized;
-        rb.AddForce(collisionDirection * 15, ForceMode.Impulse);
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        isInCollision = false;
-        ResetVelosity();
-    }
     private void ResetVelosity()
     {
         rb.velocity = Vector3.zero;
@@ -93,10 +79,11 @@ public class MoveController : MonoBehaviour
     public void Interact()
     {
         isInteract = true;
+        ResetVelosity();
         anims.SetWalkingState(WalkingStates.Idle);
         animator.SetLayerWeight(2, 1);
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.right);
-        rb.rotation = targetRotation;
+        playerRotation.rotation = targetRotation;
     }
     public void FinishInteracting()
     {

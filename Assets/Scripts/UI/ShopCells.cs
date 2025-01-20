@@ -11,13 +11,13 @@ public class ShopCells : MonoBehaviour
     [SerializeField] private GameObject productPrefab;
     private List<ProductShopCell> items = new();
 
-    public void Init(int[] prices, ProductConfig[] allProducts)
+    public void Init(int[] prices, int[] indexes, ProductConfig[] allProducts)
     {
         for (int i = 0; i < allProducts.Length; i++)
         {
             var cell = Instantiate(productPrefab, shopParent);
             cell.TryGetComponent(out ProductShopCell shopCell);
-            shopCell.Bind(allProducts[i], prices[i]);
+            shopCell.Bind(allProducts[i], prices[i], indexes[i]);
             items.Add(shopCell);
         }
     }

@@ -305,6 +305,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 3649744310384887273}
   price: {fileID: 5398278873921105834}
+  colors:
+  - {r: 0.38810962, g: 0.8679245, b: 0.4152689, a: 1}
+  - {r: 1, g: 0.9116373, b: 0.39999998, a: 1}
+  - {r: 0.9716981, g: 0.25117472, b: 0.25117472, a: 1}
 --- !u!114 &2354484077437628597
 MonoBehaviour:
   m_ObjectHideFlags: 0

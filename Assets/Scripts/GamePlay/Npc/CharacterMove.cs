@@ -7,6 +7,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class CharacterMove : MonoBehaviour
 {
+    [SerializeField] private EmojiSender emojiSender;
+    public EmojiSender EmojiSender { get => emojiSender; }
+
     private Transform[] wayPoints;
     private Animator animator;
     private AnimationController animController;

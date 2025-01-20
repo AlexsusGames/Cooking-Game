@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class CameraController : MonoBehaviour
 {
+    [Inject] private WindowController windowController;
     public float minOffset;
     public float maxOffset;
     public float speed;
@@ -17,18 +19,21 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0)
+        if(!windowController.HasOpenedWindows())
         {
-            if(offsetCamera.m_Offset.z < minOffset)
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
             {
-                offsetCamera.m_Offset.z += speed;
+                if (offsetCamera.m_Offset.z < minOffset)
+                {
+                    offsetCamera.m_Offset.z += speed;
+                }
             }
-        }
-        if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
-        {
-            if (offsetCamera.m_Offset.z > maxOffset)
+            if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
             {
-                offsetCamera.m_Offset.z -= speed;
+                if (offsetCamera.m_Offset.z > maxOffset)
+                {
+                    offsetCamera.m_Offset.z -= speed;
+                }
             }
         }
     }

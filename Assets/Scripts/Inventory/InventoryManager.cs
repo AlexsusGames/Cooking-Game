@@ -5,7 +5,7 @@ using Zenject;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] protected int countItems;
+    [SerializeField] protected bool giveAllItems = false;
     [Inject] protected InteractSound sound;
     protected InventoryGrid myInventory;
     protected InventoryGrid anotherInventory;
@@ -16,22 +16,23 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             var position = buttons[i].GetComponent<InventorySlotView>().Position;
-            buttons[i].onClick.AddListener(() => PutItems(position, countItems));
+            buttons[i].onClick.AddListener(() => PutItems(position, giveAllItems));
         }
     }
-    protected void PutItems(Vector2Int coords, int count)
+    protected void PutItems(Vector2Int coords, bool all)
     {
         if (anotherInventory != null)
         {
             var itemToRemove = myInventory.GetSlots()[coords.x, coords.y];
             var itemId = itemToRemove.ItemId;
 
-            if (!itemToRemove.isEmpty && anotherInventory.CanTake(itemId, count))
+            if (!itemToRemove.isEmpty)
             {
-                var result = myInventory.RemoveItem(coords, count);
-                var amount = result.RemovedItemsAmount;
+                int count = all ? itemToRemove.Amount : 1;
+                var result = anotherInventory.AddItems(itemId, count);
 
-                anotherInventory.AddItems(itemId, amount);
+                myInventory.RemoveItem(coords, result.AddedItemsAmount);
+
                 sound.Play(NonLoopSounds.Click);
             }
         }
