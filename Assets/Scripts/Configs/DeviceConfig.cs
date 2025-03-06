@@ -21,7 +21,10 @@ public class DeviceConfig : SoLocalization
 
     public override void Set(params string[] param)
     {
-        Name = param[0];
-        Describtion = param[1];
+        if (!Ignore)
+        {
+            Name = param[0];
+            Describtion = param[1];
+        }
     }
 }

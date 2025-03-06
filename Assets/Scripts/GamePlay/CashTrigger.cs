@@ -66,8 +66,13 @@ public class CashTrigger : InteractiveManager
 
                 if (randomDrink != null)
                 {
-                    if (UnityEngine.Random.Range(0, 2) > 0)
+                    if (UnityEngine.Random.Range(0, 3) > 1)
                         randomFood.Add(randomDrink);
+                }
+                else if(DrinkFridge.CurrentDrink != null)
+                {
+                    if (UnityEngine.Random.Range(0, 2) > 0)
+                        randomFood.Add(DrinkFridge.CurrentDrink);
                 }
             }
         }

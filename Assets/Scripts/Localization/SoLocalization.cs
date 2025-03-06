@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class SoLocalization : ScriptableObject, ILocalization
 {
     public string[] CachedKeys;
+    public bool Ignore;
 
     public void CreateKey(string[] values)
     {

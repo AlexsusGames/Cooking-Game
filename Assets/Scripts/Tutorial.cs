@@ -11,7 +11,10 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private UnityEvent OnTutorStart;
     [SerializeField] private UnityEvent OnTutorFinish;
 
+    [SerializeField] private GameObject tip;
+
     [Inject] private QuestHandler questHandler;
+    [Inject] private WindowController windowController;
     public void StartTutor()
     {
         OnTutorStart?.Invoke();
@@ -29,6 +32,11 @@ public class Tutorial : MonoBehaviour
         quests.Remove(quest);
 
         questHandler.AddQuest(quests[0]);
+
+        if (quests[0].QuestId == "tutor5")
+        {
+            windowController.AddWindow(tip);
+        }
 
         if (quests.Count == 1)
         {

@@ -53,6 +53,9 @@ public class DeviceDataProvider
 
     public void RemovedDevice(string name)
     {
+        if (!map.ContainsKey(name))
+            return;
+
         map.Remove(name);
     }
 

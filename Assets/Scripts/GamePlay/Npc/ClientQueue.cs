@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using Zenject;
 
 public class ClientQueue : MonoBehaviour
 {
@@ -13,12 +14,17 @@ public class ClientQueue : MonoBehaviour
     [SerializeField] private LightSystem lightSystem;
     [SerializeField] private Bank bank;
 
+    [Inject] private RatingManager ratingManager;
+    private RatingStats ratingStats;
+
     private List<CharacterMove> characters = new();
     private List<CharacterMove> charactersInQueue = new();
     private KnownRecipes knownRecipes = new();
 
     private void Start()
     {
+        ratingStats = ratingManager.GetStats();
+
         var characters = pool.GetPool();
 
         for (int i = 0; i < characters.Count; i++)
@@ -53,15 +59,25 @@ public class ClientQueue : MonoBehaviour
         if (time > 30 && isServed)
         {
             movement.EmojiSender.SendEmoji(EmojiType.Heart);
+            ratingStats.PerfectReviews++;
             tips = 3;
         }
         else if (time > 10 && isServed)
         {
             movement.EmojiSender.SendEmoji(EmojiType.Happy);
+            ratingStats.GoodReviews++;
             tips = 1;
         }
-        else if (time > 1 && isServed) movement.EmojiSender.SendEmoji(EmojiType.Upset);
-        else movement.EmojiSender.SendEmoji(EmojiType.Angry);
+        else if (time > 1 && isServed)
+        {
+            movement.EmojiSender.SendEmoji(EmojiType.Upset);
+            ratingStats.NormalReviews++;
+        }
+        else
+        {
+            movement.EmojiSender.SendEmoji(EmojiType.Angry);
+            ratingStats.BadReviews++;
+        }
 
         GiveMoneyWithDelay(tips);
 

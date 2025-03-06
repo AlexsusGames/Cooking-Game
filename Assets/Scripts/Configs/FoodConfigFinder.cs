@@ -85,6 +85,7 @@ public class FoodConfigFinder
                 if (!string.IsNullOrEmpty(allRecipes[i].Description))
                 {
                     recipeMap[allRecipes[i].name] = allRecipes[i];
+                    Debug.Log($"recipe - {allRecipes[i].Description}");
                 }
             }
         }

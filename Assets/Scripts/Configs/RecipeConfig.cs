@@ -30,8 +30,11 @@ public class RecipeConfig : SoLocalization
 
     public override void Set(params string[] param)
     {
-        Name = param[0];
-        Description = param[1];
+        if (!Ignore)
+        {
+            Name = param[0];
+            Description = param[1];
+        }
     }
 
     private int GetCost()

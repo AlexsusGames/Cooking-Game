@@ -18,10 +18,9 @@ MonoBehaviour:
     \u043F\u0435\u0440\u0432\u043E\u0435 \u0431\u043B\u044E\u0434\u043E \u0441\u043E\u0433\u043B\u0430\u0441\u043D\u043E
     \u0440\u0435\u0446\u0435\u043F\u0442\u0443"
   QuestIcon: {fileID: 21300000, guid: 30564d258180127488fca1c4f89d1e41, type: 3}
-  QuestName: "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435 "
-  Describtion: "\u041F\u0440\u0438\u0433\u043E\u0442\u043E\u0432\u044C\u0442\u0435
-    \u0441\u0432\u043E\u0435 \u043F\u0435\u0440\u0432\u043E\u0435 \u0431\u043B\u044E\u0434\u043E
-    \u0441\u043E\u0433\u043B\u0430\u0441\u043D\u043E \u0440\u0435\u0446\u0435\u043F\u0442\u0443"
+  QuestName: Tutorial
+  Describtion: 'Prepare your first course according to the recipe,  <color=yellow>Attention:
+    make sure that you do not have any extra ingredients for the recipe in your inventory!</color>'
   Progress: 1
   CurrentProgress: 1
   IsGlobal: 0

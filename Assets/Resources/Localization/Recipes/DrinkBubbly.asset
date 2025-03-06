@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c192e1a0dd6f7e4abda63f03df438cb, type: 3}
+  m_Name: DrinkBubbly
+  m_EditorClassIdentifier: 
+  CachedKeys: []
+  Ignore: 1
+  picture: {fileID: 21300000, guid: edfc577553eb38b4d8f0401b0b53fb0d, type: 3}
+  CookingPlace: 2
+  Products:
+  - {fileID: 11400000, guid: 9ddaf6657333c6b408af11017f6855b3, type: 2}
+  - {fileID: 11400000, guid: 6ef19dab59f5b884a8d46c8932aadd3d, type: 2}
+  - {fileID: 11400000, guid: 09caba6fccd3efd4ba8ce676c606494f, type: 2}
+  Model: {fileID: 4994562355729524134, guid: 767703a7143cbaf4980ed34ee42b7b29, type: 3}
+  Name: Bubble
+  Description: 
+  RarityIndex: 1
+  IsDrink: 1

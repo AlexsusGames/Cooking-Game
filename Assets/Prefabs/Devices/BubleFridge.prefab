@@ -1,0 +1,1368 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &621262770014409102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7121229687959987564}
+  - component: {fileID: 2002308258343983484}
+  - component: {fileID: 6704133364269766849}
+  m_Layer: 2
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7121229687959987564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621262770014409102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7871936527896911460}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2002308258343983484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621262770014409102}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0343628, y: 2.4858084, z: 2.7122498}
+  m_Center: {x: -3.3726196, y: 1.2810483, z: -0.102249146}
+--- !u!114 &6704133364269766849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621262770014409102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d050bc184983d4c802f363ee6b3d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveMesh: {fileID: 9130503634278615892}
+  interactiveZone: {fileID: 2002308258343983484}
+  button: E
+  actionDescribtion: "\u0412\u0437\u044F\u0442\u044C \u043D\u0430\u043F\u0438\u0442\u043E\u043A"
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5028910115141344269}
+        m_TargetAssemblyTypeName: DrinkFridge, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &1904306328366680549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 796710600274021388}
+  m_Layer: 0
+  m_Name: Items
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &796710600274021388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904306328366680549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8692290473131791488}
+  - {fileID: 1028009627201044487}
+  - {fileID: 3016744581001676870}
+  - {fileID: 5152191205872340613}
+  - {fileID: 7479803902711866019}
+  - {fileID: 6751363645101148198}
+  - {fileID: 3067158195372751184}
+  - {fileID: 8291817649986004104}
+  - {fileID: 4410744983007231858}
+  - {fileID: 2536697863389238097}
+  - {fileID: 2763124084354589126}
+  - {fileID: 8708739802969164385}
+  - {fileID: 7307478596675672221}
+  - {fileID: 2828583739903029821}
+  - {fileID: 867482392077062139}
+  m_Father: {fileID: 7871936527896911460}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2484655689690459552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7871936527896911460}
+  - component: {fileID: 5028910115141344269}
+  m_Layer: 0
+  m_Name: BubleFridge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7871936527896911460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484655689690459552}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -21, y: 0, z: -44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5917999226912933637}
+  - {fileID: 796710600274021388}
+  - {fileID: 7121229687959987564}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &5028910115141344269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484655689690459552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da1de3b584b9824c9b6f82b0c3b7efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 20
+  drinkConfigs:
+  - {fileID: 11400000, guid: abf587a618839544fbc44f710262d003, type: 2}
+  - {fileID: 11400000, guid: 271fd7f6cc27c0642b94dbddcd7b7d0f, type: 2}
+  - {fileID: 11400000, guid: 75c30d7a4e3d55d4a88b0c3716efdc10, type: 2}
+  drinkType: 0
+--- !u!1001 &1576901775059334672
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.067993164
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &867482392077062139 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 1576901775059334672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1706745665594391020
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8450012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &1028009627201044487 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 1706745665594391020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2656473271151330969
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.067993164
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &4410744983007231858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 2656473271151330969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3473977745262801325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.067993164
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &3016744581001676870 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 3473977745262801325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3709577736749973691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9049988
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &3067158195372751184 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 3709577736749973691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4242254684451908282
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.7630005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &2536697863389238097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 4242254684451908282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4515571660718164950
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7049866
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &2828583739903029821 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 4515571660718164950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4590078261282265133
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.7630005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &2763124084354589126 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 4590078261282265133}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4925253660638540237
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8450012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &6751363645101148198 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 4925253660638540237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6172831504491864302
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7871936527896911460}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8068073526183931155, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5975457300521455650, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7263ddfba96f144cb0271bbc2d48ff2, type: 2}
+    - target: {fileID: -305091885687274788, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    - target: {fileID: 919132149155446097, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_Name
+      value: FizzUpFridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772740960092250769, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3024621452840433635, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9130503634278615892}
+    - targetCorrespondingSourceObject: {fileID: 3024621452840433635, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4586638111998978196}
+  m_SourcePrefab: {fileID: 100100000, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+--- !u!4 &5917999226912933637 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+  m_PrefabInstance: {fileID: 6172831504491864302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8958733486412764941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3024621452840433635, guid: 370a4d1f7717ea94faccb26f1449d371, type: 3}
+  m_PrefabInstance: {fileID: 6172831504491864302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9130503634278615892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958733486412764941}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 1, b: 0.019359827, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &4586638111998978196
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958733486412764941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 72.63286, y: 78.144775, z: 57.671383}
+  m_Center: {x: 34.406456, y: 26.77865, z: 23.206614}
+--- !u!1001 &6803795502993864558
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9049988
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &5152191205872340613 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 6803795502993864558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7003103851435307914
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8450012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &8708739802969164385 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 7003103851435307914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7010579929498168683
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7049866
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &8692290473131791488 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 7010579929498168683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7708431193918283107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7049866
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &8291817649986004104 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 7708431193918283107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8971958248511857014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9049988
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &7307478596675672221 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 8971958248511857014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9090013825797217096
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 796710600274021388}
+    m_Modifications:
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3709869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.7630005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994562355729524134, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Name
+      value: FizzUpDrink (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132699068123462129, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fd45451101dc194c856b7d21f1609f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+--- !u!4 &7479803902711866019 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1867777153881405931, guid: 77bec72fad89b0d4fae596fd521f8ad5, type: 3}
+  m_PrefabInstance: {fileID: 9090013825797217096}
+  m_PrefabAsset: {fileID: 0}
